@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
-    public class SqlSubObject : ISqlSubObject
+    public abstract class SqlSubObject : ISqlSubObject  
     {
-        public String ObjectName
+        public String Name
         {
             get; set;
         }
 
-        public ISqlObject ParentObject
+        public virtual ISqlObject ParentObject
         {
             get; set;
         }

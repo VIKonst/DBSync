@@ -8,7 +8,7 @@ using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public interface IMetaDataLoader<T> where T : ISqlObject
+    public interface IMetaDataLoader<T>
     {
         List<T> LoadObjects(IDbConnection connection);
     }

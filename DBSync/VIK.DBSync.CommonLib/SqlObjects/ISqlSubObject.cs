@@ -10,7 +10,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
     {
         ISqlObject ParentObject { get; set; }
 
-        String ObjectName { get; set; }
+        String Name { get; set; }
 
 
     }

@@ -8,7 +8,7 @@ using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public class TablesLoader : MetadataLoaderBase<SqlTable>
+    public class TablesLoader : SqlObjectMetadataLoaderBase<SqlTable>
     {
         public TablesLoader()
             : base("VIK.DBSync.CommonLib.Scripts.Tables.sql")
@@ -25,6 +25,14 @@ namespace VIK.DBSync.CommonLib.Metadata
             table.ObjectId = reader.GetInt32(3);
             table.IsAnsiNullsOn = reader.GetBoolean(4);
             return table;
+        }
+
+
+        public override void LoadSubObjects(SqlTable table, IDbConnection connection)
+        {
+            TableColumnsLoader loader = new TableColumnsLoader(table);
+
+            table.Columns = loader.LoadObjects(connection);
         }
     }
 }

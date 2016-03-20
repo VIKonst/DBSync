@@ -8,11 +8,16 @@ using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public class StoredProceduresLoader : MetadataLoaderBase<SqlStoredProcedure>
+    public class StoredProceduresLoader : SqlObjectMetadataLoaderBase<SqlStoredProcedure>
     {
         public StoredProceduresLoader()
             : base("VIK.DBSync.CommonLib.Scripts.StoredProcedures.sql")
         {            
+        }
+
+        public override void LoadSubObjects(SqlStoredProcedure sqlObject, IDbConnection reader)
+        {
+            return;
         }
 
         protected override SqlStoredProcedure GetObject(IDataRecord reader)

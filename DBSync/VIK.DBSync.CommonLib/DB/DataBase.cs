@@ -35,6 +35,10 @@ namespace VIK.DBSync.CommonLib.DB
         {
             TablesLoader loader = new TablesLoader();
             Objects.Tables = loader.LoadObjects(_connection);
+            foreach(var table in Objects.Tables )
+            {
+                loader.LoadSubObjects(table,_connection);
+            }
         }
 
         public void LoadProcedures()

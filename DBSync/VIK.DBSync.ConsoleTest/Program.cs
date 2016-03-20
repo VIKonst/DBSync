@@ -23,7 +23,7 @@ namespace VIK.DBSync.ConsoleTest
             db.LoadTables();
             db.LoadProcedures();
 
-            foreach(var obj in db.Objects.Procedures)
+            foreach(var obj in db.Objects.Tables)
             {
                 Console.WriteLine(obj.CreateScript());
             }
