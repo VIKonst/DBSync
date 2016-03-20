@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VIK.DBSync.ConsoleTest", "VIK.DBSync.ConsoleTest\VIK.DBSync.ConsoleTest.csproj", "{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VIK.DBSync.CommonLib", "VIK.DBSync.CommonLib\VIK.DBSync.CommonLib.csproj", "{D294F91B-C235-450E-921D-1B50BD3E96FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

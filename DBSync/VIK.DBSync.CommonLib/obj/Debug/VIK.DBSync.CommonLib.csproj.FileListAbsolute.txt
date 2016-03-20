@@ -1,0 +1,5 @@
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\bin\Debug\VIK.DBSync.CommonLib.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\bin\Debug\VIK.DBSync.CommonLib.pdb
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\obj\Debug\VIK.DBSync.CommonLib.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\obj\Debug\VIK.DBSync.CommonLib.pdb
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\obj\Debug\VIK.DBSync.CommonLib.csprojResolveAssemblyReference.cache
