@@ -46,16 +46,15 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             script.AppendLine(SqlStatement.GO);
             script.Append(SqlStatement.GetCreateStatemt(" TABLE " + QualifiedName));
             script.AppendLine("(");
-
-
-            foreach (SqlColumn column in Columns)
+            
+            foreach (SqlColumn column in Columns.OrderBy(c => c.ColumnId))
             {
-                script.AppendFormat("[{0}]\t{1}{2}{3}{4},\r\n",column.Name, column.TypeStatement,
+                script.AppendFormat("[{0}]\t{1} {2} {3} {4},\r\n",column.Name, column.TypeStatement,
                 column.IdentityStatement, column.ColationStatement, column.NullStatement);
             }
             script[script.Length - 3] = ' ';
             script.AppendLine(")");
-
+            script.AppendLine(SqlStatement.GO);
             return script.ToString();
 
         }

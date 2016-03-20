@@ -43,6 +43,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             script.AppendLine(SqlStatement.GetQuotedIdentifierStatemt(IsQuotedIdentifier));
             script.AppendLine(SqlStatement.GO);
             script.AppendLine(Text);
+            script.AppendLine(SqlStatement.GO);
             return script.ToString();
         }
 

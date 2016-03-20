@@ -13,6 +13,8 @@ namespace VIK.DBSync.CommonLib.SqlScripting
         public const String ON = "ON";
         public const String OFF = "OFF";
         public const String CREATE = "CREATE ";
+        public const String NULL = "NULL";
+        public const String NOT_NULL = "NOT NULL";
 
 
         private const String ANSI_NULL_FORMAT = "SET ANSI_NULLS {0}";
