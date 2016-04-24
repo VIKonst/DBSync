@@ -12,6 +12,5 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         String Name { get; set; }
 
-
     }
 }

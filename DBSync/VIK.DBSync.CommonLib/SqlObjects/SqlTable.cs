@@ -38,6 +38,12 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public List<SqlColumn> Columns { get; set; }
 
+        public List<SqlIndex> UniqueConstraints { get; set; }
+
+        public SqlIndex PrimarKey { get; set; }
+
+
+
         public override String CreateScript()
         {
             StringBuilder script = new StringBuilder(String.Empty, 500);
@@ -55,6 +61,20 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             script[script.Length - 3] = ' ';
             script.AppendLine(")");
             script.AppendLine(SqlStatement.GO);
+
+            if (PrimarKey != null)
+            {
+                script.AppendLine(PrimarKey.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+            }
+
+           
+            foreach (SqlIndex constraint in UniqueConstraints.OrderBy(c => c.IndexId))
+            {
+                script.AppendLine(constraint.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+            }
+           
             return script.ToString();
 
         }

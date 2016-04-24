@@ -10,6 +10,10 @@ namespace VIK.DBSync.CommonLib.SqlObjects
     {
         Column,
         ForeignKey,
-        Index
+        Index,
+        DefaultConstraint,
+        UniqueConstraint,
+        CheckConstraint
+
     }
 }

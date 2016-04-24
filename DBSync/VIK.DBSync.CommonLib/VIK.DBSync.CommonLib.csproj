@@ -48,11 +48,13 @@
     <Compile Include="Metadata\SqlObjectMetadataLoaderBase.cs" />
     <Compile Include="Metadata\SqlSubObjectMetadataLoaderBase.cs" />
     <Compile Include="Metadata\StoredProceduresLoader.cs" />
+    <Compile Include="Metadata\TableIndexesLoader.cs" />
     <Compile Include="Metadata\TablesLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlObjects\ISqlObject.cs" />
     <Compile Include="SqlObjects\ISqlSubObject.cs" />
     <Compile Include="SqlObjects\SqlColumn.cs" />
+    <Compile Include="SqlObjects\SqlIndex.cs" />
     <Compile Include="SqlObjects\SqlObject.cs" />
     <Compile Include="SqlObjects\SqlObjectType.cs" />
     <Compile Include="SqlObjects\SqlStoredProcedure.cs" />
@@ -70,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\TableColumns.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Indexes.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

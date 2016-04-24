@@ -30,9 +30,15 @@ namespace VIK.DBSync.CommonLib.Metadata
 
         public override void LoadSubObjects(SqlTable table, IDbConnection connection)
         {
-            TableColumnsLoader loader = new TableColumnsLoader(table);
+            TableColumnsLoader columnsLoader = new TableColumnsLoader(table);
 
-            table.Columns = loader.LoadObjects(connection);
+            table.Columns = columnsLoader.LoadObjects(connection);
+
+            TableIndexesLoader indexesLoader = new TableIndexesLoader(table);
+            List<SqlIndex> indexes = indexesLoader.LoadObjects(connection);
+            table.PrimarKey = indexes.FirstOrDefault(i => i.IsPrimaryKey);
+            table.UniqueConstraints = indexes.Where(i => i.IsUniqueConstraint).ToList();
+
         }
     }
 }
