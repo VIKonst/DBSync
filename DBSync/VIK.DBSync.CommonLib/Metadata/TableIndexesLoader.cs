@@ -24,6 +24,10 @@ namespace VIK.DBSync.CommonLib.Metadata
             index.IsPrimaryKey = (Boolean)reader["is_primary_key"];
             index.IsUnique = (Boolean)reader["is_unique"];
             index.IsUniqueConstraint = (Boolean)reader["is_unique_constraint"];
+            index.TypeStatement = (String)reader["type_desc"];
+            index.IsPadded = (Boolean)reader["is_padded"];
+            index.IgnoreDupKey = (Boolean)reader["ignore_dup_key"];
+            index.IsAutoStatistics = (Boolean)reader["no_recompute"];
             return index;
         }
     }

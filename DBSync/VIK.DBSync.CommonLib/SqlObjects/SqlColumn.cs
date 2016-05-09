@@ -7,7 +7,7 @@ using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
-    public class SqlColumn : SqlSubObject
+    public class SqlColumn : SqlSubObject, IComparable<SqlColumn>
     {
         public Int32 ColumnId { get; set; }
 
@@ -142,6 +142,23 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             }
         }
 
-      
+        public String CreateStatement 
+        {
+            get 
+            {
+                return String.Format("[{0}]\t{1} {2} {3} {4}",this.Name, this.TypeStatement,
+                this.IdentityStatement, this.ColationStatement, this.NullStatement);
+            }
+        }
+
+        public Int32 CompareTo(SqlColumn other)
+        {
+            Int32 result = this.Name.CompareTo(other.Name);
+            if(result != 0) return result;
+
+            result = this.CreateStatement.CompareTo(other.CreateStatement);
+            
+            return result;
+        }
     }
 }

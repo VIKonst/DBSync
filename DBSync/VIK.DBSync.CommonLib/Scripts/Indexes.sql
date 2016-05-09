@@ -4,6 +4,7 @@
 	t1.[name]					as index_name,
 	t1.is_unique				as is_unique,
 	t1.[type]					as index_type,
+	t1.[type_desc]				as [type_desc],
 	t1.fill_factor				as fill_factor,
 	t1.is_padded				as is_padded,
 	t1.ignore_dup_key			as ignore_dup_key,

@@ -10,7 +10,7 @@ using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public abstract class SqlObjectMetadataLoaderBase<T> : IMetaDataLoader<T> where T : ISqlObject
+    public abstract class SqlObjectMetadataLoaderBase<T> : IMetaDataLoader<T>
     {
         protected String _scriptName;
 

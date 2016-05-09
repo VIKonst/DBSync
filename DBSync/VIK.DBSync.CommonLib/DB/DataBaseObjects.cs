@@ -11,9 +11,20 @@ namespace VIK.DBSync.CommonLib.DB
     {
         public List<SqlTable> Tables { get; set; }
         public List<SqlStoredProcedure> Procedures { get; set; }
+
+
+        public List<SqlObject> AllObjects()
+        {
+            List<SqlObject> all = new List<SqlObject>();
+            all.AddRange(Tables);
+            all.AddRange(Procedures);
+            return all;
+        }
+
         public DataBaseObjects()
         {
-            Tables = new List<SqlTable>();            
+            Tables = new List<SqlTable>();
+            Procedures = new List<SqlStoredProcedure>();
         }
     }
 }

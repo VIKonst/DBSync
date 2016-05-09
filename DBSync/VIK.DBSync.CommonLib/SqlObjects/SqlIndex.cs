@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
-    public class SqlIndex : ISqlSubObject
+    public class SqlIndex : ISqlSubObject, IComparable<SqlIndex>
     {
         public Int32 IndexId { get; set; }
 
@@ -20,25 +21,63 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public Boolean IsUniqueConstraint { get; set; }
 
-        public List<SqlColumn> Columns { get; set; }
+        public Boolean IsPadded { get; set; }
+
+        public Boolean IsAutoStatistics { get; set; }
+
+        public Boolean IgnoreDupKey { get; set; }
+
+        public Boolean AllowRowLocks { get; set; }
+
+        public Boolean AllowPageLocks { get; set; }
+
+        public Int16 FillFactor { get; set; }
+
+        public String FileGroup { get; set; }
+
+        public List<IndexColumn> Columns { get; set; }
 
         public ISqlObject ParentObject { get; set; }
 
         public String CreateScript()
         {
-            StringBuilder builder = new StringBuilder("ADD CONSTRAINT ");
-            builder.Append(Name);
-            builder.Append(" ");
+            StringBuilder builder = new StringBuilder(String.Empty);
+          
             if(IsPrimaryKey)
             {
-                builder.Append("PRIMARY KEY ");
+                builder.AppendFormat($"ADD CONSTRAINT {Name} PRIMARY KEY {TypeStatement}");              
             } 
             else if(IsUniqueConstraint)
             {
-                builder.Append("UNIQUE ");
+                builder.Append($"ADD CONSTRAINT {Name} UNIQUE {TypeStatement}");
             }
-            builder.Append(" (columns)");
+            else
+            {
+                builder.Append($"CREATE {TypeStatement} INDEX {Name} ON {ParentObject.QualifiedName}");
+            }
+           
+            builder.Append("\r\n(");
+            builder.Append(String.Join(",", Columns.Select(c => c.ScriptStatement)));
+            builder.AppendLine(" )");
+            builder.AppendLine("WITH ( ");
+            builder.AppendFormat($"PAD_INDEX = {SqlStatement.GetOnOffStatement(IsPadded)}, ");
+            builder.AppendFormat($"STATISTICS_NORECOMPUTE = {SqlStatement.GetOnOffStatement(IsAutoStatistics)}, ");
+            builder.AppendFormat($"IGNORE_DUP_KEY = {SqlStatement.GetOnOffStatement(IgnoreDupKey)}, ");
+            builder.AppendFormat($"ALLOW_ROW_LOCKS = {SqlStatement.GetOnOffStatement(AllowRowLocks)}, ");
+            builder.AppendFormat($"ALLOW_PAGE_LOCKS = {SqlStatement.GetOnOffStatement(AllowPageLocks)} ");
+            if(FillFactor != 0) builder.AppendFormat($", FILLFACTOR =  {FillFactor.ToString()}");
+            builder.Append(" ) ");
+            if (!String.IsNullOrEmpty(FileGroup)) builder.Append(" ON [" + FileGroup + "]");
             return builder.ToString();
+        }
+
+        public Int32 CompareTo(SqlIndex other)
+        {
+            if (other == null) return -1;
+            Int32 result = this.Name.CompareTo(other.Name);
+            if (result != 0) return result;
+            result = this.CreateScript().CompareTo(other.CreateScript());
+            return result;
         }
     }
 }

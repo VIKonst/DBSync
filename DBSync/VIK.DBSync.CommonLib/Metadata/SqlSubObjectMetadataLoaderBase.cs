@@ -22,7 +22,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 
         abstract protected T GetObject(IDataRecord reader);
 
-        public List<T> LoadObjects(IDbConnection connection)
+        public virtual List<T> LoadObjects(IDbConnection connection)
         {
             IDataReader reader = null;
             try

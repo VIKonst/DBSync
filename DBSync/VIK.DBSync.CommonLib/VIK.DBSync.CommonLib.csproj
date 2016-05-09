@@ -41,8 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\Comparison\CompareResult.cs" />
+    <Compile Include="DB\Comparison\ComparePair.cs" />
+    <Compile Include="DB\Comparison\DBComparer.cs" />
+    <Compile Include="DB\Comparison\TableComparer.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="DB\DataBaseObjects.cs" />
+    <Compile Include="DB\DBHelper.cs" />
+    <Compile Include="SqlObjects\IndexColumn.cs" />
+    <Compile Include="Metadata\IndexColumnLoader.cs" />
     <Compile Include="Metadata\TableColumnsLoader.cs" />
     <Compile Include="Metadata\IMetaDataLoader.cs" />
     <Compile Include="Metadata\SqlObjectMetadataLoaderBase.cs" />
@@ -75,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Indexes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\IndexColumns.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -16,18 +16,21 @@ namespace VIK.DBSync.CommonLib.DB
         SqlConnection _connection;
 
         public DataBaseObjects Objects { get; set; }
+        public string Name { get; set; }
+
 
         public DataBase(SqlConnection connection)
         {
             _connection = connection;
+            Name = connection.Database;
             Objects = new DataBaseObjects();
 
         }
 
         public DataBase(String connectionString)
+            : this(new SqlConnection(connectionString))
         {
-            _connection = new SqlConnection(connectionString);
-            Objects = new DataBaseObjects();
+            
         }
 
 
@@ -45,6 +48,12 @@ namespace VIK.DBSync.CommonLib.DB
         {
             StoredProceduresLoader loader = new StoredProceduresLoader();
             Objects.Procedures = loader.LoadObjects(_connection);
+        }
+
+        public void LoadObjects()
+        {
+            LoadTables();
+            LoadProcedures();
         }
     }
 }
