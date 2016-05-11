@@ -49,7 +49,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public List<SqlIndex> Indexes { get; set; }
 
         public SqlIndex PrimarKey { get; set; }
-        
+
+        public List<SqlForeignKey> ForeignKeys { get; set; }
 
         public override String CreateScript()
         {
@@ -57,7 +58,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             script.AppendLine(SqlStatement.GetAnsiNullsStatemt(IsAnsiNullsOn));
             script.AppendLine(SqlStatement.GetQuotedIdentifierStatemt(true));
             script.AppendLine(SqlStatement.GO);
-            script.Append(SqlStatement.GetCreateStatemt(" TABLE " + QualifiedName));
+            script.Append(SqlStatement.GetCreateStatemt("TABLE " + QualifiedName));
             script.AppendLine("(");
             
             foreach (SqlColumn column in Columns.OrderBy(c => c.ColumnId))

@@ -64,9 +64,12 @@ namespace VIK.DBSync.CommonLib.Metadata
                 }
               
             }
-          //  table.PrimarKey = indexes.FirstOrDefault(i => i.IsPrimaryKey);
-          //  table.UniqueConstraints = indexes.Where(i => i.IsUniqueConstraint).ToList();
-           // table.Indexes = indexes.Where(i => !i.IsUniqueConstraint && !i.IsPrimaryKey).ToList();
+            //  table.PrimarKey = indexes.FirstOrDefault(i => i.IsPrimaryKey);
+            //  table.UniqueConstraints = indexes.Where(i => i.IsUniqueConstraint).ToList();
+            // table.Indexes = indexes.Where(i => !i.IsUniqueConstraint && !i.IsPrimaryKey).ToList();
+
+            ForeignKeysLoader loader = new ForeignKeysLoader(table);
+            table.ForeignKeys = loader.LoadObjects(connection);
         }
     }
 }

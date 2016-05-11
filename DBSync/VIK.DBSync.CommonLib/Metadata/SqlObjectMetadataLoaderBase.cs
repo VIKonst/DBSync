@@ -34,13 +34,15 @@ namespace VIK.DBSync.CommonLib.Metadata
                 {
                     connection.Open();
                 }
-                reader = command.ExecuteReader();
-                while (reader.Read())
+                using (reader = command.ExecuteReader())
                 {
-                    T sqlObject = GetObject(reader);
-                    list.Add(sqlObject);
+                    while (reader.Read())
+                    {
+                        T sqlObject = GetObject(reader);
+                        list.Add(sqlObject);
+                    }
                 }
-                reader.Close();
+                
                 return list;
             }
             catch(Exception ex)

@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,7 @@
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="DB\DataBaseObjects.cs" />
     <Compile Include="DB\DBHelper.cs" />
+    <Compile Include="Metadata\ForeignKeysLoader.cs" />
     <Compile Include="SqlObjects\IndexColumn.cs" />
     <Compile Include="Metadata\IndexColumnLoader.cs" />
     <Compile Include="Metadata\TableColumnsLoader.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="SqlObjects\ISqlObject.cs" />
     <Compile Include="SqlObjects\ISqlSubObject.cs" />
     <Compile Include="SqlObjects\SqlColumn.cs" />
+    <Compile Include="SqlObjects\SqlForeignKey.cs" />
     <Compile Include="SqlObjects\SqlIndex.cs" />
     <Compile Include="SqlObjects\SqlObject.cs" />
     <Compile Include="SqlObjects\SqlObjectType.cs" />
@@ -85,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\IndexColumns.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\ForeignKeys.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

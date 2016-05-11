@@ -2,6 +2,7 @@
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
 using FastColoredTextBoxNS;
+using ScintillaNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.DB.Comparison;
 using VIK.DBSync.CommonLib.SqlObjects;
-using Comparsion =VIK.DBSync.CommonLib.DB.Comparison;
+using Comparsion = VIK.DBSync.CommonLib.DB.Comparison;
 
 namespace DBSync
 {
@@ -23,25 +24,24 @@ namespace DBSync
         DataBase sourceDatabase;
         DataBase destDatabase;
 
+        ListViewGroup NEGroup;
+        ListViewGroup NGroup;
+        ListViewGroup RGroup;
+        ListViewGroup EGroup;
+
         public MainForm()
         {
-            InitializeComponent();
-            fastColoredTextBox1.Scroll += Text_ScrollbarsUpdated;
-            fastColoredTextBox2.Scroll += Text_ScrollbarsUpdated;
+            InitializeComponent();        
         }
 
-        private void Text_ScrollbarsUpdated(Object sender, EventArgs e)
+        private void InitList()
         {
-            FastColoredTextBox textBox = (FastColoredTextBox)sender;
-            Int32 horizontalValue = textBox.HorizontalScroll.Value;
-            Int32 verticalValue = textBox.VerticalScroll.Value;
-
-            fastColoredTextBox1.HorizontalScroll.Value = Math.Min(fastColoredTextBox1.HorizontalScroll.Maximum, horizontalValue);
-            fastColoredTextBox2.HorizontalScroll.Value = Math.Min(fastColoredTextBox2.HorizontalScroll.Maximum, horizontalValue);
-
-            fastColoredTextBox1.VerticalScroll.Value = Math.Min(fastColoredTextBox1.VerticalScroll.Maximum, verticalValue);
-            fastColoredTextBox2.VerticalScroll.Value = Math.Min(fastColoredTextBox2.VerticalScroll.Maximum, verticalValue);
-           
+            listView1.Columns.Add("Name").Width = 400;
+            listView1.Columns.Add("Type");
+            NEGroup = listView1.Groups.Add("NE", "Not equals");
+            NGroup = listView1.Groups.Add("N", "New");
+            RGroup = listView1.Groups.Add("R", "Removed");
+            EGroup = listView1.Groups.Add("E", "Equals");
         }
 
         private void MainForm_Load(Object sender, EventArgs e)
@@ -54,15 +54,6 @@ namespace DBSync
                 sourceDatabase = new DataBase(window.SourceConnectionString);
                 destDatabase = new DataBase(window.DestConnectionString);
                 StartCompare();
-
-               
-               
-                
-                
-
-
-                // checkedListBox1.M
-                
             }
             else
             {
@@ -71,21 +62,17 @@ namespace DBSync
         }
 
         private void StartCompare()
-        {
-            sourceDatabase.LoadObjects();
-            destDatabase.LoadObjects();
-
-
+        {          
+            ProgressForm form = new ProgressForm(sourceDatabase, destDatabase);
+            form.ShowDialog();
+            if(!form.IsLoaded)
+            {
+                Close();
+            }
             var result = DBComparer.CompareDatabase(sourceDatabase, destDatabase);
-
-            listView1.CheckBoxes = true;
-            listView1.View = View.Details;
-            listView1.Columns.Add("Name");
-            listView1.Columns.Add("Type");
-            ListViewGroup NEGroup =  listView1.Groups.Add("NE","Not equals");
-            ListViewGroup NGroup =  listView1.Groups.Add("N", "New");
-            ListViewGroup RGroup = listView1.Groups.Add("R", "Removed");
-            ListViewGroup EGroup = listView1.Groups.Add("E", "Equals");
+            
+            
+            InitList();
 
             foreach (ComparePair pair in result)
             {
@@ -113,17 +100,6 @@ namespace DBSync
                 item.SubItems.Add(existedObject.TypeName);
                 listView1.Items.Add(item);
             }
-            /*listBox1.DataSource = sourceDatabase.Objects.AllObjects();
-            listBox1.ValueMember = "Name";
-
-            listBox2.DataSource = destDatabase.Objects.AllObjects();
-            listBox2.ValueMember = "Name";*/
-        }
-
-        private void Compare()
-        {
-          
-
         }
 
         private void FillText(FastColoredTextBox tb, DiffPaneModel text )
@@ -162,23 +138,17 @@ namespace DBSync
 
         private void listView1_SelectedIndexChanged(Object sender, EventArgs e)
         {           
-            if(listView1.SelectedItems.Count>0)
+            if(listView1.FocusedItem!=null)
             {
-                ListViewItem item = listView1.SelectedItems[0];
-                ComparePair pair = (ComparePair) item.Tag;
-                SqlObject obj1 = pair.DestinationObject;
-                SqlObject obj2 = pair.SourceObject; 
+                ListViewItem item = listView1.FocusedItem;
+                ComparePair pair = (ComparePair) item.Tag;              
 
-                String script1 = obj1?.CreateScript() ?? String.Empty;
-                String script2 = obj2?.CreateScript() ?? String.Empty;
+                String script1 = pair.DestinationObject?.CreateScript();
+                String script2 = pair.SourceObject?.CreateScript();
 
-                var diff = ( new SideBySideDiffBuilder(new Differ()) ).BuildDiffModel(script1, script2);
-                DiffPaneModel Text1 = diff.NewText;
-                DiffPaneModel Text2 = diff.OldText;
-
-                FillText(fastColoredTextBox1, Text1);
-                FillText(fastColoredTextBox2, Text2);
+                diffControl.SetText(script1, script2);
             }
         }
+
     }
 }

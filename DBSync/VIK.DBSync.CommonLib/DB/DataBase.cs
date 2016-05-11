@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using VIK.DBSync.CommonLib.Metadata;
 using VIK.DBSync.CommonLib.SqlObjects;
@@ -13,11 +14,13 @@ namespace VIK.DBSync.CommonLib.DB
 {
     public class DataBase
     {
-        SqlConnection _connection;
+        private SqlConnection _connection;
+        private String _connectionString;
 
         public DataBaseObjects Objects { get; set; }
         public string Name { get; set; }
 
+        public event Action<String> OnPogressUpdate;
 
         public DataBase(SqlConnection connection)
         {
@@ -30,30 +33,43 @@ namespace VIK.DBSync.CommonLib.DB
         public DataBase(String connectionString)
             : this(new SqlConnection(connectionString))
         {
-            
+            _connectionString = connectionString;
         }
 
 
-        public void LoadTables()
-        {
-            TablesLoader loader = new TablesLoader();
-            Objects.Tables = loader.LoadObjects(_connection);
-            foreach(var table in Objects.Tables )
-            {
-                loader.LoadSubObjects(table,_connection);
-            }
-        }
-
-        public void LoadProcedures()
-        {
-            StoredProceduresLoader loader = new StoredProceduresLoader();
-            Objects.Procedures = loader.LoadObjects(_connection);
-        }
+       
 
         public void LoadObjects()
         {
             LoadTables();
             LoadProcedures();
+            if(_connection.State == System.Data.ConnectionState.Open)
+            {
+                _connection.Close();
+            }
+        }
+
+
+        private void LoadTables()
+        {
+            TablesLoader loader = new TablesLoader();
+
+            Objects.Tables = loader.LoadObjects(_connection);
+
+            foreach (var table in Objects.Tables)
+            {
+                OnPogressUpdate?.Invoke(table.Name + " is Loaded");
+                loader.LoadSubObjects(table, _connection);
+            }
+
+        }
+
+        private void LoadProcedures()
+        {
+            StoredProceduresLoader loader = new StoredProceduresLoader();
+
+            OnPogressUpdate?.Invoke("Procedures is Loaded");
+            Objects.Procedures = loader.LoadObjects(_connection);
         }
     }
 }
