@@ -19,6 +19,11 @@ namespace VIK.DBSync.CommonLib.Metadata
         {
             SqlForeignKey key = new SqlForeignKey();
             key.Name = (String)reader["foreign_key_name"];
+            key.UpdateAction = (ReferentialAction)(Byte)reader["update_referential_action"];
+            key.DeleteAction = (ReferentialAction)(Byte)reader["delete_referential_action"];
+            key.ParentTableId = (Int32)reader["referencing_table_id"];
+            key.ReferencedTableId = (Int32)reader["referenced_table_id"];
+            key.ForeignKeyId = (Int32)reader["foreign_key_id"];
             return key;
         }
     }

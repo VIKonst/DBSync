@@ -37,6 +37,25 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public Boolean IsPersisted { get; set; }
 
+        public Boolean IsRowGuidCol { get; set; }
+
+        public Boolean IsFileStream { get; set; }
+
+        public Boolean IsSparse { get; set; }
+
+        public Boolean IsIdentityNotForReplication  { get; set; }
+
+        public Boolean IsXmlDocument { get; set; }
+
+        public Boolean IsColumnSet { get; set; }
+
+        public String XmlSchemaName { get; set; }
+
+        public String UserTypeSchemaName { get; set; }
+
+        public Boolean IsUserDeinedType { get; set; }
+
+
         public String TypeStatement
         {
             get
@@ -84,7 +103,20 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                     }
                 }
 
-                return UserType;
+                if(UserType.Equals("xml"))
+                {
+                    if (String.IsNullOrEmpty(XmlSchemaName)) return "xml";
+                    if (this.IsXmlDocument)
+                    {
+                        return String.Format("xml (DOCUMENT {0})", XmlSchemaName);
+                    }
+                    else
+                    {
+                        return String.Format("xml (CONTENT {0})", XmlSchemaName);
+                    }
+                }
+
+                return $"{UserType}";
             }
         }
 
@@ -96,6 +128,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 if (IsIdentity)
                 {
                     result = String.Format("IDENTITY({0},{1})", IdentitySeed, IdentityIncrement);
+                    if (IsIdentityNotForReplication) result += " NOT FOR REPLICATION";
                 }
                 return result;
             }
@@ -142,23 +175,32 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             }
         }
 
-        public String CreateStatement 
-        {
-            get 
-            {
-                return String.Format("[{0}]\t{1} {2} {3} {4}",this.Name, this.TypeStatement,
-                this.IdentityStatement, this.ColationStatement, this.NullStatement);
-            }
-        }
-
         public Int32 CompareTo(SqlColumn other)
         {
             Int32 result = this.Name.CompareTo(other.Name);
             if(result != 0) return result;
 
-            result = this.CreateStatement.CompareTo(other.CreateStatement);
+            result = this.CreateScript().CompareTo(other.CreateScript());
             
             return result;
+        }
+
+        public override String CreateScript()
+        {
+            if (this.IsColumnSet) return $"{Name} XML COLUMN_SET FOR ALL_SPARSE_COLUMNS";
+            StringBuilder statement = new StringBuilder(String.Empty);
+            statement.Append($"[{this.Name}]\t {this.TypeStatement} ");
+            if (this.IsFileStream) statement.Append("FILESTREAM ");
+            statement.Append($"{this.ColationStatement} {this.NullStatement} ");
+
+            if (this.IsComputed) return statement.ToString();  //Other is not required for computed columns
+
+            if (this.IsSparse) statement.Append("SPARSE ");
+
+            statement.Append(this.IdentityStatement);
+            if (this.IsRowGuidCol) statement.Append("ROWGUIDCOL ");
+
+            return statement.ToString();
         }
     }
 }

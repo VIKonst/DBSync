@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VIK.DBSync.CommonLib.DB;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
@@ -16,6 +17,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 this.QualifiedName, this.TypeStatement);
             }
         }       
+
+        public DataBase ParentDb { get; set; }
 
         public Int32 ObjectId { get; set; }
 

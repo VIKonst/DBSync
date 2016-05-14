@@ -5,18 +5,21 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.SqlObjects;
 using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public abstract class SqlObjectMetadataLoaderBase<T> : IMetaDataLoader<T>
+    public abstract class SqlObjectMetadataLoaderBase<T> : IMetaDataLoader<T> where T :ISqlObject 
     {
         protected String _scriptName;
+        private DataBase _db;
 
-        public SqlObjectMetadataLoaderBase(String scriptName)
+        public SqlObjectMetadataLoaderBase(String scriptName, DataBase parentDb)
         {
             _scriptName = scriptName;
+            _db = parentDb;
         }
 
         abstract protected T GetObject(IDataRecord reader);
@@ -39,16 +42,17 @@ namespace VIK.DBSync.CommonLib.Metadata
                     while (reader.Read())
                     {
                         T sqlObject = GetObject(reader);
+                        sqlObject.ParentDb = _db;
                         list.Add(sqlObject);
                     }
                 }
                 
                 return list;
             }
-            catch(Exception ex)
+           /* catch(Exception ex)
             {
                 throw new Exception("Loading is failed. Type: " + typeof(T).Name, ex);
-            }
+            }*/
             finally
             {
                 if(reader!=null && !reader.IsClosed)

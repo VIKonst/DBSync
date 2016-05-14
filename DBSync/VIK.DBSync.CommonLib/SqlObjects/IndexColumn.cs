@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
-    public class IndexColumn : ISqlSubObject 
+    public class IndexColumn : SqlSubObject 
     {
         public Int32 ObjectId { get; set; }
         public Int32 IndexId { get; set; }
@@ -17,9 +17,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public SqlColumn Column { get; set; }
 
-        public ISqlObject ParentObject { get; set; }
 
-        public String Name 
+        public override String Name 
         { 
             get 
             {
@@ -51,8 +50,13 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         {
             get
             {
-                return String.Format($"{Name} {DescStatement}");
+                return $"[{Name}] {DescStatement}";
             }
+        }
+
+        public override String CreateScript()
+        {
+            throw new NotImplementedException();
         }
     }
 }

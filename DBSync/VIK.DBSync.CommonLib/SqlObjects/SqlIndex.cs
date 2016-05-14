@@ -7,11 +7,11 @@ using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
-    public class SqlIndex : ISqlSubObject, IComparable<SqlIndex>
+    public class SqlIndex : SqlSubObject, IComparable<SqlIndex>
     {
         public Int32 IndexId { get; set; }
 
-        public String Name { get; set; }
+        public override String Name { get; set; }
 
         public String TypeStatement { get; set; }
 
@@ -37,23 +37,28 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public List<IndexColumn> Columns { get; set; }
 
-        public ISqlObject ParentObject { get; set; }
-
-        public String CreateScript()
+        public override String CreateScript()
         {
             StringBuilder builder = new StringBuilder(String.Empty);
           
             if(IsPrimaryKey)
             {
-                builder.AppendFormat($"ADD CONSTRAINT {Name} PRIMARY KEY {TypeStatement}");              
+                builder.AppendFormat($"ADD CONSTRAINT [{Name}] PRIMARY KEY {TypeStatement}");              
             } 
             else if(IsUniqueConstraint)
             {
-                builder.Append($"ADD CONSTRAINT {Name} UNIQUE {TypeStatement}");
+                builder.Append($"ADD CONSTRAINT [{Name}] UNIQUE {TypeStatement}");
             }
             else
             {
-                builder.Append($"CREATE {TypeStatement} INDEX {Name} ON {ParentObject.QualifiedName}");
+                if (IsUnique)
+                {
+                    builder.Append($"CREATE {TypeStatement} INDEX [{Name}] ON {ParentObject.QualifiedName}");
+                }
+                else
+                {
+                    builder.Append($"CREATE {TypeStatement} UNIQUE INDEX [{Name}] ON {ParentObject.QualifiedName}");
+                }
             }
            
             builder.Append("\r\n(");

@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DBSync</RootNamespace>
     <AssemblyName>DBSync</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,12 +33,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ascend.Windows.Forms, Version=1.0.0.6, Culture=neutral, PublicKeyToken=ecd86ece2d3eb46d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Components\Ascend.NET Windows Forms Controls\version 1.0.0.6\Ascend.Windows.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="BetterListViewExpress-net45, Version=3.15.0.0, Culture=neutral, PublicKeyToken=e6c91a3add447be2" />
     <Reference Include="DiffPlex, Version=1.2.0.0, Culture=neutral, PublicKeyToken=1d35e91d1bd7bc0f, processorArchitecture=MSIL">
       <HintPath>..\packages\DiffPlex.1.2.1\lib\portable-net40+sl50+win+wpa81+wp80\DiffPlex.dll</HintPath>
       <Private>True</Private>
@@ -45,12 +49,13 @@
       <HintPath>..\packages\FCTB.2.16.11.0\lib\FastColoredTextBox.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ScintillaNET, Version=3.0.1.0, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\jacobslusser.ScintillaNET.Signed.3.5.6\lib\net40\ScintillaNET.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms.Ribbon35">
+      <HintPath>..\Components\System.Windows.Forms.Ribbon35.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -111,6 +116,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="StartWindow.resx">
       <DependentUpon>StartWindow.cs</DependentUpon>

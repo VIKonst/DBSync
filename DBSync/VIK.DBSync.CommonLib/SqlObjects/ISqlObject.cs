@@ -1,4 +1,5 @@
 ﻿using System;
+using VIK.DBSync.CommonLib.DB;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
@@ -21,6 +22,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         String QualifiedName { get; }
 
         String IsExistStatement { get; }
+
+        DataBase ParentDb { get; set; }
 
         String CreateScript();
 

@@ -45,10 +45,10 @@ namespace VIK.DBSync.CommonLib.Metadata
                 reader.Close();
                 return list;
             }
-            catch (Exception ex)
+          /*  catch (Exception ex)
             {
                 throw new Exception("Loading is failed. Type: " + typeof(T).Name, ex);
-            }
+            }*/
             finally
             {
                 if (reader != null && !reader.IsClosed)

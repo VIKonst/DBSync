@@ -12,6 +12,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
         {
             List<ComparePair> result = new List<ComparePair>();
             result.AddRange(TableComparer.CompareTablesList(sourceDb.Objects.Tables, destinationDb.Objects.Tables));
+            result.AddRange(StoredProcedureComparer.CompareTablesList(sourceDb.Objects.Procedures, destinationDb.Objects.Procedures));
             return result;
         }
     }

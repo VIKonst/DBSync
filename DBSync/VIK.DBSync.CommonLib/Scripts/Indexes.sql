@@ -37,3 +37,4 @@ where	t1.[object_id]	= {0}
 		or 
 		objectproperty(t1.[object_id], 'IsView') = 1
 	)
+order by t1.[name]

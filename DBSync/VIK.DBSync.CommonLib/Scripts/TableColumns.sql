@@ -56,7 +56,8 @@
 	isnull(schema_name(t3.[schema_id]),'')							as user_type_schema_name,
 	isnull(schema_name(xsc.schema_id),'')							as xml_collection_schema_name,
 	isnull(xsc.name,'')												as xml_collection_name,
-	t1.is_computed													as is_computed
+	t1.is_computed													as is_computed,
+	t3.is_user_defined												as is_user_defined_type
 from	sys.columns as t1
 		left outer join sys.identity_columns as t2 on 
 			t1.object_id = t2.object_id
@@ -125,7 +126,8 @@ select
 	isnull(schema_name(t3.[schema_id]),'')							as user_type_schema_name,
 	isnull(schema_name(xsc.schema_id),'')							as xml_collection_schema_name,
 	isnull(xsc.name,'')												as xml_collection_name,
-	t1.is_computed													as is_computed
+	t1.is_computed													as is_computed,
+	t3.is_user_defined												as is_user_defined_type
 from	sys.computed_columns as t1
 		left outer join sys.identity_columns as t2 on 
 			t1.object_id = t2.object_id

@@ -20,8 +20,8 @@ namespace VIK.DBSync.ConsoleTest
             SqlConnection connection = new SqlConnection(builder.ToString());
 
             DataBase db = new DataBase(connection);
-            db.LoadTables();
-            db.LoadProcedures();
+            //db.LoadTables();
+            //db.LoadProcedures();
 
             foreach(var obj in db.Objects.Tables)
             {

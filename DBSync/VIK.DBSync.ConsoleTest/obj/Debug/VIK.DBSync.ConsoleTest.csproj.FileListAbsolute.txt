@@ -2,8 +2,8 @@ D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\VIK.
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.ConsoleTest.exe.config
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.ConsoleTest.exe
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.ConsoleTest.pdb
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.CommonLib.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.CommonLib.pdb
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\obj\Debug\VIK.DBSync.ConsoleTest.csprojResolveAssemblyReference.cache
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\obj\Debug\VIK.DBSync.ConsoleTest.exe
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\obj\Debug\VIK.DBSync.ConsoleTest.pdb
-D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.CommonLib.dll
-D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\VIK.DBSync.CommonLib.pdb

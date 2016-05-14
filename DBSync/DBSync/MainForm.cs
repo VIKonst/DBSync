@@ -2,7 +2,6 @@
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
 using FastColoredTextBoxNS;
-using ScintillaNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.DB.Comparison;
@@ -31,7 +30,19 @@ namespace DBSync
 
         public MainForm()
         {
-            InitializeComponent();        
+           
+
+            InitializeComponent();
+       
+            listView1.ItemChecked += ListView1_ItemChecked;     
+        }
+
+        private void ListView1_ItemChecked(Object sender, ItemCheckedEventArgs e)
+        {
+           if(e.Item.BackColor == Color.LightSlateGray)
+           {
+                e.Item.Checked = false;
+           }
         }
 
         private void InitList()
@@ -48,12 +59,14 @@ namespace DBSync
         {
             StartWindow window = new StartWindow();
             window.ShowDialog();
-
+           
             if(window.IsNeedCompare)
             {
                 sourceDatabase = new DataBase(window.SourceConnectionString);
                 destDatabase = new DataBase(window.DestConnectionString);
                 StartCompare();
+               
+
             }
             else
             {
@@ -65,25 +78,27 @@ namespace DBSync
         {          
             ProgressForm form = new ProgressForm(sourceDatabase, destDatabase);
             form.ShowDialog();
-            if(!form.IsLoaded)
+            if(form.Result==null)
             {
                 Close();
-            }
-            var result = DBComparer.CompareDatabase(sourceDatabase, destDatabase);
+            }        
             
             
             InitList();
 
-            foreach (ComparePair pair in result)
+            foreach (ComparePair pair in form.Result)
             {
                 ListViewGroup group = null;
-                switch(pair.Result)
+                ListViewItem item = new ListViewItem(pair.Name);
+                switch (pair.Result)
                 {
                     case Comparsion.CompareResult.Different:
                         group = NEGroup;
+                        item.BackColor = Color.LightBlue;
                         break;
                     case Comparsion.CompareResult.Equals:
                         group = EGroup;
+                        item.BackColor = Color.LightSlateGray;
                         break;
                     case Comparsion.CompareResult.New:
                         group = NGroup;
@@ -92,13 +107,15 @@ namespace DBSync
                         group = RGroup;
                         break;
                 }
+                item.Group = group;
 
-
-                ListViewItem item = new ListViewItem(pair.Name, group);
+               
                 SqlObject existedObject = pair.SourceObject ?? pair.DestinationObject;
                 item.Tag = pair;
                 item.SubItems.Add(existedObject.TypeName);
+                item.UseItemStyleForSubItems = true;
                 listView1.Items.Add(item);
+                
             }
         }
 
@@ -141,6 +158,7 @@ namespace DBSync
             if(listView1.FocusedItem!=null)
             {
                 ListViewItem item = listView1.FocusedItem;
+                
                 ComparePair pair = (ComparePair) item.Tag;              
 
                 String script1 = pair.DestinationObject?.CreateScript();

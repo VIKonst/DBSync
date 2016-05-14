@@ -12,7 +12,10 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public SqlTable()
         {
             UniqueConstraints = new List<SqlIndex>();
-            Indexes = new List<SqlIndex>();        
+            Indexes = new List<SqlIndex>();
+            Dependencies = new HashSet<SqlForeignKey>();
+            CheckConstraints = new List<SqlCheckConstraint>();
+            DefaultConstraints = new List<SqlDefaultConstraint>();
         }
 
         public override SqlObjectType Type
@@ -39,7 +42,6 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             }
         }
 
-
         public Boolean IsAnsiNullsOn { get; set; }
 
         public List<SqlColumn> Columns { get; set; }
@@ -52,6 +54,12 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public List<SqlForeignKey> ForeignKeys { get; set; }
 
+        public List<SqlCheckConstraint> CheckConstraints { get; set; }
+
+        public List<SqlDefaultConstraint> DefaultConstraints { get; set; }
+
+        public HashSet<SqlForeignKey> Dependencies { get; set; }
+
         public override String CreateScript()
         {
             StringBuilder script = new StringBuilder(String.Empty, 500);
@@ -59,17 +67,13 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             script.AppendLine(SqlStatement.GetQuotedIdentifierStatemt(true));
             script.AppendLine(SqlStatement.GO);
             script.Append(SqlStatement.GetCreateStatemt("TABLE " + QualifiedName));
-            script.AppendLine("(");
-            
-            foreach (SqlColumn column in Columns.OrderBy(c => c.ColumnId))
-            {
-                script.Append(column.CreateStatement);
-                script.Append(",\r\n");                
-            }
 
-            script[script.Length - 3] = ' ';
+            //Columns definition
+            script.AppendLine("(");
+            script.AppendLine(String.Join(",\r\n", Columns.Select(c => c.CreateScript())));
             script.AppendLine(")");
             script.AppendLine(SqlStatement.GO);
+
 
             String alterTableStatement = SqlStatement.GetAlterTableStatemt(QualifiedName);
 
@@ -80,27 +84,52 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 script.AppendLine(SqlStatement.GO);
             }
 
-           
-            foreach (SqlIndex constraint in UniqueConstraints.OrderBy(c => c.IndexId))
+            foreach (SqlIndex constraint in UniqueConstraints)
             {
                 script.AppendLine(alterTableStatement);
                 script.AppendLine(constraint.CreateScript());
                 script.AppendLine(SqlStatement.GO);
             }
 
-            foreach (SqlIndex index in Indexes.OrderBy(c => c.IndexId))
+            foreach (SqlIndex index in Indexes)
             {
                 script.AppendLine(index.CreateScript());
                 script.AppendLine(SqlStatement.GO);
             }
 
-            return script.ToString();
+            foreach (SqlForeignKey key in ForeignKeys)
+            {
+                script.AppendLine(alterTableStatement);
+                script.AppendLine(key.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+            }
 
+            foreach (SqlCheckConstraint constraint in CheckConstraints)
+            {
+                script.AppendLine(alterTableStatement);
+                script.AppendLine(constraint.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+            }
+
+            foreach (SqlDefaultConstraint constraint in DefaultConstraints)
+            {
+                script.AppendLine(alterTableStatement);
+                script.AppendLine(constraint.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+            }
+
+            return script.ToString();
         }
 
         public override String DropScript()
         {
-            throw new NotImplementedException();
+            return $"DROP TABLE {QualifiedName}";
+        }
+
+
+        public override Int32 GetHashCode()
+        {
+            return ObjectId;
         }
     }
 }

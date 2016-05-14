@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VIK.DBSync.CommonLib.DB;
+using VIK.DBSync.CommonLib.DB.Comparison;
 
 namespace DBSync
 {
@@ -18,19 +19,19 @@ namespace DBSync
         DataBase _db2;
 
         Thread thread;
-        public Boolean IsLoaded { get; set; }
+        public List<ComparePair> Result { get; set; }
 
         public ProgressForm(DataBase db1, DataBase db2)
         {
             _db1 = db1;
             _db2 = db2;
-            _db1.OnPogressUpdate += Db1_OnPogressUpdate;
-            _db1.OnPogressUpdate += Db1_OnPogressUpdate;          
-          
+            _db1.OnPogressUpdate += OnPogressUpdate;
+            _db2.OnPogressUpdate += OnPogressUpdate;
+
             InitializeComponent();
         }
 
-        private void Db1_OnPogressUpdate(String obj)
+        private void OnPogressUpdate(String obj)
         {
             try
             {
@@ -41,7 +42,16 @@ namespace DBSync
 
         private void ProgressForm_Load(Object sender, EventArgs e)
         {
-           
+            thread = new Thread(() =>
+            {               
+                Parallel.Invoke(_db1.LoadObjects, _db2.LoadObjects);
+            
+                OnPogressUpdate("Databases are compared");
+                Result = DBComparer.CompareDatabase(_db1, _db2);
+                this.Invoke(new Action(() => { this.Close(); }));
+            });
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         private void ProgressForm_Shown(Object sender, EventArgs e)
@@ -50,17 +60,9 @@ namespace DBSync
 
         private void ProgressForm_Activated(Object sender, EventArgs e)
         {
-            thread = new Thread(() =>
-            {
-            
-               _db1.LoadObjects();
-                _db2.LoadObjects();
-                IsLoaded = true;
-                this.Invoke(new Action(() => { this.Close(); }));
-            });
-            thread.IsBackground = true;
-            thread.Start();
+
+           
         }
-       
+
     }
 }

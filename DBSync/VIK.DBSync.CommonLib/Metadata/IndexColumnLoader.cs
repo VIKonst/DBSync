@@ -13,8 +13,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 
         public IndexColumnLoader(SqlTable table)
             :base("VIK.DBSync.CommonLib.Scripts.IndexColumns.sql", table)
-        {
-            
+        {            
         }
 
         protected override IndexColumn GetObject(IDataRecord reader)

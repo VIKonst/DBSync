@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.ForeignKeyColumn">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAAARACAAAAQAIAAAAAAIAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>SqlObjects\ForeignKeyColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.IndexColumn" Collapsed="true">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAAAAAAAAQAkAAAABAAAQAAEAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>SqlObjects\IndexColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlCheckConstraint" Collapsed="true">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAIBACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlCheckConstraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlColumn" Collapsed="true">
+    <Position X="2.5" Y="3" Width="1.5" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.SqlObjects.SqlSubObject" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="1.988" />
+        <Point X="6.5" Y="2.625" />
+        <Point X="3.312" Y="2.625" />
+        <Point X="3.312" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAAABCCICJBggQgAAJAQAAAAEMQGQAAAAAQAAIAGIA=</HashCode>
+      <FileName>SqlObjects\SqlColumn.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlDefaultConstraint" Collapsed="true">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlDefaultConstraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlForeignKey" Collapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBQBAAAAAAAQAAAAAAAAAQAAAAAAAAAAAAAABgAAEI=</HashCode>
+      <FileName>SqlObjects\SqlForeignKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlIndex" Collapsed="true">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAEAAAAAABAQCgAAAQAQAABACAAgAAAQAAAgQAAA=</HashCode>
+      <FileName>SqlObjects\SqlIndex.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlObject" Collapsed="true">
+    <Position X="1.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YCAAAAAAAAAAAAAAAAAAQAQIAAAAAxAAAQAAEAAAQAA=</HashCode>
+      <FileName>SqlObjects\SqlObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlStoredProcedure" Collapsed="true">
+    <Position X="2.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAgAAAAAAQAAAAAAAARAACQAACAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlStoredProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlSubObject">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAEAAAAIAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlSubObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlTable" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAAgAAAAEAAACAAkAAQAAAAAAAAZAACQAAAAgAAAA=</HashCode>
+      <FileName>SqlObjects\SqlTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="VIK.DBSync.CommonLib.SqlObjects.ISqlObject" Collapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YCAAAAAAAAAAAAAAAAAAQAQIAAAAAxAAAQAAEAAAQAA=</HashCode>
+      <FileName>SqlObjects\ISqlObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VIK.DBSync.CommonLib.SqlObjects.ISqlSubObject" Collapsed="true">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAEAAAAIAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\ISqlSubObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="VIK.DBSync.CommonLib.SqlObjects.SqlObjectType" Collapsed="true">
+    <Position X="5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlObjectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VIK.DBSync.CommonLib.SqlObjects.SqlSubObjectType" Collapsed="true">
+    <Position X="6.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAABAAAEAAAIAAAAAAAUAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlSubObjectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

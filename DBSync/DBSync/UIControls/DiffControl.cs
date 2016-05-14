@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using DiffPlex.DiffBuilder;
 using DiffPlex;

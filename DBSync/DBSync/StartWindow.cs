@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using VIK.DBSync.CommonLib.DB;
 using WindowsFormsAero.Dwm.Helpers;
@@ -50,14 +50,14 @@ namespace DBSync
         }
         
 
-        void UpdateDBSource(Task<List<String>> task)
+       /* void UpdateDBSource(Task<List<String>> task)
         {
             if(task.IsFaulted)
             {
                 MessageBox.Show(task.Exception.InnerException.Message);
                 return;
             }        
-        }
+        }*/
 
         private void setConnectionControl1_Load(Object sender, EventArgs e)
         {

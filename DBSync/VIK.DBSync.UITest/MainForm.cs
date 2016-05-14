@@ -33,8 +33,8 @@ namespace VIK.DBSync.UITest
                 SqlConnection connection = new SqlConnection(builder.ToString());
                 connection.Open();
                 DataBase db = new DataBase(connection);
-                db.LoadTables();
-                db.LoadProcedures();
+               // db.LoadTables();
+               // db.LoadProcedures();
                 connection.Close();
                 MessageBox.Show("Metadata loaded");
                 StreamWriter writer = new StreamWriter("script.sql");

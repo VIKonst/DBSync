@@ -35,9 +35,7 @@ namespace VIK.DBSync.CommonLib.DB
         {
             _connectionString = connectionString;
         }
-
-
-       
+               
 
         public void LoadObjects()
         {
@@ -52,13 +50,13 @@ namespace VIK.DBSync.CommonLib.DB
 
         private void LoadTables()
         {
-            TablesLoader loader = new TablesLoader();
+            TablesLoader loader = new TablesLoader(this);
 
             Objects.Tables = loader.LoadObjects(_connection);
 
             foreach (var table in Objects.Tables)
             {
-                OnPogressUpdate?.Invoke(table.Name + " is Loaded");
+                OnPogressUpdate?.Invoke(Name+": "+table.QualifiedName + " is Loaded...");
                 loader.LoadSubObjects(table, _connection);
             }
 
@@ -66,9 +64,9 @@ namespace VIK.DBSync.CommonLib.DB
 
         private void LoadProcedures()
         {
-            StoredProceduresLoader loader = new StoredProceduresLoader();
+            StoredProceduresLoader loader = new StoredProceduresLoader(this);
 
-            OnPogressUpdate?.Invoke("Procedures is Loaded");
+            OnPogressUpdate?.Invoke(Name + ": Procedures are Loaded...");
             Objects.Procedures = loader.LoadObjects(_connection);
         }
     }

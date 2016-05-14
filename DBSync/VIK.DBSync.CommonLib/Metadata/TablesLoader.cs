@@ -4,14 +4,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
     public class TablesLoader : SqlObjectMetadataLoaderBase<SqlTable>
     {
-        public TablesLoader()
-            : base("VIK.DBSync.CommonLib.Scripts.Tables.sql")
+        public TablesLoader(DataBase db)
+            : base("VIK.DBSync.CommonLib.Scripts.Tables.sql", db)
         {            
         }
 
@@ -26,29 +27,22 @@ namespace VIK.DBSync.CommonLib.Metadata
             table.IsAnsiNullsOn = reader.GetBoolean(4);
             return table;
         }
-
-
+        
         public override void LoadSubObjects(SqlTable table, IDbConnection connection)
-        {
-            TableColumnsLoader columnsLoader = new TableColumnsLoader(table);
+        {            
+            table.Columns = (new TableColumnsLoader(table)).LoadObjects(connection);
+            table.CheckConstraints = (new CheckConstraintsLoader(table)).LoadObjects(connection);
+                        
+            List<IndexColumn> indexColumns = (new IndexColumnLoader(table)).LoadObjects(connection);
+            List<SqlIndex> allIndexes = (new TableIndexesLoader(table)).LoadObjects(connection);
 
-            table.Columns = columnsLoader.LoadObjects(connection);
-
-            TableIndexesLoader indexesLoader = new TableIndexesLoader(table);
-
-            IndexColumnLoader indexColumnsLoader = new IndexColumnLoader(table);
-            List<IndexColumn> indexColumns = indexColumnsLoader.LoadObjects(connection);
-
-
-            List<SqlIndex> indexes = indexesLoader.LoadObjects(connection);
-            foreach(SqlIndex index in indexes)
+            foreach(SqlIndex index in allIndexes)
             {
                 index.Columns = indexColumns.Where(c => c.IndexId == index.IndexId).ToList();
                 foreach (IndexColumn iColumn in index.Columns)
                 {
                     iColumn.Column = table.Columns.First(c => c.ColumnId == iColumn.ColumnId);
-                }
-                  
+                }                  
                 
                 if(index.IsPrimaryKey)
                 {
@@ -64,12 +58,22 @@ namespace VIK.DBSync.CommonLib.Metadata
                 }
               
             }
-            //  table.PrimarKey = indexes.FirstOrDefault(i => i.IsPrimaryKey);
-            //  table.UniqueConstraints = indexes.Where(i => i.IsUniqueConstraint).ToList();
-            // table.Indexes = indexes.Where(i => !i.IsUniqueConstraint && !i.IsPrimaryKey).ToList();
+            //  table.PrimarKey = allIndexes.FirstOrDefault(i => i.IsPrimaryKey);
+            //  table.UniqueConstraints = allIndexes.Where(i => i.IsUniqueConstraint).ToList();
+            // table.Indexes = allIndexes.Where(i => !i.IsUniqueConstraint && !i.IsPrimaryKey).ToList();
 
-            ForeignKeysLoader loader = new ForeignKeysLoader(table);
-            table.ForeignKeys = loader.LoadObjects(connection);
+            table.ForeignKeys = (new ForeignKeysLoader(table) ).LoadObjects(connection);
+            List<ForeignKeyColumn> foreignKeyColumns = ( new ForeignKeyColumnLoader(table) ).LoadObjects(connection);
+            
+            
+            foreach (SqlForeignKey key in table.ForeignKeys)
+            {
+                key.ReferencedTable = table.ParentDb.Objects.Tables.FirstOrDefault(t => t.ObjectId == key.ReferencedTableId);
+                key.ReferencedTable.Dependencies.Add(key);
+                key.Columns = foreignKeyColumns.Where(c=>c.ForeignKeyId==key.ForeignKeyId).ToList();
+            }
+
+
         }
     }
 }

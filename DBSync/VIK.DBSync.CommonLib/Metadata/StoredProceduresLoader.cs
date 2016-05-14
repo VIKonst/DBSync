@@ -4,14 +4,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
     public class StoredProceduresLoader : SqlObjectMetadataLoaderBase<SqlStoredProcedure>
     {
-        public StoredProceduresLoader()
-            : base("VIK.DBSync.CommonLib.Scripts.StoredProcedures.sql")
+        public StoredProceduresLoader(DataBase db)
+            : base("VIK.DBSync.CommonLib.Scripts.StoredProcedures.sql", db)
         {            
         }
 
