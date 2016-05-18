@@ -24,6 +24,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             column.IndexId = (Int32)reader["index_id"];
             column.IndexColumnId = (Int32)reader["index_column_id"];
             column.IsDesc = (Boolean)reader["is_descending_key"];
+            column.IsIncluded = (Boolean)reader["is_included"];
             return column;
         }
     }

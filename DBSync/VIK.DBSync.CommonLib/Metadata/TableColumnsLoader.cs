@@ -22,18 +22,11 @@ namespace VIK.DBSync.CommonLib.Metadata
             
             column.ColumnId = reader.GetInt32(1);
             column.Name = reader.GetString(2);
-            column.IsUserDeinedType = (Boolean)reader["is_user_defined_type"];
+            column.IsUserDefinedType = (Boolean)reader["is_user_defined_type"];
             column.UserTypeId = reader.GetInt32(3);
             column.UserTypeSchemaName = (String)reader["user_type_schema_name"];
-                        
-            if (column.IsUserDeinedType)
-            {
-                column.UserType = $"[{column.UserTypeSchemaName}].[{reader.GetString(4)}]";
-            }
-            else
-            {
-                column.UserType = $"[{reader.GetString(4)}]";
-            }
+            column.UserType = reader.GetString(4);
+           
 
             column.SytemTypeId = reader.GetByte(5);
             column.SytemType = $"[{reader.GetString(6)}]";
@@ -51,7 +44,8 @@ namespace VIK.DBSync.CommonLib.Metadata
             column.ComputedDefinition = (String)reader["computed_definition"];
             column.IsRowGuidCol = (Boolean)reader["is_rowguidcol"];
             column.IsFileStream = (Boolean)reader["is_filestream"];
-            column.XmlSchemaName = (String)reader["xml_collection_schema_name"];
+            column.XmlCollectionSchemaName = (String)reader["xml_collection_schema_name"];
+            column.XmlCollectionName = (String)reader["xml_collection_name"];
             column.IsXmlDocument = (Boolean)reader["is_xml_document"];
            
             column.IsColumnSet = (Boolean)reader["is_column_set"];

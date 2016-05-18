@@ -49,11 +49,13 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public Boolean IsColumnSet { get; set; }
 
-        public String XmlSchemaName { get; set; }
+        public String XmlCollectionSchemaName { get; set; }
+
+        public String XmlCollectionName { get; set; }
 
         public String UserTypeSchemaName { get; set; }
 
-        public Boolean IsUserDeinedType { get; set; }
+        public Boolean IsUserDefinedType { get; set; }
 
 
         public String TypeStatement
@@ -105,18 +107,21 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
                 if(UserType.Equals("xml"))
                 {
-                    if (String.IsNullOrEmpty(XmlSchemaName)) return "xml";
+                    if (String.IsNullOrEmpty(XmlCollectionName)) return "xml";
                     if (this.IsXmlDocument)
                     {
-                        return String.Format("xml (DOCUMENT {0})", XmlSchemaName);
+                        return String.Format("xml (DOCUMENT [{0}].[{1}])", XmlCollectionSchemaName, XmlCollectionName);
                     }
                     else
                     {
-                        return String.Format("xml (CONTENT {0})", XmlSchemaName);
+                        return String.Format("xml (CONTENT [{0}].[{1}])", XmlCollectionSchemaName, XmlCollectionName);
                     }
                 }
 
-                return $"{UserType}";
+                if(IsUserDefinedType)
+                    return  $"[{UserTypeSchemaName}].[{UserType}]";
+                else
+                    return UserType;
             }
         }
 
@@ -167,7 +172,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         {
             get
             {         
-                if(!String.IsNullOrEmpty(ColationName) && !IsComputed)   
+                if(!String.IsNullOrEmpty(ColationName) && !IsComputed && !IsUserDefinedType)   
                 {
                     return "COLLATE " + ColationName;
                 }   

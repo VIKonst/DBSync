@@ -28,6 +28,12 @@ namespace VIK.DBSync.CommonLib.Metadata
             index.IsPadded = (Boolean)reader["is_padded"];
             index.IgnoreDupKey = (Boolean)reader["ignore_dup_key"];
             index.IsAutoStatistics = (Boolean)reader["no_recompute"];
+            index.AllowPageLocks = (Boolean)reader["allow_row_locks"];
+            index.AllowRowLocks = (Boolean)reader["allow_page_locks"];
+            index.FileGroup = (String)reader["data_space_name"];
+            index.UsingXMLIndexId = (Int32)reader["using_xml_index_id"];
+            index.XMLSecondaryType = (String)reader["xml_secondary_type"];
+            index.XMLType = (Byte)reader["xml_type"];
             return index;
         }
     }

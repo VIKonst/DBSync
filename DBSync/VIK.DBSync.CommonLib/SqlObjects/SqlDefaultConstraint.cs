@@ -14,7 +14,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public override String CreateScript()
         {
-            return $"ADD CONSTRAINT {Name} DEFAULT {Definition} FOR {ColumnName}";
+            return $"ADD CONSTRAINT {Name} {Environment.NewLine}\tDEFAULT {Definition} FOR [{ColumnName}]";
         }
     }
 }

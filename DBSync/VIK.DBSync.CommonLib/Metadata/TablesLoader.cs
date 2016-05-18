@@ -32,13 +32,15 @@ namespace VIK.DBSync.CommonLib.Metadata
         {            
             table.Columns = (new TableColumnsLoader(table)).LoadObjects(connection);
             table.CheckConstraints = (new CheckConstraintsLoader(table)).LoadObjects(connection);
-                        
+            table.DefaultConstraints = (new DefaultConstraintsLoader(table)).LoadObjects(connection);
+                
             List<IndexColumn> indexColumns = (new IndexColumnLoader(table)).LoadObjects(connection);
             List<SqlIndex> allIndexes = (new TableIndexesLoader(table)).LoadObjects(connection);
 
             foreach(SqlIndex index in allIndexes)
             {
                 index.Columns = indexColumns.Where(c => c.IndexId == index.IndexId).ToList();
+                index.UsingXMLIndex = allIndexes.FirstOrDefault(i=>i.IndexId==index.UsingXMLIndexId);
                 foreach (IndexColumn iColumn in index.Columns)
                 {
                     iColumn.Column = table.Columns.First(c => c.ColumnId == iColumn.ColumnId);
@@ -72,8 +74,7 @@ namespace VIK.DBSync.CommonLib.Metadata
                 key.ReferencedTable.Dependencies.Add(key);
                 key.Columns = foreignKeyColumns.Where(c=>c.ForeignKeyId==key.ForeignKeyId).ToList();
             }
-
-
+           
         }
     }
 }

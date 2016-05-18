@@ -13,6 +13,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public Int32 ColumnId { get; set; }
         public Int32 IndexColumnId { get; set; }
 
+        public Boolean IsIncluded { get; set; }
+
         public Boolean IsDesc { get; set; }
 
         public SqlColumn Column { get; set; }

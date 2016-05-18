@@ -42,19 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\Comparison\ComparerBase.cs" />
     <Compile Include="DB\Comparison\CompareResult.cs" />
     <Compile Include="DB\Comparison\ComparePair.cs" />
     <Compile Include="DB\Comparison\DBComparer.cs" />
+    <Compile Include="DB\Comparison\SchemasComparer.cs" />
     <Compile Include="DB\Comparison\StoredProcedureComparer.cs" />
     <Compile Include="DB\Comparison\TableComparer.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="DB\DataBaseObjects.cs" />
     <Compile Include="DB\DBHelper.cs" />
+    <Compile Include="DB\Sync\SyncGenerator.cs" />
     <Compile Include="Metadata\CheckConstraintsLoader.cs" />
     <Compile Include="Metadata\DefaultConstraintsLoader.cs" />
     <Compile Include="Metadata\ForeignKeyColumnLoader.cs" />
     <Compile Include="Metadata\ForeignKeysLoader.cs" />
     <Compile Include="Metadata\ReferentialAction.cs" />
+    <Compile Include="Metadata\SchemaLoader.cs" />
     <Compile Include="SqlObjects\ForeignKeyColumn.cs" />
     <Compile Include="SqlObjects\IndexColumn.cs" />
     <Compile Include="Metadata\IndexColumnLoader.cs" />
@@ -75,10 +79,12 @@
     <Compile Include="SqlObjects\SqlIndex.cs" />
     <Compile Include="SqlObjects\SqlObject.cs" />
     <Compile Include="SqlObjects\SqlObjectType.cs" />
+    <Compile Include="SqlObjects\SqlSchema.cs" />
     <Compile Include="SqlObjects\SqlStoredProcedure.cs" />
     <Compile Include="SqlObjects\SqlSubObject.cs" />
     <Compile Include="SqlObjects\SqlSubObjectType.cs" />
     <Compile Include="SqlObjects\SqlTable.cs" />
+    <Compile Include="SqlObjects\SqlType.cs" />
     <Compile Include="SqlScripting\ResourcesHelper.cs" />
     <Compile Include="SqlScripting\SqlStatement.cs" />
   </ItemGroup>
@@ -114,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\DefaultConstraints.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Schemas.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

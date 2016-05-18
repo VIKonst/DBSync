@@ -62,17 +62,24 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public override String CreateScript()
         {
+            return CreateScript(true);
+        }
+
+        public String CreateScript(Boolean withFk)
+        {
             StringBuilder script = new StringBuilder(String.Empty, 500);
             script.AppendLine(SqlStatement.GetAnsiNullsStatemt(IsAnsiNullsOn));
             script.AppendLine(SqlStatement.GetQuotedIdentifierStatemt(true));
             script.AppendLine(SqlStatement.GO);
+            script.AppendLine();
             script.Append(SqlStatement.GetCreateStatemt("TABLE " + QualifiedName));
 
             //Columns definition
             script.AppendLine("(");
-            script.AppendLine(String.Join(",\r\n", Columns.Select(c => c.CreateScript())));
+            script.AppendLine(String.Join(",\r\n", Columns.OrderBy(c=>c.ColumnId).Select(c => c.CreateScript())));
             script.AppendLine(")");
             script.AppendLine(SqlStatement.GO);
+            script.AppendLine();
 
 
             String alterTableStatement = SqlStatement.GetAlterTableStatemt(QualifiedName);
@@ -82,6 +89,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 script.AppendLine(alterTableStatement);
                 script.AppendLine(PrimarKey.CreateScript());
                 script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
             }
 
             foreach (SqlIndex constraint in UniqueConstraints)
@@ -89,19 +97,19 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 script.AppendLine(alterTableStatement);
                 script.AppendLine(constraint.CreateScript());
                 script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
             }
 
             foreach (SqlIndex index in Indexes)
             {
                 script.AppendLine(index.CreateScript());
                 script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
             }
 
-            foreach (SqlForeignKey key in ForeignKeys)
+            if (withFk)
             {
-                script.AppendLine(alterTableStatement);
-                script.AppendLine(key.CreateScript());
-                script.AppendLine(SqlStatement.GO);
+                script.AppendLine(CreateForeignKeysScript());
             }
 
             foreach (SqlCheckConstraint constraint in CheckConstraints)
@@ -109,6 +117,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 script.AppendLine(alterTableStatement);
                 script.AppendLine(constraint.CreateScript());
                 script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
             }
 
             foreach (SqlDefaultConstraint constraint in DefaultConstraints)
@@ -116,8 +125,23 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 script.AppendLine(alterTableStatement);
                 script.AppendLine(constraint.CreateScript());
                 script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
             }
 
+            return script.ToString();
+        }
+
+        public String CreateForeignKeysScript()
+        {
+            String alterTableStatement = SqlStatement.GetAlterTableStatemt(QualifiedName);
+            StringBuilder script = new StringBuilder();
+            foreach (SqlForeignKey key in ForeignKeys)
+            {
+                script.AppendLine(alterTableStatement);
+                script.AppendLine(key.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
+            }
             return script.ToString();
         }
 

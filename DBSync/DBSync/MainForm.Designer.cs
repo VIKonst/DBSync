@@ -43,10 +43,11 @@ namespace DBSync
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
-            this.diffControl = new DBSync.UIControls.DiffControl();
             this.ribbonHost1 = new System.Windows.Forms.RibbonHost();
             this.ribbonTextBox1 = new System.Windows.Forms.RibbonTextBox();
             this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
+            this.diffControl = new DBSync.UIControls.DiffControl();
+            this.syncRibbonButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribon
@@ -88,6 +89,7 @@ namespace DBSync
             // 
             // ribbonPanel3
             // 
+            this.ribbonPanel3.Items.Add(this.syncRibbonButton);
             this.ribbonPanel3.Text = "ribbonPanel3";
             // 
             // ribbonTab3
@@ -141,16 +143,6 @@ namespace DBSync
             this.ribbonTab1.Panels.Add(this.ribbonPanel2);
             this.ribbonTab1.Text = "ribbonTab1";
             // 
-            // diffControl
-            // 
-            this.diffControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.diffControl.Location = new System.Drawing.Point(12, 307);
-            this.diffControl.Name = "diffControl";
-            this.diffControl.Size = new System.Drawing.Size(663, 120);
-            this.diffControl.TabIndex = 5;
-            // 
             // ribbonHost1
             // 
             this.ribbonHost1.HostedControl = null;
@@ -164,6 +156,23 @@ namespace DBSync
             // ribbonItemGroup1
             // 
             this.ribbonItemGroup1.Text = "ribbonItemGroup1";
+            // 
+            // diffControl
+            // 
+            this.diffControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.diffControl.Location = new System.Drawing.Point(12, 307);
+            this.diffControl.Name = "diffControl";
+            this.diffControl.Size = new System.Drawing.Size(663, 120);
+            this.diffControl.TabIndex = 5;
+            // 
+            // syncRibbonButton
+            // 
+            this.syncRibbonButton.Image = ((System.Drawing.Image)(resources.GetObject("syncRibbonButton.Image")));
+            this.syncRibbonButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("syncRibbonButton.SmallImage")));
+            this.syncRibbonButton.Text = "Sync";
+            this.syncRibbonButton.Click += new System.EventHandler(this.syncRibbonButton_Click);
             // 
             // MainForm
             // 
@@ -195,6 +204,7 @@ namespace DBSync
         private System.Windows.Forms.RibbonItemGroup ribbonItemGroup1;
         private System.Windows.Forms.RibbonTab ribbonTab3;
         private System.Windows.Forms.RibbonPanel ribbonPanel4;
+        private System.Windows.Forms.RibbonButton syncRibbonButton;
     }
 }
 

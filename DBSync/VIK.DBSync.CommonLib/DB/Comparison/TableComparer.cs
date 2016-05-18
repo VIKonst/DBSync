@@ -7,9 +7,9 @@ using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.DB.Comparison
 {
-    public class TableComparer
+    public class TableComparer : ComparerBase<SqlTable>
     {
-        public static List<ComparePair> CompareTablesList(List<SqlTable> sourceTables, List<SqlTable> destTables)
+       /* public static List<ComparePair> CompareTablesList(List<SqlTable> sourceTables, List<SqlTable> destTables)
         {           
             Dictionary<String, SqlTable> sourceDic = sourceTables.ToDictionary(t => t.QualifiedName);
             Dictionary<String, SqlTable> destDic = destTables.ToDictionary(t => t.QualifiedName);
@@ -55,9 +55,9 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
                 });
             }
             return result;
-        }
+        }*/
         
-        public static CompareResult CompareTables(SqlTable table1, SqlTable table2)
+        protected  override CompareResult CompareObjects(SqlTable table1, SqlTable table2)
         {
             if (!table1.QualifiedName.Equals(table2.QualifiedName)) throw new Exception("Should be same names");
             if (table1.IsAnsiNullsOn != table2.IsAnsiNullsOn) return CompareResult.Different;

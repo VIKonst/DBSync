@@ -26,3 +26,4 @@ D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSy
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.csproj.GenerateResource.Cache
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.exe
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.pdb
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.ScriptForm.resources

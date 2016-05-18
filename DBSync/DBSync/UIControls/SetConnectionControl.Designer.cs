@@ -119,7 +119,7 @@
             this.cbServer.Name = "cbServer";
             this.cbServer.Size = new System.Drawing.Size(158, 21);
             this.cbServer.TabIndex = 17;
-            this.cbServer.Text = "(local)";
+            this.cbServer.Text = "VALERA-LAPTOP\\SQL2012";
             // 
             // titleLabel
             // 

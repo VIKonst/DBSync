@@ -35,17 +35,34 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public String FileGroup { get; set; }
 
+        public String XMLSecondaryType { get; set; }
+
+        public Byte XMLType { get; set; }
+
+        public Int32 UsingXMLIndexId { get; set; }
+
+        public SqlIndex UsingXMLIndex { get; set; }
+
         public List<IndexColumn> Columns { get; set; }
 
+      
         public override String CreateScript()
         {
             StringBuilder builder = new StringBuilder(String.Empty);
-          
-            if(IsPrimaryKey)
+            IEnumerable<String> includedColumns = null;
+
+            Boolean isXml = TypeStatement.ToLower().Equals("xml");
+
+            if(isXml)
             {
-                builder.AppendFormat($"ADD CONSTRAINT [{Name}] PRIMARY KEY {TypeStatement}");              
-            } 
-            else if(IsUniqueConstraint)
+                builder.AppendLine($"CREATE {(UsingXMLIndexId == 0? "PRIMARY" :"" )} XML INDEX {Name}");
+                builder.Append($"ON {ParentObject.QualifiedName}");
+            }
+            else if (IsPrimaryKey)
+            {
+                builder.AppendFormat($"ADD CONSTRAINT [{Name}] PRIMARY KEY {TypeStatement}");
+            }
+            else if (IsUniqueConstraint)
             {
                 builder.Append($"ADD CONSTRAINT [{Name}] UNIQUE {TypeStatement}");
             }
@@ -53,26 +70,48 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             {
                 if (IsUnique)
                 {
-                    builder.Append($"CREATE {TypeStatement} INDEX [{Name}] ON {ParentObject.QualifiedName}");
+                    builder.Append($"CREATE UNIQUE {TypeStatement} INDEX [{Name}] ON {ParentObject.QualifiedName}");
                 }
                 else
                 {
-                    builder.Append($"CREATE {TypeStatement} UNIQUE INDEX [{Name}] ON {ParentObject.QualifiedName}");
+                    builder.Append($"CREATE {TypeStatement} INDEX [{Name}] ON {ParentObject.QualifiedName}");
                 }
+                includedColumns = Columns.Where(c => c.IsIncluded).Select(c => $"[{c.Name}]");
             }
-           
+
+
+
             builder.Append("\r\n(");
-            builder.Append(String.Join(",", Columns.Select(c => c.ScriptStatement)));
+            if(isXml)
+            {
+                builder.Append(String.Join(",", Columns.Where(c => !c.IsIncluded).Select(c => $"[{c.Name}]")));
+            }
+            else
+            {
+                builder.Append(String.Join(",", Columns.Where(c => !c.IsIncluded).Select(c => c.ScriptStatement)));
+            }
             builder.AppendLine(" )");
+
+            if (includedColumns != null && includedColumns.Count() > 0)
+            {
+                builder.Append("INCLUDE (");
+                builder.Append(String.Join(",", includedColumns));
+                builder.AppendLine(" )");
+            }
+            if (isXml && UsingXMLIndexId != 0)
+            {
+                builder.AppendLine($"USING XML INDEX {UsingXMLIndex.Name} FOR {XMLSecondaryType} ");
+            }
+
             builder.AppendLine("WITH ( ");
             builder.AppendFormat($"PAD_INDEX = {SqlStatement.GetOnOffStatement(IsPadded)}, ");
-            builder.AppendFormat($"STATISTICS_NORECOMPUTE = {SqlStatement.GetOnOffStatement(IsAutoStatistics)}, ");
+            if(!isXml) builder.AppendFormat($"STATISTICS_NORECOMPUTE = {SqlStatement.GetOnOffStatement(IsAutoStatistics)}, ");
             builder.AppendFormat($"IGNORE_DUP_KEY = {SqlStatement.GetOnOffStatement(IgnoreDupKey)}, ");
             builder.AppendFormat($"ALLOW_ROW_LOCKS = {SqlStatement.GetOnOffStatement(AllowRowLocks)}, ");
             builder.AppendFormat($"ALLOW_PAGE_LOCKS = {SqlStatement.GetOnOffStatement(AllowPageLocks)} ");
-            if(FillFactor != 0) builder.AppendFormat($", FILLFACTOR =  {FillFactor.ToString()}");
+            if (FillFactor != 0) builder.AppendFormat($", FILLFACTOR =  {FillFactor.ToString()}");
             builder.Append(" ) ");
-            if (!String.IsNullOrEmpty(FileGroup)) builder.Append(" ON [" + FileGroup + "]");
+            if (!String.IsNullOrEmpty(FileGroup) && !isXml) builder.Append(" ON [" + FileGroup + "]");
             return builder.ToString();
         }
 

@@ -10,6 +10,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
     {
         Table,
         View,
-        StoredProcedure
+        StoredProcedure,
+        Schema,
+        Type
     }
 }

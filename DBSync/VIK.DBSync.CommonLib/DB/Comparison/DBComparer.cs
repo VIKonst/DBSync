@@ -11,8 +11,9 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
         public static List<ComparePair> CompareDatabase(DataBase sourceDb, DataBase destinationDb)
         {
             List<ComparePair> result = new List<ComparePair>();
-            result.AddRange(TableComparer.CompareTablesList(sourceDb.Objects.Tables, destinationDb.Objects.Tables));
-            result.AddRange(StoredProcedureComparer.CompareTablesList(sourceDb.Objects.Procedures, destinationDb.Objects.Procedures));
+            result.AddRange((new TableComparer()).CompareList(sourceDb.Objects.Tables, destinationDb.Objects.Tables));
+            result.AddRange((new StoredProcedureComparer()).CompareList(sourceDb.Objects.Procedures, destinationDb.Objects.Procedures));
+            result.AddRange((new SchemasComparer()).CompareList(sourceDb.Objects.Schemas, destinationDb.Objects.Schemas));
             return result;
         }
     }

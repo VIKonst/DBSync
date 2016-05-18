@@ -3,6 +3,7 @@ using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
 using FastColoredTextBoxNS;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ using System.Threading;
 using System.Windows.Forms;
 using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.DB.Comparison;
+using VIK.DBSync.CommonLib.DB.Sync;
 using VIK.DBSync.CommonLib.SqlObjects;
 using Comparsion = VIK.DBSync.CommonLib.DB.Comparison;
 
@@ -28,13 +30,26 @@ namespace DBSync
         ListViewGroup RGroup;
         ListViewGroup EGroup;
 
+        class ComparerItem : IComparer
+        {
+            public Int32 Compare(Object x, Object y)
+            {
+                ListViewItem item1 = (ListViewItem)x;
+                ListViewItem item2 = (ListViewItem)y;
+                Int32 result = item1.SubItems[1].Text.CompareTo(item2.SubItems[1].Text);
+                if (result != 0) return result;
+                return item1.Text.CompareTo(item2.Text);
+            }
+        }
+
         public MainForm()
         {
            
 
             InitializeComponent();
        
-            listView1.ItemChecked += ListView1_ItemChecked;     
+            listView1.ItemChecked += ListView1_ItemChecked;
+            listView1.ListViewItemSorter = new  ComparerItem();
         }
 
         private void ListView1_ItemChecked(Object sender, ItemCheckedEventArgs e)
@@ -115,7 +130,7 @@ namespace DBSync
                 item.SubItems.Add(existedObject.TypeName);
                 item.UseItemStyleForSubItems = true;
                 listView1.Items.Add(item);
-                
+                listView1.Sort();
             }
         }
 
@@ -168,5 +183,19 @@ namespace DBSync
             }
         }
 
+        private void syncRibbonButton_Click(Object sender, EventArgs e)
+        {
+            SyncGenerator genrator = new SyncGenerator();
+            
+            List<ComparePair> selectedItems = new List<ComparePair>();
+            foreach(ListViewItem item in listView1.CheckedItems)
+            {
+                selectedItems.Add((ComparePair)item.Tag);
+            }
+
+            genrator.GenerateScript(selectedItems);
+            ScriptForm form = new ScriptForm(genrator.GenerateScript(selectedItems));
+            form.Show();
+        }
     }
 }

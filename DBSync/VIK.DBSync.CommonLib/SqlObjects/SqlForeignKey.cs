@@ -54,7 +54,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             builder.AppendLine(String.Join(",", Columns.Select(c => $"[{c.ReferencedColumnName}]")));
             builder.AppendLine(")");
             builder.AppendLine($"ON DELETE {ActionToString(DeleteAction)}");         
-            builder.Append($"ON DELETE {ActionToString(UpdateAction)}");           
+            builder.Append($"ON UPDATE {ActionToString(UpdateAction)}");           
 
             return builder.ToString();
         }

@@ -39,6 +39,7 @@ namespace VIK.DBSync.CommonLib.DB
 
         public void LoadObjects()
         {
+            LoadSchemas();
             LoadTables();
             LoadProcedures();
             if(_connection.State == System.Data.ConnectionState.Open)
@@ -68,6 +69,14 @@ namespace VIK.DBSync.CommonLib.DB
 
             OnPogressUpdate?.Invoke(Name + ": Procedures are Loaded...");
             Objects.Procedures = loader.LoadObjects(_connection);
+        }
+
+        private void LoadSchemas()
+        {
+            SchemaLoader loader = new SchemaLoader(this);
+
+            OnPogressUpdate?.Invoke(Name + ": Schemas are Loaded...");
+            Objects.Schemas = loader.LoadObjects(_connection);
         }
     }
 }
