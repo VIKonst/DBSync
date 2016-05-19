@@ -19,7 +19,7 @@
 	t1.is_unique_constraint		as is_unique_constraint,
 	ISNULL(ds.name, '')			as data_space_name,
 	ISNULL(xmlt.secondary_type_desc,'')	as xml_secondary_type,
-	ISNULL(xmlt.xml_index_type,0)	as xml_type,
+--	ISNULL(xmlt.xml_index_type,0)	as xml_type,
 	ISNULL(using_xml_index_id,0)	as using_xml_index_id
 
 from	sys.indexes as t1

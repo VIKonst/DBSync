@@ -37,7 +37,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public String XMLSecondaryType { get; set; }
 
-        public Byte XMLType { get; set; }
+     //   public Byte XMLType { get; set; }
 
         public Int32 UsingXMLIndexId { get; set; }
 

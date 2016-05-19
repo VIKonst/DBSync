@@ -43,11 +43,9 @@ namespace DBSync
         }
 
         public MainForm()
-        {
-           
-
+        {   
             InitializeComponent();
-       
+            InitList();
             listView1.ItemChecked += ListView1_ItemChecked;
             listView1.ListViewItemSorter = new  ComparerItem();
         }
@@ -72,21 +70,19 @@ namespace DBSync
 
         private void MainForm_Load(Object sender, EventArgs e)
         {
-            StartWindow window = new StartWindow();
+          /*  StartWindow window = new StartWindow();
             window.ShowDialog();
            
             if(window.IsNeedCompare)
             {
                 sourceDatabase = new DataBase(window.SourceConnectionString);
                 destDatabase = new DataBase(window.DestConnectionString);
-                StartCompare();
-               
-
+                StartCompare();   
             }
             else
             {
                 Close();
-            }
+            }*/
         }
 
         private void StartCompare()
@@ -96,10 +92,7 @@ namespace DBSync
             if(form.Result==null)
             {
                 Close();
-            }        
-            
-            
-            InitList();
+            }            
 
             foreach (ComparePair pair in form.Result)
             {
@@ -130,8 +123,9 @@ namespace DBSync
                 item.SubItems.Add(existedObject.TypeName);
                 item.UseItemStyleForSubItems = true;
                 listView1.Items.Add(item);
-                listView1.Sort();
+                
             }
+            listView1.Sort();
         }
 
         private void FillText(FastColoredTextBox tb, DiffPaneModel text )
@@ -196,6 +190,21 @@ namespace DBSync
             genrator.GenerateScript(selectedItems);
             ScriptForm form = new ScriptForm(genrator.GenerateScript(selectedItems));
             form.Show();
+        }
+
+        StartWindow window = new StartWindow();
+        private void changeRibbonButton_Click(Object sender, EventArgs e)
+        {
+            window.IsNeedCompare = false;
+            window.ShowDialog();
+
+            if (window.IsNeedCompare)
+            {
+                sourceDatabase = new DataBase(window.SourceConnectionString);
+                destDatabase = new DataBase(window.DestConnectionString);
+                listView1.Items.Clear();
+                StartCompare();
+            }
         }
     }
 }

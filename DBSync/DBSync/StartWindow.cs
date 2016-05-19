@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using DBSync.SqlLiteDb;
+using System;
 using System.Windows.Forms;
-using VIK.DBSync.CommonLib.DB;
-using WindowsFormsAero.Dwm.Helpers;
 
 namespace DBSync
 {
-    public partial class StartWindow : GlassForm
+    public partial class StartWindow : Form
     {
         public StartWindow()
-        {          
+        {  
             InitializeComponent();
+            setDestConnection.Servers = SettingsRepository.Instance.GetServerNames();
+            setSourceConnection.Servers = SettingsRepository.Instance.GetServerNames(); 
+
         }
 
         public Boolean IsNeedCompare { get; set; }
@@ -74,8 +68,18 @@ namespace DBSync
             if (TestConnections())
             {
                 IsNeedCompare = true;
+                SettingsRepository.Instance.AddConnectionIfNotExist(setSourceConnection.Server);
+                if (!setSourceConnection.Server.Equals(setDestConnection.Server))
+                {
+                    SettingsRepository.Instance.AddConnectionIfNotExist(setDestConnection.Server);
+                }
                 Close();
             }
+        }
+
+        private void button1_Click(Object sender, EventArgs e)
+        {
+            RuntimeLocalizer.ChangeCulture(this, "uk");
         }
     }
 }

@@ -1,0 +1,4 @@
+   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54test   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54test
+   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54
+test
+   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54

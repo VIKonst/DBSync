@@ -118,19 +118,132 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ribon.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="ribon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ribon.OrbDropDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ribon.OrbDropDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 72</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ribon.OrbDropDown.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="ribon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>692, 134</value>
+  </data>
+  <data name="ribon.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
   <data name="syncRibbonButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAaSURBVFhH7cEBAQAAAIIg/69uSEAAAADAuRoQIAABnXhJ
-        QwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="syncRibbonButton.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAATSURBVDhPYxgFo2AUjAIwYGAAAAQQAAGnRHxjAAAAAElF
-        TkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="syncRibbonButton.Text" xml:space="preserve">
+    <value>Sync</value>
+  </data>
+  <data name="changeRibbonButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="changeRibbonButton.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="changeRibbonButton.Text" xml:space="preserve">
+    <value>Change </value>
+  </data>
+  <data name="ribbonPanel3.Text" xml:space="preserve">
+    <value>ribbonPanel3</value>
+  </data>
+  <data name="ribbonPanel5.Text" xml:space="preserve">
+    <value>ribbonPanel5</value>
+  </data>
+  <data name="ribbonTab2.Text" xml:space="preserve">
+    <value>ribbonTab2</value>
+  </data>
+  <data name="ribbonPanel4.Text" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="ribbonTab3.Text" xml:space="preserve">
+    <value>ribbonTab3</value>
+  </data>
+  <data name="&gt;&gt;ribon.Name" xml:space="preserve">
+    <value>ribon</value>
+  </data>
+  <data name="&gt;&gt;ribon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Ribbon, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribon.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ribon.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="listView1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="listView1.Groups" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0dyb3VwBAAAAAZIZWFkZXIPSGVhZGVyQWxpZ25tZW50A1Rh
+        ZwROYW1lAQQCAShTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Ib3Jpem9udGFsQWxpZ25tZW50AgAAAAIAAAAG
+        AwAAAA1MaXN0Vmlld0dyb3VwBfz///8oU3lzdGVtLldpbmRvd3MuRm9ybXMuSG9yaXpvbnRhbEFsaWdu
+        bWVudAEAAAAHdmFsdWVfXwAIAgAAAAAAAAAKBgUAAAAObGlzdFZpZXdHcm91cDEL
+</value>
+  </data>
+  <data name="listView1.Groups1" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACJTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0dyb3VwBAAAAAZIZWFkZXIPSGVhZGVyQWxpZ25tZW50A1Rh
+        ZwROYW1lAQQCAShTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Ib3Jpem9udGFsQWxpZ25tZW50AgAAAAIAAAAG
+        AwAAAA1MaXN0Vmlld0dyb3VwBfz///8oU3lzdGVtLldpbmRvd3MuRm9ybXMuSG9yaXpvbnRhbEFsaWdu
+        bWVudAEAAAAHdmFsdWVfXwAIAgAAAAAAAAAKBgUAAAAObGlzdFZpZXdHcm91cDIL
+</value>
+  </data>
+  <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 140</value>
+  </data>
+  <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>663, 152</value>
+  </data>
+  <data name="listView1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
+    <value>listView1</value>
+  </data>
+  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ribbonPanel2.Text" xml:space="preserve">
+    <value>ribbonPanel2</value>
   </data>
   <data name="ribbonButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -144,7 +257,148 @@
         wwAADsMBx2+oZAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="ribbonPanel1.Text" xml:space="preserve">
+    <value>ribbonPanel1</value>
+  </data>
+  <data name="ribbonTab1.Text" xml:space="preserve">
+    <value>ribbonTab1</value>
+  </data>
+  <data name="ribbonHost1.Text" xml:space="preserve">
+    <value>ribbonHost1</value>
+  </data>
+  <data name="ribbonTextBox1.Text" xml:space="preserve">
+    <value>ribbonTextBox1</value>
+  </data>
+  <data name="ribbonItemGroup1.Text" xml:space="preserve">
+    <value>ribbonItemGroup1</value>
+  </data>
+  <data name="diffControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="diffControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 307</value>
+  </data>
+  <data name="diffControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>663, 120</value>
+  </data>
+  <data name="diffControl.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;diffControl.Name" xml:space="preserve">
+    <value>diffControl</value>
+  </data>
+  <data name="&gt;&gt;diffControl.Type" xml:space="preserve">
+    <value>DBSync.UIControls.DiffControl, DBSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;diffControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;diffControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>57</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>692, 439</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="&gt;&gt;ribbonTab2.Name" xml:space="preserve">
+    <value>ribbonTab2</value>
+  </data>
+  <data name="&gt;&gt;ribbonTab2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonTab, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel3.Name" xml:space="preserve">
+    <value>ribbonPanel3</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;syncRibbonButton.Name" xml:space="preserve">
+    <value>syncRibbonButton</value>
+  </data>
+  <data name="&gt;&gt;syncRibbonButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;changeRibbonButton.Name" xml:space="preserve">
+    <value>changeRibbonButton</value>
+  </data>
+  <data name="&gt;&gt;changeRibbonButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel5.Name" xml:space="preserve">
+    <value>ribbonPanel5</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonTab3.Name" xml:space="preserve">
+    <value>ribbonTab3</value>
+  </data>
+  <data name="&gt;&gt;ribbonTab3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonTab, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel4.Name" xml:space="preserve">
+    <value>ribbonPanel4</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel2.Name" xml:space="preserve">
+    <value>ribbonPanel2</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonButton1.Name" xml:space="preserve">
+    <value>ribbonButton1</value>
+  </data>
+  <data name="&gt;&gt;ribbonButton1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel1.Name" xml:space="preserve">
+    <value>ribbonPanel1</value>
+  </data>
+  <data name="&gt;&gt;ribbonPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonTab1.Name" xml:space="preserve">
+    <value>ribbonTab1</value>
+  </data>
+  <data name="&gt;&gt;ribbonTab1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonTab, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonHost1.Name" xml:space="preserve">
+    <value>ribbonHost1</value>
+  </data>
+  <data name="&gt;&gt;ribbonHost1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonHost, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonTextBox1.Name" xml:space="preserve">
+    <value>ribbonTextBox1</value>
+  </data>
+  <data name="&gt;&gt;ribbonTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonTextBox, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ribbonItemGroup1.Name" xml:space="preserve">
+    <value>ribbonItemGroup1</value>
+  </data>
+  <data name="&gt;&gt;ribbonItemGroup1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonItemGroup, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -9,10 +9,11 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using VIK.DBSync.CommonLib.DB;
+using DBSync.UIControls;
 
 namespace DBSync
 {
-    public partial class SetConnectionControl : UserControl
+    public partial class SetConnectionControl : UserControl, ILocalizeControl
     {
         public SetConnectionControl()
         {
@@ -36,6 +37,24 @@ namespace DBSync
             }
         }
 
+        public List<string> Servers
+        {
+            set
+            {
+                cbServer.DataSource = value;
+            }
+        }
+
+        public String Server
+        {
+            get
+            {
+                return cbServer.Text;
+            }
+        }
+
+
+        [Localizable(true)]
         public String Title
         {
             get
@@ -46,6 +65,19 @@ namespace DBSync
             set
             {
                  titleLabel.Text = value;               
+            }
+        }
+
+        public override String Text
+        {
+            get
+            {
+                return base.Text;
+            }
+
+            set
+            {
+                base.Text = value;
             }
         }
 
@@ -94,6 +126,22 @@ namespace DBSync
         {
             Boolean isNeedUser = !chbIntegratedSecuritySource.Checked;
             tbPass.Enabled = tbUser.Enabled = isNeedUser;
+        }
+
+        private void label7_Click(Object sender, EventArgs e)
+        {
+
+        }
+
+        public void UpdateLocalization()
+        {
+            ComponentResourceManager res = new ComponentResourceManager(this.GetType());
+            res.ApplyResources(lblServer, lblServer.Name);
+            res.ApplyResources(lblBd, lblBd.Name);
+            res.ApplyResources(lblPass, lblPass.Name);
+            res.ApplyResources(lblUser, lblUser.Name);
+            res.ApplyResources(chbIntegratedSecuritySource, chbIntegratedSecuritySource.Name);
+
         }
     }
 }
