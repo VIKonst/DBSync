@@ -9,5 +9,6 @@ namespace DBSync.UIControls
     public interface ILocalizeControl
     {
         void UpdateLocalization();
+
     }
 }

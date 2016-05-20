@@ -34,16 +34,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.setDestConnection = new DBSync.SetConnectionControl();
             this.btnCompare = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.sourceConnectPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // sourceConnectPanel
             // 
+            resources.ApplyResources(this.sourceConnectPanel, "sourceConnectPanel");
             this.sourceConnectPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sourceConnectPanel.Controls.Add(this.setSourceConnection);
-            resources.ApplyResources(this.sourceConnectPanel, "sourceConnectPanel");
             this.sourceConnectPanel.Name = "sourceConnectPanel";
             // 
             // setSourceConnection
@@ -54,9 +53,9 @@
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.setDestConnection);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // setDestConnection
@@ -72,19 +71,11 @@
             this.btnCompare.UseVisualStyleBackColor = true;
             this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
             // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // StartWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCompare);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sourceConnectPanel);
@@ -104,6 +95,5 @@
         private SetConnectionControl setDestConnection;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCompare;
-        private System.Windows.Forms.Button button1;
     }
 }

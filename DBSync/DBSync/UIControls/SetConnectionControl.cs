@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using VIK.DBSync.CommonLib.DB;
 using DBSync.UIControls;
+using System.Drawing.Design;
+using DBSync.Encryption;
+using DBSync.SqlLiteDb.Entities;
 
 namespace DBSync
 {
@@ -37,11 +40,12 @@ namespace DBSync
             }
         }
 
-        public List<string> Servers
+        public List<Connection> Servers
         {
             set
             {
                 cbServer.DataSource = value;
+                cbServer.DisplayMember = "Server";                
             }
         }
 
@@ -53,31 +57,54 @@ namespace DBSync
             }
         }
 
-
-        [Localizable(true)]
-        public String Title
+        public String User
         {
             get
             {
-                return titleLabel.Text;                
-            }
-
-            set
-            {
-                 titleLabel.Text = value;               
+                return tbUser.Text;
             }
         }
 
+        public String EnctyptedPassword
+        {
+            get
+            {
+                return AesHelper.EncryptString(tbUser.Text);
+            }
+        }
+
+        public Boolean IsNeedSavePasswor
+        {
+            get
+            {
+                return chbSavePass.Checked;
+            }
+        }
+
+        public Boolean IsWindowsAuthentificatiion
+        {
+            get
+            {
+                return chbIntegratedSecuritySource.Checked;
+            }
+        }
+
+        [Localizable(true)]
+        [SettingsBindable(true)]
+        [Bindable(true)]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
         public override String Text
         {
             get
             {
-                return base.Text;
+                return titleLabel.Text;
             }
 
             set
             {
-                base.Text = value;
+                titleLabel.Text = value;
             }
         }
 
@@ -141,7 +168,20 @@ namespace DBSync
             res.ApplyResources(lblPass, lblPass.Name);
             res.ApplyResources(lblUser, lblUser.Name);
             res.ApplyResources(chbIntegratedSecuritySource, chbIntegratedSecuritySource.Name);
+            res.ApplyResources(chbSavePass, chbSavePass.Name);
 
+        }
+
+        private void cbServer_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            Connection conn = (Connection)cbServer.SelectedItem;
+            tbUser.Text = conn.UserName;
+            if (!String.IsNullOrEmpty(conn.Pass))
+                tbPass.Text = AesHelper.DecryptString(conn.Pass);
+            else
+                tbPass.Text = String.Empty;
+            chbIntegratedSecuritySource.Checked = conn.IsWindowsAuth;
+            
         }
     }
 }

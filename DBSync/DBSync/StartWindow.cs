@@ -1,5 +1,7 @@
 ﻿using DBSync.SqlLiteDb;
+using DBSync.SqlLiteDb.Entities;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DBSync
@@ -9,8 +11,8 @@ namespace DBSync
         public StartWindow()
         {  
             InitializeComponent();
-            setDestConnection.Servers = SettingsRepository.Instance.GetServerNames();
-            setSourceConnection.Servers = SettingsRepository.Instance.GetServerNames(); 
+            setDestConnection.Servers = ConnectionsRepository.Instance.GetConnections();
+            setSourceConnection.Servers = ConnectionsRepository.Instance.GetConnections(); 
 
         }
 
@@ -68,18 +70,54 @@ namespace DBSync
             if (TestConnections())
             {
                 IsNeedCompare = true;
-                SettingsRepository.Instance.AddConnectionIfNotExist(setSourceConnection.Server);
-                if (!setSourceConnection.Server.Equals(setDestConnection.Server))
-                {
-                    SettingsRepository.Instance.AddConnectionIfNotExist(setDestConnection.Server);
-                }
+                
+                StoreConnections();
                 Close();
             }
         }
 
-        private void button1_Click(Object sender, EventArgs e)
+        private void StoreConnections()
         {
-            RuntimeLocalizer.ChangeCulture(this, "uk");
+            try
+            {
+                Connection conn1 = GetConnection(setSourceConnection);
+                Connection conn2 = null;
+                if (!setSourceConnection.Server.Equals(setDestConnection.Server))
+                {
+                    conn2 = GetConnection(setDestConnection);
+                }
+                Task.Run(() =>
+                {
+                    ConnectionsRepository.Instance.AddOrUpdateConnection(conn1);
+                    if(conn2!=null)
+                        ConnectionsRepository.Instance.AddOrUpdateConnection(conn2);
+                });
+            }
+            catch { }
         }
+
+        private Connection GetConnection(SetConnectionControl control)
+        {
+            Connection connection = new Connection();
+            connection.Server = control.Server;
+            connection.IsWindowsAuth = control.IsWindowsAuthentificatiion;
+
+            if (!connection.IsWindowsAuth)
+            {
+                connection.UserName = control.User;
+                if(control.IsNeedSavePasswor)
+                {
+                    connection.Pass = control.EnctyptedPassword;
+                }
+                else
+                {
+                    connection.Pass = String.Empty;
+                }
+            }
+            return connection;           
+        }
+
+
+
     }
 }

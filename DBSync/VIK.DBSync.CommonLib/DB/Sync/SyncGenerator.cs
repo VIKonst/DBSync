@@ -60,12 +60,5 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             return script.ToString();
         }
 
-        /*private String CreateStoredProcedures()
-        {
-
-        }*/
-
-
-
     }
 }

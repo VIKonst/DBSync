@@ -39,6 +39,7 @@
             this.cbDbSource = new System.Windows.Forms.ComboBox();
             this.cbServer = new System.Windows.Forms.ComboBox();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.chbSavePass = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblBd
@@ -93,16 +94,24 @@
             resources.ApplyResources(this.cbServer, "cbServer");
             this.cbServer.FormattingEnabled = true;
             this.cbServer.Name = "cbServer";
+            this.cbServer.SelectedIndexChanged += new System.EventHandler(this.cbServer_SelectedIndexChanged);
             // 
             // titleLabel
             // 
             resources.ApplyResources(this.titleLabel, "titleLabel");
             this.titleLabel.Name = "titleLabel";
             // 
+            // chbSavePass
+            // 
+            resources.ApplyResources(this.chbSavePass, "chbSavePass");
+            this.chbSavePass.Name = "chbSavePass";
+            this.chbSavePass.UseVisualStyleBackColor = true;
+            // 
             // SetConnectionControl
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chbSavePass);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.lblBd);
             this.Controls.Add(this.lblPass);
@@ -132,5 +141,6 @@
         private System.Windows.Forms.ComboBox cbDbSource;
         private System.Windows.Forms.ComboBox cbServer;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.CheckBox chbSavePass;
     }
 }

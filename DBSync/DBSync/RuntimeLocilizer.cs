@@ -21,33 +21,45 @@ namespace DBSync
 
             ComponentResourceManager resources = new ComponentResourceManager(frm.GetType());
 
+            //resources.ApplyResources(frm, "$this", culture);
+            frm.Text = resources.GetString("$this.Text", culture);
             ApplyResourceToControl(resources, frm, culture);
-            resources.ApplyResources(frm, "$this", culture);
+           
         }
 
         private static void ApplyResourceToControl(ComponentResourceManager res, Control control, CultureInfo lang)
         {
-            if (control.GetType() == typeof(MenuStrip))  // See if this is a menuStrip
+            if (control.GetType() == typeof(ListView))  // See if this is a menuStrip
             {
-                MenuStrip strip = (MenuStrip)control;
-
-                ApplyResourceToToolStripItemCollection(strip.Items, res, lang);
+                ListView list = (ListView)control;
+                ApplyResourceToListView(list, res, lang);
+                return;      
             }
 
-            if (control is ILocalizeControl)
+            if (control.GetType() == typeof(Ribbon))  // See if this is a menuStrip
             {
-                ((ILocalizeControl)control).UpdateLocalization();
+                Ribbon ribbon = (Ribbon)control;
+                ApplyResourceToRibbon(ribbon, res, lang);
                 return;
             }
 
-            foreach (Control c in control.Controls) // Apply to all sub-controls
-            { 
-                ApplyResourceToControl(res, c, lang);
-                res.ApplyResources(c, c.Name, lang);
+            if (!( control is SplitContainer || control is Form ))
+            {
+                control.Text = res.GetString(control.Name + ".Text", lang);
+            }
+            if (control is ILocalizeControl)
+            {
+                ((ILocalizeControl)control).UpdateLocalization();
+               
+                return;
             }
 
-            // Apply to self
-            //res.ApplyResources(control, control.Name, lang);
+                       
+
+            foreach (Control c in control.Controls) // Apply to all sub-controls
+            { 
+                ApplyResourceToControl(res, c, lang);               
+            }
         }
 
         private static void ApplyResourceToToolStripItemCollection(ToolStripItemCollection col, ComponentResourceManager res, CultureInfo lang)
@@ -63,6 +75,22 @@ namespace DBSync
                 }
 
                 res.ApplyResources(item, item.Name, lang);
+            }
+        }
+
+        private static void ApplyResourceToListView(ListView list, ComponentResourceManager res, CultureInfo lang)
+        {
+            foreach(ColumnHeader col in list.Columns)
+            {
+                col.Text = res.GetString(col.Name + ".Text", lang);
+            }
+        }
+
+        private static void ApplyResourceToRibbon(Ribbon ribbon, ComponentResourceManager res, CultureInfo lang)
+        {
+            foreach (RibbonTab tab in ribbon.Tabs)
+            {
+                tab.Text = res.GetString(tab.Value + ".Text", lang);
             }
         }
     }

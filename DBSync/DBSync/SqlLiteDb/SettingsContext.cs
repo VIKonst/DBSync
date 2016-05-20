@@ -1,4 +1,5 @@
-﻿using SQLite.CodeFirst;
+﻿using DBSync.SqlLiteDb.Entities;
+using SQLite.CodeFirst;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,30 +11,19 @@ namespace DBSync.SqlLiteDb
 {
     public class SettingsContext : DbContext
     {
-        public SettingsContext()
-           
+        public SettingsContext()           
         {
             Configuration.ProxyCreationEnabled = true;
             Configuration.LazyLoadingEnabled = true;
         }
 
-       // public DbSet<Connection> Connections { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            ConfigureConnection(modelBuilder);
-
-
-            SqliteCreateDatabaseIfNotExists<SettingsContext> c = new SqliteCreateDatabaseIfNotExists<SettingsContext>(modelBuilder);
-            Database.SetInitializer(c);
-
-
-
-        }
-
-        private void ConfigureConnection(DbModelBuilder modelBuilder)
-        {
             modelBuilder.Entity<Connection>();
-        }
+            modelBuilder.Entity<Setting>();
+
+            SqliteCreateDatabaseIfNotExists<SettingsContext> initializer= new SqliteCreateDatabaseIfNotExists<SettingsContext>(modelBuilder);
+            Database.SetInitializer(initializer);
+        }      
     }
 }

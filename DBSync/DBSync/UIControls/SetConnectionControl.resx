@@ -119,41 +119,45 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 124</value>
+    <value>22, 124</value>
   </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 203</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblUser.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="lblServer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 18</value>
+    <value>60, 18</value>
   </data>
   <data name="&gt;&gt;tbPass.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;titleLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblUser.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 17</value>
   </data>
   <data name="lblUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 95</value>
+    <value>15, 93</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chbIntegratedSecuritySource.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+  <data name="chbSavePass.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;chbIntegratedSecuritySource.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="titleLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 11</value>
   </data>
   <data name="&gt;&gt;titleLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cbDbSource.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 164</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SetConnectionControl</value>
+  </data>
+  <data name="&gt;&gt;lblUser.Name" xml:space="preserve">
+    <value>lblUser</value>
   </data>
   <data name="&gt;&gt;lblServer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -174,37 +178,40 @@
     <value>lblPass</value>
   </data>
   <data name="&gt;&gt;lblUser.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;tbPass.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbPass.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lblUser.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="titleLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="chbIntegratedSecuritySource.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 17</value>
   </data>
   <data name="cbServer.Text" xml:space="preserve">
     <value>VALERA-LAPTOP\SQL2012</value>
   </data>
   <data name="&gt;&gt;lblPass.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
+  </data>
+  <data name="chbIntegratedSecuritySource.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
   <data name="&gt;&gt;tbPass.Name" xml:space="preserve">
     <value>tbPass</value>
   </data>
-  <data name="lblBd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 18</value>
+  <data name="chbSavePass.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
   </data>
   <data name="titleLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 13</value>
   </data>
   <data name="&gt;&gt;tbUser.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblServer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -212,14 +219,20 @@
   <data name="lblPass.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 17</value>
   </data>
-  <data name="&gt;&gt;cbServer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;chbSavePass.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tbUser.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
+  <data name="cbServer.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chbSavePass.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
   <data name="lblServer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 41</value>
+    <value>18, 41</value>
   </data>
   <data name="&gt;&gt;lblBd.Name" xml:space="preserve">
     <value>lblBd</value>
@@ -228,7 +241,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbServer.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lblBd.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -249,7 +262,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tbPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 20</value>
+    <value>165, 20</value>
   </data>
   <data name="tbPass.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 121</value>
@@ -260,44 +273,53 @@
   <data name="lblBd.Text" xml:space="preserve">
     <value>Database:</value>
   </data>
+  <data name="lblBd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 18</value>
+  </data>
+  <data name="&gt;&gt;tbUser.Name" xml:space="preserve">
+    <value>tbUser</value>
+  </data>
   <data name="&gt;&gt;lblPass.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="titleLabel.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
-  <data name="&gt;&gt;lblUser.Name" xml:space="preserve">
-    <value>lblUser</value>
+  <data name="&gt;&gt;titleLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cbServer.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="chbIntegratedSecuritySource.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;lblServer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="lblBd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 164</value>
+    <value>15, 164</value>
   </data>
   <data name="titleLabel.Text" xml:space="preserve">
     <value>Title</value>
   </data>
   <data name="&gt;&gt;cbDbSource.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tbUser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 20</value>
+    <value>165, 20</value>
   </data>
   <data name="lblServer.Text" xml:space="preserve">
     <value>Server:</value>
   </data>
-  <data name="&gt;&gt;tbUser.Name" xml:space="preserve">
-    <value>tbUser</value>
+  <data name="chbSavePass.Text" xml:space="preserve">
+    <value>Save password</value>
   </data>
   <data name="tbPass.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="chbIntegratedSecuritySource.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 67</value>
+  </data>
+  <data name="&gt;&gt;chbSavePass.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="chbIntegratedSecuritySource.Text" xml:space="preserve">
     <value>Windows autentification</value>
@@ -311,8 +333,11 @@
   <data name="&gt;&gt;cbServer.Name" xml:space="preserve">
     <value>cbServer</value>
   </data>
-  <data name="&gt;&gt;lblBd.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;chbSavePass.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 203</value>
   </data>
   <data name="&gt;&gt;chbIntegratedSecuritySource.Name" xml:space="preserve">
     <value>chbIntegratedSecuritySource</value>
@@ -329,29 +354,35 @@
   <data name="titleLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;chbIntegratedSecuritySource.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;chbIntegratedSecuritySource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblUser.Text" xml:space="preserve">
-    <value>User:</value>
+  <data name="titleLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;lblUser.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblServer.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;chbIntegratedSecuritySource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cbServer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblPass.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbSavePass.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 141</value>
   </data>
   <data name="cbServer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 21</value>
+    <value>165, 21</value>
   </data>
   <data name="&gt;&gt;lblBd.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cbDbSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 21</value>
+    <value>165, 21</value>
   </data>
   <data name="&gt;&gt;cbDbSource.Name" xml:space="preserve">
     <value>cbDbSource</value>
@@ -359,23 +390,26 @@
   <data name="&gt;&gt;titleLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="lblPass.Text" xml:space="preserve">
+    <value>Password:</value>
+  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbServer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="chbIntegratedSecuritySource.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;chbSavePass.Name" xml:space="preserve">
+    <value>chbSavePass</value>
   </data>
   <data name="&gt;&gt;cbDbSource.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="chbIntegratedSecuritySource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 17</value>
+  <data name="&gt;&gt;lblBd.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="lblPass.Text" xml:space="preserve">
-    <value>Password:</value>
+  <data name="lblUser.Text" xml:space="preserve">
+    <value>User:</value>
   </data>
   <data name="&gt;&gt;titleLabel.Name" xml:space="preserve">
     <value>titleLabel</value>

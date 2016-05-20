@@ -48,10 +48,10 @@ namespace DBSync
                 {
                     Parallel.Invoke(_db1.LoadObjects, _db2.LoadObjects);
 
-                    OnPogressUpdate("Databases are compared");
+                    OnPogressUpdate("Databases are compared...");
                     Result = DBComparer.CompareDatabase(_db1, _db2);
                     this.Invoke(new Action(() => { this.Close(); }));
-                    //throw new Exception("test");
+
                 }
                 catch(Exception ex)
                 {

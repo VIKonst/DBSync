@@ -20,11 +20,14 @@ namespace VIK.DBSync.CommonLib.DB
         public DataBaseObjects Objects { get; set; }
         public string Name { get; set; }
 
+        public String ConnectionString { get { return _connectionString; } }
+
         public event Action<String> OnPogressUpdate;
 
         public DataBase(SqlConnection connection)
         {
             _connection = connection;
+            _connectionString = connection.ConnectionString;
             Name = connection.Database;
             Objects = new DataBaseObjects();
 
@@ -33,7 +36,7 @@ namespace VIK.DBSync.CommonLib.DB
         public DataBase(String connectionString)
             : this(new SqlConnection(connectionString))
         {
-            _connectionString = connectionString;
+           
         }
                
 

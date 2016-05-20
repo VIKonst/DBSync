@@ -117,13 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblBd.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblBd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 167</value>
+    <value>8, 167</value>
   </data>
   <data name="lblBd.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -131,11 +127,8 @@
   <data name="lblBd.Text" xml:space="preserve">
     <value>База даних:</value>
   </data>
-  <data name="lblPass.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="lblPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 124</value>
+    <value>27, 124</value>
   </data>
   <data name="lblPass.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 13</value>
@@ -143,8 +136,11 @@
   <data name="lblPass.Text" xml:space="preserve">
     <value>Пароль:</value>
   </data>
-  <data name="lblUser.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lblPass.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblUser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 95</value>
   </data>
   <data name="lblUser.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -152,11 +148,8 @@
   <data name="lblUser.Text" xml:space="preserve">
     <value>Користувач:</value>
   </data>
-  <data name="lblServer.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="lblServer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 41</value>
+    <value>28, 41</value>
   </data>
   <data name="lblServer.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 13</value>
@@ -172,5 +165,17 @@
   </data>
   <data name="titleLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 11</value>
+  </data>
+  <data name="titleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="titleLabel.Text" xml:space="preserve">
+    <value>БД</value>
+  </data>
+  <data name="chbSavePass.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
+  </data>
+  <data name="chbSavePass.Text" xml:space="preserve">
+    <value>Зберегти пароль</value>
   </data>
 </root>

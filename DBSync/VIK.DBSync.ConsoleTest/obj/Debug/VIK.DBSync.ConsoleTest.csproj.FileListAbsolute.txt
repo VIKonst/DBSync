@@ -7,3 +7,10 @@ D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSy
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\obj\Debug\VIK.DBSync.ConsoleTest.csprojResolveAssemblyReference.cache
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\obj\Debug\VIK.DBSync.ConsoleTest.exe
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\obj\Debug\VIK.DBSync.ConsoleTest.pdb
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\Microsoft.SqlServer.Smo.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\Microsoft.SqlServer.Dmf.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.ConsoleTest\bin\Debug\ru\Microsoft.SqlServer.Dmf.resources.dll

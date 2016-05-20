@@ -1,4 +1,21 @@
-   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54test   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54test
-   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54
-test
-   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 54
+﻿Произошла одна или несколько ошибок.
+   в System.Threading.Tasks.Task.FastWaitAll(Task[] tasks)
+   в System.Threading.Tasks.Parallel.Invoke(ParallelOptions parallelOptions, Action[] actions)
+   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 49
+Ошибка входа пользователя "".
+   в System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   в System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   в System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   в System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   в System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   в System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   в System.Data.SqlClient.SqlConnection.Open()
+   в VIK.DBSync.CommonLib.Metadata.SqlObjectMetadataLoaderBase`1.LoadObjects(IDbConnection connection) в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\Metadata\SqlObjectMetadataLoaderBase.cs:строка 38
+   в VIK.DBSync.CommonLib.DB.DataBase.LoadSchemas() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\DB\DataBase.cs:строка 82
+   в VIK.DBSync.CommonLib.DB.DataBase.LoadObjects() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\DB\DataBase.cs:строка 45
+   в System.Threading.Tasks.Task.Execute()

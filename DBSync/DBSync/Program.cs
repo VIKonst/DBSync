@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DBSync.Encryption;
+using DBSync.SqlLiteDb;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -17,8 +20,22 @@ namespace DBSync
         {
             try
             {
+
+                AesHelper.InitAes();
+
+                String ss=AesHelper.EncryptString("valera_test");
+                 ss = AesHelper.DecryptString(ss);
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                SettingsManager.Instance.LoadSettings();
+                String lang = SettingsManager.Instance.Lang;
+
+                if(!String.IsNullOrEmpty(lang))
+                {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(lang);
+                }
+                
                 Application.Run(new MainForm());
             }
             catch(Exception e)

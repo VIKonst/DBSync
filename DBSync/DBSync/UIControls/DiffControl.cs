@@ -14,7 +14,7 @@ using FastColoredTextBoxNS;
 
 namespace DBSync.UIControls
 {
-    public partial class DiffControl : UserControl
+    public partial class DiffControl : UserControl, ILocalizeControl
     {
 
         Style greenStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(50, Color.Green)));
@@ -132,5 +132,9 @@ namespace DBSync.UIControls
             }
         }
 
+        public void UpdateLocalization()
+        {
+           // throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DiffPlex;
+﻿using DBSync.SqlLiteDb;
+using DiffPlex;
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
 using FastColoredTextBoxNS;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -24,7 +26,8 @@ namespace DBSync
     {
         DataBase sourceDatabase;
         DataBase destDatabase;
-
+        String sourceConnectionString;
+        String destConnectionString;
         ListViewGroup NEGroup;
         ListViewGroup NGroup;
         ListViewGroup RGroup;
@@ -47,7 +50,24 @@ namespace DBSync
             InitializeComponent();
             InitList();
             listView1.ItemChecked += ListView1_ItemChecked;
-            listView1.ListViewItemSorter = new  ComparerItem();
+            listView1.ListViewItemSorter = new ComparerItem();
+
+            btnLangEn.Click += BtnLangClick;
+            btnLangUk.Click += BtnLangClick;
+            btnLangRu.Click += BtnLangClick;
+        }
+
+        private void BtnLangClick(Object sender, EventArgs e)
+        {
+            RibbonButton btn = sender as RibbonButton;
+            ChangeLanguage(btn.Value);
+        }
+
+        private void ChangeLanguage(String lang)
+        {           
+            RuntimeLocalizer.ChangeCulture(this,lang);
+            RuntimeLocalizer.ChangeCulture(window, lang);
+            SettingsManager.Instance.Lang = lang;
         }
 
         private void ListView1_ItemChecked(Object sender, ItemCheckedEventArgs e)
@@ -60,8 +80,6 @@ namespace DBSync
 
         private void InitList()
         {
-            listView1.Columns.Add("Name").Width = 400;
-            listView1.Columns.Add("Type");
             NEGroup = listView1.Groups.Add("NE", "Not equals");
             NGroup = listView1.Groups.Add("N", "New");
             RGroup = listView1.Groups.Add("R", "Removed");
@@ -86,7 +104,11 @@ namespace DBSync
         }
 
         private void StartCompare()
-        {          
+        {
+            listView1.Items.Clear();
+            sourceDatabase = new DataBase(sourceConnectionString);
+            destDatabase = new DataBase(destConnectionString);
+
             ProgressForm form = new ProgressForm(sourceDatabase, destDatabase);
             form.ShowDialog();
             if(form.Result==null)
@@ -128,38 +150,6 @@ namespace DBSync
             listView1.Sort();
         }
 
-        private void FillText(FastColoredTextBox tb, DiffPaneModel text )
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < text.Lines.Count; i++)
-            {
-                sb.AppendLine(text.Lines[i].Text);
-            }
-            tb.Text = sb.ToString();
-
-            for (int i=0; i<text.Lines.Count; i++)
-            {
-                switch (text.Lines[i].Type)
-                {
-                    case ChangeType.Deleted:
-                        tb[i].BackgroundBrush = Brushes.LightPink;
-                        break;
-                    case ChangeType.Imaginary:
-                        tb[i].BackgroundBrush = Brushes.Gray;
-                        break;
-                    case ChangeType.Inserted:
-                        tb[i].BackgroundBrush = Brushes.LightGreen;
-                        break;
-                    case ChangeType.Modified:
-                        tb[i].BackgroundBrush = Brushes.LightCoral;
-                        break;
-                    case ChangeType.Unchanged:
-                        tb[i].BackgroundBrush = Brushes.White;
-                        break;
-                }
-              
-            }
-        }
        
 
         private void listView1_SelectedIndexChanged(Object sender, EventArgs e)
@@ -186,9 +176,11 @@ namespace DBSync
             {
                 selectedItems.Add((ComparePair)item.Tag);
             }
+            if (selectedItems.Count == 0)
+                return;
 
             genrator.GenerateScript(selectedItems);
-            ScriptForm form = new ScriptForm(genrator.GenerateScript(selectedItems));
+            ScriptForm form = new ScriptForm(genrator.GenerateScript(selectedItems),destDatabase.ConnectionString);
             form.Show();
         }
 
@@ -200,11 +192,22 @@ namespace DBSync
 
             if (window.IsNeedCompare)
             {
-                sourceDatabase = new DataBase(window.SourceConnectionString);
-                destDatabase = new DataBase(window.DestConnectionString);
-                listView1.Items.Clear();
+                sourceConnectionString = window.SourceConnectionString;
+                destConnectionString = window.DestConnectionString;
                 StartCompare();
             }
+           
+        }
+
+        private void diffControl_Load(Object sender, EventArgs e)
+        {
+
+        }
+
+        private void updateBtn_Click(Object sender, EventArgs e)
+        {
+            if (sourceDatabase != null && destDatabase!=null)
+            StartCompare();
         }
     }
 }
