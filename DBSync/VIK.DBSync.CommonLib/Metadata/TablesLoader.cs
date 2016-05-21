@@ -25,6 +25,9 @@ namespace VIK.DBSync.CommonLib.Metadata
             table.SchemaName = reader.GetString(2);
             table.ObjectId = reader.GetInt32(3);
             table.IsAnsiNullsOn = reader.GetBoolean(4);
+            table.IsReplicated = reader.GetBoolean(5);
+            table.LockEscalation = reader.GetString(6);
+            table.DataSpaceName = reader.GetString(7);
             return table;
         }
         

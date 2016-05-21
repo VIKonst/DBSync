@@ -207,5 +207,10 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
             return statement.ToString();
         }
+
+        public override String DropScript()
+        {
+            return "";
+        }
     }
 }

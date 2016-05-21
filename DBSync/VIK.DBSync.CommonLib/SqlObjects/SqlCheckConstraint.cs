@@ -15,7 +15,12 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public override String CreateScript()
         {            
             String notFoReplicaton = this.IsNotForReplication ? "NOT FOR REPLICATION" : String.Empty;
-            return $"ADD CONSTRAINT [{Name}] CHECK {notFoReplicaton} {Defenition}";          
+            return $"ALTER TABLE {this.ParentObject.QualifiedName} ADD CONSTRAINT [{Name}] CHECK {notFoReplicaton} {Defenition}";          
+        }
+
+        public override String DropScript()
+        {
+            return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}";
         }
     }
 }

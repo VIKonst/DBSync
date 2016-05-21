@@ -16,5 +16,10 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         {
             return $"ADD CONSTRAINT {Name} {Environment.NewLine}\tDEFAULT {Definition} FOR [{ColumnName}]";
         }
+
+        public override String DropScript()
+        {
+            return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}";
+        }
     }
 }

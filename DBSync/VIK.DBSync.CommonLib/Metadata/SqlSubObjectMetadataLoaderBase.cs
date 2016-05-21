@@ -9,7 +9,7 @@ using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public abstract class SqlSubObjectMetadataLoaderBase<T> : IMetaDataLoader<T> where T : ISqlSubObject
+    public abstract class SqlSubObjectMetadataLoaderBase<T> : IMetaDataLoader<T, SubObjectsCollection<T>> where T : SqlSubObject
     {
         protected String _scriptName;
         protected SqlObject _parentObject;
@@ -22,12 +22,12 @@ namespace VIK.DBSync.CommonLib.Metadata
 
         abstract protected T GetObject(IDataRecord reader);
 
-        public virtual List<T> LoadObjects(IDbConnection connection)
+        public virtual SubObjectsCollection<T> LoadObjects(IDbConnection connection)
         {
             IDataReader reader = null;
             try
             {
-                List<T> list = new List<T>();
+                SubObjectsCollection<T> list = new SubObjectsCollection<T>();
                 IDbCommand command = connection.CreateCommand();
                 command.CommandText = String.Format(ResourcesHelper.GetScriptFromResources(this._scriptName),_parentObject.ObjectId);
                 if (connection.State != ConnectionState.Open)

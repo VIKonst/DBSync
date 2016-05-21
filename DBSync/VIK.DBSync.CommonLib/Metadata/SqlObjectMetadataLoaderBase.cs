@@ -11,7 +11,7 @@ using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.Metadata
 {
-    public abstract class SqlObjectMetadataLoaderBase<T> : IMetaDataLoader<T> where T :ISqlObject 
+    public abstract class SqlObjectMetadataLoaderBase<T> : IMetaDataLoader<T, List<T>> where T :ISqlObject 
     {
         protected String _scriptName;
         private DataBase _db;
@@ -49,10 +49,10 @@ namespace VIK.DBSync.CommonLib.Metadata
                 
                 return list;
             }
-           /* catch(Exception ex)
+            catch(Exception ex)
             {
                 throw new Exception("Loading is failed. Type: " + typeof(T).Name, ex);
-            }*/
+            }
             finally
             {
                 if(reader!=null && !reader.IsClosed)

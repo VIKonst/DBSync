@@ -53,6 +53,7 @@
     <Compile Include="DB\DataBaseObjects.cs" />
     <Compile Include="DB\DBHelper.cs" />
     <Compile Include="DB\Sync\SyncGenerator.cs" />
+    <Compile Include="DB\Sync\TablesSynchroniser.cs" />
     <Compile Include="Metadata\CheckConstraintsLoader.cs" />
     <Compile Include="Metadata\DefaultConstraintsLoader.cs" />
     <Compile Include="Metadata\ForeignKeyColumnLoader.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="SqlObjects\SqlSubObjectType.cs" />
     <Compile Include="SqlObjects\SqlTable.cs" />
     <Compile Include="SqlObjects\SqlType.cs" />
+    <Compile Include="SqlObjects\SubObjectsCollection.cs" />
     <Compile Include="SqlScripting\ResourcesHelper.cs" />
     <Compile Include="SqlScripting\SqlStatement.cs" />
   </ItemGroup>

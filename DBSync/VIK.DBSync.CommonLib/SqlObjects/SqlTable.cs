@@ -11,11 +11,11 @@ namespace VIK.DBSync.CommonLib.SqlObjects
     {
         public SqlTable()
         {
-            UniqueConstraints = new List<SqlIndex>();
-            Indexes = new List<SqlIndex>();
+            UniqueConstraints = new SubObjectsCollection<SqlIndex>();
+            Indexes = new SubObjectsCollection<SqlIndex>();
             Dependencies = new HashSet<SqlForeignKey>();
-            CheckConstraints = new List<SqlCheckConstraint>();
-            DefaultConstraints = new List<SqlDefaultConstraint>();
+            CheckConstraints = new SubObjectsCollection<SqlCheckConstraint>();
+            DefaultConstraints = new SubObjectsCollection<SqlDefaultConstraint>();
         }
 
         public override SqlObjectType Type
@@ -44,19 +44,25 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public Boolean IsAnsiNullsOn { get; set; }
 
-        public List<SqlColumn> Columns { get; set; }
+        public Boolean IsReplicated { get; set; }
 
-        public List<SqlIndex> UniqueConstraints { get; set; }
+        public String LockEscalation { get; set; }
 
-        public List<SqlIndex> Indexes { get; set; }
+        public String DataSpaceName { get; set; }
+
+        public SubObjectsCollection<SqlColumn> Columns { get; set; }
+
+        public SubObjectsCollection<SqlIndex> UniqueConstraints { get; set; }
+
+        public SubObjectsCollection<SqlIndex> Indexes { get; set; }
 
         public SqlIndex PrimarKey { get; set; }
 
-        public List<SqlForeignKey> ForeignKeys { get; set; }
+        public SubObjectsCollection<SqlForeignKey> ForeignKeys { get; set; }
 
-        public List<SqlCheckConstraint> CheckConstraints { get; set; }
+        public SubObjectsCollection<SqlCheckConstraint> CheckConstraints { get; set; }
 
-        public List<SqlDefaultConstraint> DefaultConstraints { get; set; }
+        public SubObjectsCollection<SqlDefaultConstraint> DefaultConstraints { get; set; }
 
         public HashSet<SqlForeignKey> Dependencies { get; set; }
 
@@ -77,70 +83,82 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             //Columns definition
             script.AppendLine("(");
             script.AppendLine(String.Join(",\r\n", Columns.OrderBy(c=>c.ColumnId).Select(c => c.CreateScript())));
-            script.AppendLine(")");
+            script.AppendLine($") ON [{this.DataSpaceName}]");
             script.AppendLine(SqlStatement.GO);
             script.AppendLine();
 
-
-            String alterTableStatement = SqlStatement.GetAlterTableStatemt(QualifiedName);
-
             if (PrimarKey != null)
             {
-                script.AppendLine(alterTableStatement);
+                script.AppendLine(PrimarKey.CreateScript());
+                script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
+            }
+            
+            script.AppendLine(UniqueConstraints.CreateAllScript());
+            script.AppendLine(Indexes.CreateAllScript());
+            script.AppendLine(CheckConstraints.CreateAllScript());
+            script.AppendLine(DefaultConstraints.CreateAllScript());
+
+            if (withFk)
+            {
+                script.AppendLine(ForeignKeys.CreateAllScript());
+            }
+
+            return script.ToString();
+        }
+             
+
+        public String DropDependenciesScript()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (SqlForeignKey key  in Dependencies)
+            {
+                builder.AppendLine(key.DropScript());
+                builder.AppendLine(SqlStatement.GO);
+            }
+            return builder.ToString();
+        }
+
+        public String CreateDependenciesScript()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (SqlForeignKey key in Dependencies)
+            {
+                builder.AppendLine(key.CreateScript());
+                builder.AppendLine(SqlStatement.GO);
+            }
+            return builder.ToString();
+        }
+
+        public String DropSubObjects()
+        {
+            StringBuilder script = new StringBuilder();
+            script.Append(PrimarKey.DropScript());
+            script.AppendLine(UniqueConstraints.DropAllScript());
+            script.AppendLine(Indexes.DropAllScript());
+            script.AppendLine(CheckConstraints.DropAllScript());
+            script.AppendLine(DefaultConstraints.DropAllScript());
+            return script.ToString();
+        }
+
+        public String CreateSubObjects(Boolean withFk)
+        {
+            StringBuilder script = new StringBuilder();
+            if (PrimarKey != null)
+            {
                 script.AppendLine(PrimarKey.CreateScript());
                 script.AppendLine(SqlStatement.GO);
                 script.AppendLine();
             }
 
-            foreach (SqlIndex constraint in UniqueConstraints)
-            {
-                script.AppendLine(alterTableStatement);
-                script.AppendLine(constraint.CreateScript());
-                script.AppendLine(SqlStatement.GO);
-                script.AppendLine();
-            }
-
-            foreach (SqlIndex index in Indexes)
-            {
-                script.AppendLine(index.CreateScript());
-                script.AppendLine(SqlStatement.GO);
-                script.AppendLine();
-            }
+            script.AppendLine(UniqueConstraints.CreateAllScript());
+            script.AppendLine(Indexes.CreateAllScript());
+            script.AppendLine(CheckConstraints.CreateAllScript());
+            script.AppendLine(DefaultConstraints.CreateAllScript());
 
             if (withFk)
             {
-                script.AppendLine(CreateForeignKeysScript());
-            }
-
-            foreach (SqlCheckConstraint constraint in CheckConstraints)
-            {
-                script.AppendLine(alterTableStatement);
-                script.AppendLine(constraint.CreateScript());
-                script.AppendLine(SqlStatement.GO);
-                script.AppendLine();
-            }
-
-            foreach (SqlDefaultConstraint constraint in DefaultConstraints)
-            {
-                script.AppendLine(alterTableStatement);
-                script.AppendLine(constraint.CreateScript());
-                script.AppendLine(SqlStatement.GO);
-                script.AppendLine();
-            }
-
-            return script.ToString();
-        }
-
-        public String CreateForeignKeysScript()
-        {
-            String alterTableStatement = SqlStatement.GetAlterTableStatemt(QualifiedName);
-            StringBuilder script = new StringBuilder();
-            foreach (SqlForeignKey key in ForeignKeys)
-            {
-                script.AppendLine(alterTableStatement);
-                script.AppendLine(key.CreateScript());
-                script.AppendLine(SqlStatement.GO);
-                script.AppendLine();
+                script.AppendLine(ForeignKeys.CreateAllScript());
             }
             return script.ToString();
         }

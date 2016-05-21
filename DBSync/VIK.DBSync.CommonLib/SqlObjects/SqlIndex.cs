@@ -37,7 +37,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public String XMLSecondaryType { get; set; }
 
-     //   public Byte XMLType { get; set; }
+        //   public Byte XMLType { get; set; }
 
         public Int32 UsingXMLIndexId { get; set; }
 
@@ -45,7 +45,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public List<IndexColumn> Columns { get; set; }
 
-      
+
         public override String CreateScript()
         {
             StringBuilder builder = new StringBuilder(String.Empty);
@@ -53,18 +53,18 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
             Boolean isXml = TypeStatement.ToLower().Equals("xml");
 
-            if(isXml)
+            if (isXml)
             {
-                builder.AppendLine($"CREATE {(UsingXMLIndexId == 0? "PRIMARY" :"" )} XML INDEX {Name}");
+                builder.AppendLine($"CREATE {( UsingXMLIndexId == 0 ? "PRIMARY" : "" )} XML INDEX {Name}");
                 builder.Append($"ON {ParentObject.QualifiedName}");
             }
             else if (IsPrimaryKey)
             {
-                builder.AppendFormat($"ADD CONSTRAINT [{Name}] PRIMARY KEY {TypeStatement}");
+                builder.AppendFormat($"ALTER TABLE {ParentObject.QualifiedName} ADD CONSTRAINT [{Name}] PRIMARY KEY {TypeStatement}");
             }
             else if (IsUniqueConstraint)
             {
-                builder.Append($"ADD CONSTRAINT [{Name}] UNIQUE {TypeStatement}");
+                builder.Append($"ALTER TABLE {ParentObject.QualifiedName} ADD CONSTRAINT [{Name}] UNIQUE {TypeStatement}");
             }
             else
             {
@@ -82,7 +82,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
 
             builder.Append("\r\n(");
-            if(isXml)
+            if (isXml)
             {
                 builder.Append(String.Join(",", Columns.Where(c => !c.IsIncluded).Select(c => $"[{c.Name}]")));
             }
@@ -105,7 +105,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
             builder.AppendLine("WITH ( ");
             builder.AppendFormat($"PAD_INDEX = {SqlStatement.GetOnOffStatement(IsPadded)}, ");
-            if(!isXml) builder.AppendFormat($"STATISTICS_NORECOMPUTE = {SqlStatement.GetOnOffStatement(IsAutoStatistics)}, ");
+            if (!isXml) builder.AppendFormat($"STATISTICS_NORECOMPUTE = {SqlStatement.GetOnOffStatement(IsAutoStatistics)}, ");
             builder.AppendFormat($"IGNORE_DUP_KEY = {SqlStatement.GetOnOffStatement(IgnoreDupKey)}, ");
             builder.AppendFormat($"ALLOW_ROW_LOCKS = {SqlStatement.GetOnOffStatement(AllowRowLocks)}, ");
             builder.AppendFormat($"ALLOW_PAGE_LOCKS = {SqlStatement.GetOnOffStatement(AllowPageLocks)} ");
@@ -113,6 +113,20 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             builder.Append(" ) ");
             if (!String.IsNullOrEmpty(FileGroup) && !isXml) builder.Append(" ON [" + FileGroup + "]");
             return builder.ToString();
+        }
+
+
+        public override String DropScript()
+        {
+            if (IsPrimaryKey || IsUniqueConstraint)
+            {
+                return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}";
+            }
+            else
+            {
+                return $"DROP INDEX  {Name} ON {this.ParentObject.QualifiedName}";
+            }
+
         }
 
         public Int32 CompareTo(SqlIndex other)

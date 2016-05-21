@@ -31,5 +31,10 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         {
             throw new NotImplementedException();
         }
+
+        public override String DropScript()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

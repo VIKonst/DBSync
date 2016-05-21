@@ -44,6 +44,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public override String CreateScript()
         {
             StringBuilder builder = new StringBuilder(String.Empty);
+            builder.AppendLine($"ALTER TABLE { this.ParentObject.QualifiedName}");
             builder.AppendLine($"ADD CONSTRAINT [{Name}] FOREIGN KEY");
             builder.AppendLine("(");
             builder.AppendLine(String.Join(",", Columns.Select(c => $"[{c.ParentColumnName}]")));
@@ -57,6 +58,12 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             builder.Append($"ON UPDATE {ActionToString(UpdateAction)}");           
 
             return builder.ToString();
+        }
+
+        public override String DropScript()
+        {
+            String result = $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT {Name}";
+            return result;
         }
 
     }

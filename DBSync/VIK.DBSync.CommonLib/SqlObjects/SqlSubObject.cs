@@ -20,6 +20,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public abstract String CreateScript();
 
+        public abstract String DropScript();
+
         public Boolean IsNotForReplication { get; set; }
 
         public virtual Int32 CompareTo(SqlSubObject obj)
