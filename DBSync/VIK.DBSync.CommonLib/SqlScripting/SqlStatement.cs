@@ -8,7 +8,8 @@ namespace VIK.DBSync.CommonLib.SqlScripting
 {
     public static class SqlStatement
     {
-        public const String GO = "GO";
+        public static readonly String GO = Environment.NewLine+"GO"+Environment.NewLine;
+
         public const String IF = "IF";
         public const String ON = "ON";
         public const String OFF = "OFF";

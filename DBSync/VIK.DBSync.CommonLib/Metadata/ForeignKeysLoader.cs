@@ -24,6 +24,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             key.ParentTableId = (Int32)reader["referencing_table_id"];
             key.ReferencedTableId = (Int32)reader["referenced_table_id"];
             key.ForeignKeyId = (Int32)reader["foreign_key_id"];
+            key.IsDisabled = (Boolean)reader["is_disabled"];
             return key;
         }
     }

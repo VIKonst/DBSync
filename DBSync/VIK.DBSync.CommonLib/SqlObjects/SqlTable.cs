@@ -42,6 +42,14 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             }
         }
 
+        public Boolean HasIdentity
+        {
+            get
+            {
+                return IdentityColumnId >= 0;
+            }
+        }
+
         public Boolean IsAnsiNullsOn { get; set; }
 
         public Boolean IsReplicated { get; set; }
@@ -49,6 +57,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public String LockEscalation { get; set; }
 
         public String DataSpaceName { get; set; }
+
+        public Int32 IdentityColumnId { get; set; }
 
         public SubObjectsCollection<SqlColumn> Columns { get; set; }
 
@@ -73,48 +83,51 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public String CreateScript(Boolean withFk)
         {
-            StringBuilder script = new StringBuilder(String.Empty, 500);
-            script.AppendLine(SqlStatement.GetAnsiNullsStatemt(IsAnsiNullsOn));
-            script.AppendLine(SqlStatement.GetQuotedIdentifierStatemt(true));
-            script.AppendLine(SqlStatement.GO);
-            script.AppendLine();
-            script.Append(SqlStatement.GetCreateStatemt("TABLE " + QualifiedName));
-
-            //Columns definition
-            script.AppendLine("(");
-            script.AppendLine(String.Join(",\r\n", Columns.OrderBy(c=>c.ColumnId).Select(c => c.CreateScript())));
-            script.AppendLine($") ON [{this.DataSpaceName}]");
-            script.AppendLine(SqlStatement.GO);
-            script.AppendLine();
-
+            StringBuilder script = new StringBuilder(HeaderCreateScript());
+           
             if (PrimarKey != null)
             {
                 script.AppendLine(PrimarKey.CreateScript());
-                script.AppendLine(SqlStatement.GO);
                 script.AppendLine();
             }
             
-            script.AppendLine(UniqueConstraints.CreateAllScript());
-            script.AppendLine(Indexes.CreateAllScript());
-            script.AppendLine(CheckConstraints.CreateAllScript());
-            script.AppendLine(DefaultConstraints.CreateAllScript());
+            script.Append(UniqueConstraints.CreateAllScript());
+            script.Append(Indexes.CreateAllScript());
+            script.Append(CheckConstraints.CreateAllScript());
+            script.Append(DefaultConstraints.CreateAllScript());
 
             if (withFk)
             {
-                script.AppendLine(ForeignKeys.CreateAllScript());
+                script.Append(ForeignKeys.CreateAllScript());
             }
 
             return script.ToString();
         }
              
 
+        public String HeaderCreateScript()
+        {
+            StringBuilder script = new StringBuilder(String.Empty, 500);
+            script.AppendLine(SqlStatement.GetAnsiNullsStatemt(IsAnsiNullsOn));
+            script.Append(SqlStatement.GetQuotedIdentifierStatemt(true));
+            script.AppendLine(SqlStatement.GO);
+            script.Append(SqlStatement.GetCreateStatemt("TABLE " + QualifiedName));
+
+            //Columns definition
+            script.AppendLine("(");
+            script.AppendLine(String.Join(",\r\n", Columns.OrderBy(c => c.ColumnId).Select(c => c.CreateScript())));
+            script.Append($") ON [{this.DataSpaceName}]");
+            script.AppendLine(SqlStatement.GO);
+
+            return script.ToString();
+        }
+
         public String DropDependenciesScript()
         {
             StringBuilder builder = new StringBuilder();
             foreach (SqlForeignKey key  in Dependencies)
             {
-                builder.AppendLine(key.DropScript());
-                builder.AppendLine(SqlStatement.GO);
+                builder.Append(key.DropScript());            
             }
             return builder.ToString();
         }
@@ -124,8 +137,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             StringBuilder builder = new StringBuilder();
             foreach (SqlForeignKey key in Dependencies)
             {
-                builder.AppendLine(key.CreateScript());
-                builder.AppendLine(SqlStatement.GO);
+                builder.AppendLine(key.CreateScript());             
             }
             return builder.ToString();
         }
@@ -133,11 +145,14 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public String DropSubObjects()
         {
             StringBuilder script = new StringBuilder();
-            script.Append(PrimarKey.DropScript());
-            script.AppendLine(UniqueConstraints.DropAllScript());
-            script.AppendLine(Indexes.DropAllScript());
-            script.AppendLine(CheckConstraints.DropAllScript());
-            script.AppendLine(DefaultConstraints.DropAllScript());
+            script.Append(Indexes.DropAllScript());
+            script.Append(UniqueConstraints.DropAllScript());
+            if (PrimarKey != null)
+            {
+                script.AppendLine(PrimarKey.DropScript());
+            }
+            script.Append(CheckConstraints.DropAllScript());
+            script.Append(DefaultConstraints.DropAllScript());
             return script.ToString();
         }
 
@@ -147,25 +162,24 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             if (PrimarKey != null)
             {
                 script.AppendLine(PrimarKey.CreateScript());
-                script.AppendLine(SqlStatement.GO);
                 script.AppendLine();
             }
 
-            script.AppendLine(UniqueConstraints.CreateAllScript());
-            script.AppendLine(Indexes.CreateAllScript());
-            script.AppendLine(CheckConstraints.CreateAllScript());
-            script.AppendLine(DefaultConstraints.CreateAllScript());
+            script.Append(UniqueConstraints.CreateAllScript());
+            script.Append(Indexes.CreateAllScript());
+            script.Append(CheckConstraints.CreateAllScript());
+            script.Append(DefaultConstraints.CreateAllScript());
 
             if (withFk)
             {
-                script.AppendLine(ForeignKeys.CreateAllScript());
+                script.Append(ForeignKeys.CreateAllScript());
             }
             return script.ToString();
         }
 
         public override String DropScript()
         {
-            return $"DROP TABLE {QualifiedName}";
+            return $"DROP TABLE {QualifiedName}{SqlStatement.GO}";
         }
 
 

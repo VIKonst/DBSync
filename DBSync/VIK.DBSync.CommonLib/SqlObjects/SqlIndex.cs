@@ -112,6 +112,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             if (FillFactor != 0) builder.AppendFormat($", FILLFACTOR =  {FillFactor.ToString()}");
             builder.Append(" ) ");
             if (!String.IsNullOrEmpty(FileGroup) && !isXml) builder.Append(" ON [" + FileGroup + "]");
+
+            builder.Append(SqlStatement.GO);
             return builder.ToString();
         }
 
@@ -120,11 +122,11 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         {
             if (IsPrimaryKey || IsUniqueConstraint)
             {
-                return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}";
+                return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}{SqlStatement.GO}";
             }
             else
             {
-                return $"DROP INDEX  {Name} ON {this.ParentObject.QualifiedName}";
+                return $"DROP INDEX  {Name} ON {this.ParentObject.QualifiedName}{SqlStatement.GO}";
             }
 
         }

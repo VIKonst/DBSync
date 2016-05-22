@@ -40,16 +40,16 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         {
             StringBuilder script = new StringBuilder(String.Empty);
             script.AppendLine(SqlStatement.GetAnsiNullsStatemt(IsAnsiNullsOn));
-            script.AppendLine(SqlStatement.GetQuotedIdentifierStatemt(IsQuotedIdentifier));
-            script.AppendLine(SqlStatement.GO);
-            script.AppendLine(Text);
+            script.Append(SqlStatement.GetQuotedIdentifierStatemt(IsQuotedIdentifier));
+            script.Append(SqlStatement.GO);
+            script.Append(Text);
             script.AppendLine(SqlStatement.GO);
             return script.ToString();
         }
 
         public override String DropScript()
         {
-            return $"DROP PROCEDURE {Name}";
+            return $"DROP PROCEDURE {Name}{SqlStatement.GO}";
         }
     }
 }

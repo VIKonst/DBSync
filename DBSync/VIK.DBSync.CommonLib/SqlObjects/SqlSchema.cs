@@ -38,12 +38,12 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public override String CreateScript()
         {
-            return $"CREATE SCHEMA [{Name}] AUTHORIZATION {OwnerName}{Environment.NewLine}{SqlStatement.GO}{Environment.NewLine}";
+            return $"CREATE SCHEMA [{Name}] AUTHORIZATION {OwnerName}{SqlStatement.GO}";
         }
 
         public override String DropScript()
         {
-            return $"DROP SCHEMA [{Name}]";
+            return $"DROP SCHEMA [{Name}]{SqlStatement.GO}";
         }
     }
 }

@@ -16,7 +16,17 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             foreach (T constraint in this)
             {
                 script.AppendLine(constraint.CreateScript());
-                script.AppendLine(SqlStatement.GO);
+                script.AppendLine();
+            }
+            return script.ToString();
+        }
+
+        public String ConcatAllScripts(Func<T,String> func)
+        {
+            StringBuilder script = new StringBuilder();
+            foreach (T item in this)
+            {
+                script.AppendLine(func(item));
                 script.AppendLine();
             }
             return script.ToString();
@@ -25,10 +35,9 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public String DropAllScript()
         {
             StringBuilder script = new StringBuilder();
-            foreach (T constraint in this)
+            foreach (T constraint in this.Reverse<T>())
             {
                 script.AppendLine(constraint.DropScript());
-                script.AppendLine(SqlStatement.GO);
                 script.AppendLine();
             }
             return script.ToString();

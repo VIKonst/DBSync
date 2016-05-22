@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
@@ -15,12 +16,14 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public override String CreateScript()
         {            
             String notFoReplicaton = this.IsNotForReplication ? "NOT FOR REPLICATION" : String.Empty;
-            return $"ALTER TABLE {this.ParentObject.QualifiedName} ADD CONSTRAINT [{Name}] CHECK {notFoReplicaton} {Defenition}";          
+            return $"ALTER TABLE {this.ParentObject.QualifiedName} ADD CONSTRAINT [{Name}]" + Environment.NewLine +
+                   $"CHECK {notFoReplicaton} {Defenition}{SqlStatement.GO}";
+                                   
         }
 
         public override String DropScript()
         {
-            return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}";
+            return $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT  {Name}{SqlStatement.GO}";
         }
     }
 }

@@ -28,6 +28,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             table.IsReplicated = reader.GetBoolean(5);
             table.LockEscalation = reader.GetString(6);
             table.DataSpaceName = reader.GetString(7);
+            table.IdentityColumnId = reader.GetInt32(8);
             return table;
         }
         

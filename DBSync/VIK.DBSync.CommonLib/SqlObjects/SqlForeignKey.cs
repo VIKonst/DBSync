@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VIK.DBSync.CommonLib.Metadata;
+using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.SqlObjects
 {
@@ -21,6 +22,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public ReferentialAction DeleteAction { get; set; }
 
         public ReferentialAction UpdateAction { get; set; }
+
+        public Boolean IsDisabled { get; set; }
 
         public List<ForeignKeyColumn> Columns { get; set; }
 
@@ -42,27 +45,41 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         }
 
         public override String CreateScript()
+        {           
+            return CreateScript(false);
+        }
+
+        public String CreateScript(Boolean withNoCheck)
         {
             StringBuilder builder = new StringBuilder(String.Empty);
-            builder.AppendLine($"ALTER TABLE { this.ParentObject.QualifiedName}");
-            builder.AppendLine($"ADD CONSTRAINT [{Name}] FOREIGN KEY");
-            builder.AppendLine("(");
-            builder.AppendLine(String.Join(",", Columns.Select(c => $"[{c.ParentColumnName}]")));
+            builder.Append($"ALTER TABLE { this.ParentObject.QualifiedName}");
+            if(withNoCheck)
+            {
+                builder.Append(" WITH NOCHECK");
+            }
+            builder.AppendLine($" ADD CONSTRAINT [{Name}] FOREIGN KEY");
+            builder.Append("( ");
+            builder.Append(String.Join(",", Columns.Select(c => $"[{c.ParentColumnName}]")));
             builder.AppendLine(")");
             builder.Append("REFERENCES ");
-            builder.Append(ReferencedTable.QualifiedName);
-            builder.AppendLine("(");
-            builder.AppendLine(String.Join(",", Columns.Select(c => $"[{c.ReferencedColumnName}]")));
+            builder.AppendLine(ReferencedTable.QualifiedName);
+            builder.Append("(");
+            builder.Append(String.Join(",", Columns.Select(c => $"[{c.ReferencedColumnName}]")));
             builder.AppendLine(")");
-            builder.AppendLine($"ON DELETE {ActionToString(DeleteAction)}");         
-            builder.Append($"ON UPDATE {ActionToString(UpdateAction)}");           
-
+            builder.AppendLine($"ON DELETE {ActionToString(DeleteAction)}");
+            builder.Append($"ON UPDATE {ActionToString(UpdateAction)}");
+            if (IsDisabled)
+            {
+                builder.AppendLine();
+                builder.AppendLine($"ALTER TABLE { this.ParentObject.QualifiedName} NOCHECK CONSTRAINT [{Name}]");
+            }
+            builder.Append(SqlStatement.GO);
             return builder.ToString();
         }
 
         public override String DropScript()
         {
-            String result = $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT {Name}";
+            String result = $"ALTER TABLE {this.ParentObject.QualifiedName} DROP CONSTRAINT {Name}{SqlStatement.GO}";
             return result;
         }
 

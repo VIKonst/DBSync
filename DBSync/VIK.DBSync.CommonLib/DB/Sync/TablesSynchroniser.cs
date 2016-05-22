@@ -48,16 +48,28 @@ namespace VIK.DBSync.CommonLib.DB.Sync
         private String ReCreateScript()
         {
             StringBuilder script = new StringBuilder();
-            String newName = _source.Name + "temp" + ( Guid.NewGuid().ToString("N") );
 
-            script.AppendLine(_source.DropSubObjects());
-            script.AppendLine($"EXEC sp_rename N'{_source.QualifiedName}', N'{newName}' ");
+            String newName = $"{_dest.Name}_temp{(Guid.NewGuid().ToString("N"))}";
+            String fullNewName = $"[{_dest.SchemaName}].[{newName}]";
+
+            script.Append(_dest.DropDependenciesScript());
+            script.Append(_dest.ForeignKeys.DropAllScript());
+            script.Append(_dest.DropSubObjects());
+            script.AppendLine($"EXEC sp_rename N'{_dest.QualifiedName}', N'{newName}' ");
             script.AppendLine(SqlStatement.GO);            
-            script.AppendLine(_dest.CreateScript(false));
+            script.Append(_source.CreateScript(false));
+
             var columns = _source.Columns.Intersect(_dest.Columns, _columnNameComparer).Select(c=>c.Name);
             String columnsText = String.Join(",",columns);
-            script.AppendLine($"INSERT INTO {_dest.Name} VALUES ({columnsText}) ");
-            script.AppendLine($"SELECT {columnsText} FROM {newName}");
+            if (_source.HasIdentity) script.AppendLine($"SET IDENTITY_INSERT {_source.QualifiedName} ON");
+            script.AppendLine($"INSERT INTO {_dest.QualifiedName} ({columnsText}) ");
+            script.AppendLine($"SELECT {columnsText} FROM {fullNewName}");
+            if (_source.HasIdentity) script.AppendLine($"SET IDENTITY_INSERT {_source.QualifiedName} OFF");
+            script.AppendLine(SqlStatement.GO);
+
+            script.Append(_dest.CreateDependenciesScript());
+            script.Append(_source.ForeignKeys.ConcatAllScripts(k=>k.CreateScript(true)));
+            script.AppendLine($"DROP TABLE {fullNewName}");
             script.AppendLine(SqlStatement.GO);
             return script.ToString();
 

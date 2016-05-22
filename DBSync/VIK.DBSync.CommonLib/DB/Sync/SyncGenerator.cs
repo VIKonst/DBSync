@@ -15,41 +15,47 @@ namespace VIK.DBSync.CommonLib.DB.Sync
         IEnumerable<ComparePair> _forCreate;
         IEnumerable<ComparePair> _forUpdate;
 
+        SyncScript _syncScript;
         public String GenerateScript(List<ComparePair> items)
         {
+            _syncScript = new SyncScript();
+
             _forRemove = items.Where(i => i.Result == CompareResult.Removed);
             _forCreate = items.Where(i => i.Result == CompareResult.New);
             _forUpdate = items.Where(i => i.Result == CompareResult.Different);
-            return DropObjects() + CreateNewObjects() + UpdateObjects();
+            CreateNewObjects();
+            DropObjects();
+            return _syncScript.ToString();
         }
 
         private String DropObjects()
         {
             StringBuilder script = new StringBuilder(String.Empty);
 
-            script.Append(DropObjects(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.StoredProcedure)
-               .Select(p => p.DestinationObject)));
+            DropObjects(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.StoredProcedure)
+               .Select(p => p.DestinationObject), SyncActionType.DropSchema);
+            DropObjects(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.Schema)
+               .Select(p => p.DestinationObject), SyncActionType.DropStorProcedure);
 
             script.Append(DropTables(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.Table)
                 .Select(p => p.DestinationObject as SqlTable)));                          
 
-            script.Append(DropObjects(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.Schema)
-                .Select(p => p.DestinationObject)));
+          
             return script.ToString();
         }
 
-        private String CreateNewObjects()
+        private void CreateNewObjects()
         {
-            StringBuilder script = new StringBuilder(String.Empty);
-            script.Append(CreateObjects(_forCreate.Where(p => p.SourceObject.Type == SqlObjectType.Schema)
-                .Select(p => p.SourceObject)));
+            CreateObjects(_forCreate.Where(p => p.SourceObject.Type == SqlObjectType.Schema)
+                .Select(p => p.SourceObject),SyncActionType.CreateSchema);
 
-            script.Append(CreateTables(_forCreate.Where(p=>p.SourceObject.Type==SqlObjectType.Table)
-                .Select(p=>p.SourceObject as SqlTable)));
+            CreateTables(_forCreate.Where(p=>p.SourceObject.Type==SqlObjectType.Table)
+                .Select(p=>p.SourceObject as SqlTable));
                 
-            script.Append(CreateObjects(_forCreate.Where(p => p.SourceObject.Type == SqlObjectType.StoredProcedure)
-                .Select(p => p.SourceObject)));
-            return script.ToString();
+            CreateObjects(_forCreate.Where(p => p.SourceObject.Type == SqlObjectType.StoredProcedure)
+                .Select(p => p.SourceObject), SyncActionType.CreateStorProcedure);
+
+            
         }
 
         private String UpdateObjects()
@@ -65,41 +71,105 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             return script.ToString();
         }
 
-        private String CreateObjects(IEnumerable<SqlObject> objects)
-        {
-            StringBuilder script = new StringBuilder(String.Empty);
+        private void CreateObjects(IEnumerable<SqlObject> objects, SyncActionType type)
+        {            
             foreach (var item in objects)
             {
-                script.Append(item.CreateScript());
-            }         
-            return script.ToString();
+                _syncScript.Add(new SyncAction
+                {
+                    Name = item.QualifiedName,
+                    Text = item.CreateScript(),
+                    Type = type
+                });
+            }       
+          
         }
 
-        private String CreateTables(IEnumerable<SqlTable> tables)
-        {
-            StringBuilder script = new StringBuilder(String.Empty);
+        private void CreateTables(IEnumerable<SqlTable> tables)
+        {            
             foreach (var item in tables)
             {
-                script.Append(item.CreateScript(false));
-            }
+                _syncScript.Add(new SyncAction
+                {
+                    Name = item.QualifiedName,
+                    Text = item.HeaderCreateScript(),
+                    Type = SyncActionType.CreateTable
+                });
 
-            foreach (var item in tables)
-            {
-                script.Append(item.ForeignKeys.CreateAllScript());
+                if (item.PrimarKey != null)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = item.PrimarKey.Name,
+                        Text = item.PrimarKey.CreateScript(),
+                        Type = SyncActionType.CreatePK
+                    });
+                }
+
+                foreach (var subItem in item.UniqueConstraints)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = subItem.Name,
+                        Text = subItem.CreateScript(),
+                        Type = SyncActionType.CreateUC
+                    });
+                }
+
+                foreach (var subItem in item.DefaultConstraints)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = subItem.Name,
+                        Text = subItem.CreateScript(),
+                        Type = SyncActionType.CreateDC
+                    });
+                }
+
+                foreach (var subItem in item.CheckConstraints)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = subItem.Name,
+                        Text = subItem.CreateScript(),
+                        Type = SyncActionType.CreateCC
+                    });
+                }
+
+                foreach (var subItem in item.Indexes)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = subItem.Name,
+                        Text = subItem.CreateScript(),
+                        Type = SyncActionType.CreateIndex
+                    });
+                }
+
+                foreach (var subItem in item.ForeignKeys)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = subItem.Name,
+                        Text = subItem.CreateScript(true),
+                        Type = SyncActionType.CreateFK
+                    });
+                }
             }
-            return script.ToString();
         }
 
 
-        private String DropObjects(IEnumerable<SqlObject> objects)
-        {
-            StringBuilder script = new StringBuilder(String.Empty);
+        private void DropObjects(IEnumerable<SqlObject> objects, SyncActionType actType)
+        {            
             foreach (var item in objects)
             {
-                script.AppendLine(item.DropScript());
-                script.AppendLine(SqlStatement.GO);
-            }
-            return script.ToString();
+                _syncScript.Add(new SyncAction
+                {
+                    Name = item.Name,
+                    Text = item.DropScript(),
+                    Type = actType
+                });
+            }          
         }
 
         private String DropTables(IEnumerable<SqlTable> tables)
@@ -107,14 +177,25 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             StringBuilder script = new StringBuilder(String.Empty);
             foreach (var item in tables)
             {
-                script.Append(item.DropDependenciesScript());
+                foreach (var subItem in item.Dependencies)
+                {
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = subItem.Name,
+                        Text = subItem.DropScript(),
+                        Type = SyncActionType.DropFK
+                    });
+                }
+
+                _syncScript.Add(new SyncAction
+                {
+                    Name = item.Name,
+                    Text = item.DropScript(),
+                    Type = SyncActionType.DropTable
+                });
             }
 
-            foreach (var item in tables)
-            {
-                script.AppendLine(item.DropScript());
-                script.AppendLine(SqlStatement.GO);
-            }
+          
             return script.ToString();
         }
 
