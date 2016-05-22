@@ -116,7 +116,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             //Columns definition
             script.AppendLine("(");
             script.AppendLine(String.Join(",\r\n", Columns.OrderBy(c => c.ColumnId).Select(c => c.CreateScript())));
-            script.Append($") ON [{this.DataSpaceName}]");
+            script.Append($")");// ON [{this.DataSpaceName}]");
             script.AppendLine(SqlStatement.GO);
 
             return script.ToString();

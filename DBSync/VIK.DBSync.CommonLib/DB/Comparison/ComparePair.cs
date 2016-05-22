@@ -10,6 +10,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
     public class ComparePair
     {
         public String Name { get; set; }
+        public SqlObjectType Type { get; set; }
         public SqlObject SourceObject { get; set;  }
         public SqlObject DestinationObject { get; set; }
 

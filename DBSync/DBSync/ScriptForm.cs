@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.IO;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace DBSync
@@ -9,16 +10,23 @@ namespace DBSync
     {
         String _script;
         String _connectionString;
+        ResourceManager resources = new ResourceManager("DBSync.Strings", typeof(ScriptForm).Assembly);
+
+        private readonly String SCRIPT_COMPLETED_STR;
         public ScriptForm()
         {
+            SCRIPT_COMPLETED_STR = resources.GetString("SCRIPT_COMPLETED");
+
             InitializeComponent();
         }
         public ScriptForm(String text, String connectionString)
-        {
-            InitializeComponent();
+            : this()
+        {   
+            
             scriptTextBox.Text = _script = text;
             _connectionString = connectionString;
         }
+
 
 
         private void ScriptForm_Load(Object sender, EventArgs e)
@@ -52,10 +60,8 @@ namespace DBSync
                     {
                         try
                         {
-                            comm.CommandText = text;
-                           
-                            comm.ExecuteNonQuery();
-                           
+                            comm.CommandText = text;                           
+                            comm.ExecuteNonQuery();                           
                         }
                         catch (Exception ex)
                         {
@@ -74,19 +80,20 @@ namespace DBSync
                     }
                 }
                 conn.Close();
-            }            
+            }
+            resultTextBox.Text += SCRIPT_COMPLETED_STR;
 
         }
 
         private void Conn_InfoMessage(Object sender, SqlInfoMessageEventArgs e)
         {
-            textBox1.Text += e.Message;
+             resultTextBox.Text += e.Message + Environment.NewLine;
         }
 
         private void saveBtn_Click(Object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Sql файлы (*.sql)|*.sql";
+            dialog.Filter = "Sql (*.sql)|*.sql";
             dialog.AddExtension = true;
             dialog.DefaultExt = ".sql";
             DialogResult result = dialog.ShowDialog();

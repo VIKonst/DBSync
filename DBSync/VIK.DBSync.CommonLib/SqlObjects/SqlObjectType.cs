@@ -12,6 +12,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         View,
         StoredProcedure,
         Schema,
-        Type
+        Type,
+        XmlSchema
     }
 }

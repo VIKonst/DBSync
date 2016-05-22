@@ -14,6 +14,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
             result.AddRange((new TableComparer()).CompareList(sourceDb.Objects.Tables, destinationDb.Objects.Tables));
             result.AddRange((new StoredProcedureComparer()).CompareList(sourceDb.Objects.Procedures, destinationDb.Objects.Procedures));
             result.AddRange((new SchemasComparer()).CompareList(sourceDb.Objects.Schemas, destinationDb.Objects.Schemas));
+            result.AddRange(( new XmlSchemaComparer() ).CompareList(sourceDb.Objects.XmlSchemas, destinationDb.Objects.XmlSchemas));
             return result;
         }
     }

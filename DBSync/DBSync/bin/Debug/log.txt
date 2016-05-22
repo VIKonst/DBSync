@@ -19,3 +19,56 @@
    в VIK.DBSync.CommonLib.DB.DataBase.LoadSchemas() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\DB\DataBase.cs:строка 82
    в VIK.DBSync.CommonLib.DB.DataBase.LoadObjects() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\DB\DataBase.cs:строка 45
    в System.Threading.Tasks.Task.Execute()
+Exception has been thrown by the target of an invocation.
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.ComponentModel.ComponentResourceManager.ApplyResources(Object value, String objectName, CultureInfo culture)
+   at DBSync.ScriptForm.InitializeComponent() in D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ScriptForm.Designer.cs:line 92
+   at DBSync.ScriptForm..ctor(String text, String connectionString) in D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ScriptForm.cs:line 18
+   at DBSync.MainForm.syncRibbonButton_Click(Object sender, EventArgs e) in D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\MainForm.cs:line 164
+   at System.EventHandler.Invoke(Object sender, EventArgs e)
+   at System.Windows.Forms.RibbonItem.OnClick(EventArgs e)
+   at System.Windows.Forms.RibbonButton.OnClick(EventArgs e)
+   at System.Windows.Forms.RibbonMouseSensor.Control_MouseClick(Object sender, MouseEventArgs e)
+   at System.Windows.Forms.MouseEventHandler.Invoke(Object sender, MouseEventArgs e)
+   at System.Windows.Forms.Control.OnMouseClick(MouseEventArgs e)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.Ribbon.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   at System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   at DBSync.Program.Main() in D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\Program.cs:line 39
+Object reference not set to an instance of an object.
+   at FastColoredTextBoxNS.FastColoredTextBox.set_Font(Font value)
+Адресат вызова создал исключение.
+   в System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   в System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   в System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   в System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   в System.ComponentModel.ComponentResourceManager.ApplyResources(Object value, String objectName, CultureInfo culture)
+   в DBSync.ScriptForm.InitializeComponent() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ScriptForm.Designer.cs:строка 92
+   в DBSync.ScriptForm..ctor() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ScriptForm.cs:строка 20
+   в DBSync.ScriptForm..ctor(String text, String connectionString) в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ScriptForm.cs:строка 23
+   в DBSync.MainForm.syncRibbonButton_Click(Object sender, EventArgs e) в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\MainForm.cs:строка 170
+   в System.EventHandler.Invoke(Object sender, EventArgs e)
+   в System.Windows.Forms.RibbonItem.OnClick(EventArgs e)
+   в System.Windows.Forms.RibbonButton.OnClick(EventArgs e)
+   в System.Windows.Forms.RibbonMouseSensor.Control_MouseClick(Object sender, MouseEventArgs e)
+   в System.Windows.Forms.MouseEventHandler.Invoke(Object sender, MouseEventArgs e)
+   в System.Windows.Forms.Control.OnMouseClick(MouseEventArgs e)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.Ribbon.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в DBSync.Program.Main() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\Program.cs:строка 39
+Ссылка на объект не указывает на экземпляр объекта.
+   в FastColoredTextBoxNS.FastColoredTextBox.set_Font(Font value)

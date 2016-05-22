@@ -49,6 +49,7 @@
     <Compile Include="DB\Comparison\SchemasComparer.cs" />
     <Compile Include="DB\Comparison\StoredProcedureComparer.cs" />
     <Compile Include="DB\Comparison\TableComparer.cs" />
+    <Compile Include="DB\Comparison\XmlSchemaComparer.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="DB\DataBaseObjects.cs" />
     <Compile Include="DB\DBHelper.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Metadata\ForeignKeysLoader.cs" />
     <Compile Include="Metadata\ReferentialAction.cs" />
     <Compile Include="Metadata\SchemaLoader.cs" />
+    <Compile Include="Metadata\XmlSchemasLoader.cs" />
     <Compile Include="SqlObjects\ForeignKeyColumn.cs" />
     <Compile Include="SqlObjects\IndexColumn.cs" />
     <Compile Include="Metadata\IndexColumnLoader.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="SqlObjects\SqlSubObjectType.cs" />
     <Compile Include="SqlObjects\SqlTable.cs" />
     <Compile Include="SqlObjects\SqlType.cs" />
+    <Compile Include="SqlObjects\SqlXmlSchema.cs" />
     <Compile Include="SqlObjects\SubObjectsCollection.cs" />
     <Compile Include="SqlScripting\ResourcesHelper.cs" />
     <Compile Include="SqlScripting\SqlStatement.cs" />
@@ -128,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\Schemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\XmlSchemas.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

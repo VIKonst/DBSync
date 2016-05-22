@@ -37,3 +37,10 @@ D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSy
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\bin\Debug\SQLite.CodeFirst.dll
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.SetConnectionControl.ru.resources
 D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.MainForm.ru.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.ScriptForm.uk.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.ScriptForm.ru.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.Strings.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.Strings.uk.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.ProgressForm.ru.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.ProgressForm.uk.resources
+D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\obj\Debug\DBSync.Strings.ru.resources

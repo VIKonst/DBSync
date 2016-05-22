@@ -49,7 +49,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public override String DropScript()
         {
-            return $"DROP PROCEDURE {Name}{SqlStatement.GO}";
+            return $"DROP PROCEDURE {QualifiedName}{SqlStatement.GO}";
         }
     }
 }

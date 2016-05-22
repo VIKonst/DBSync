@@ -1,18 +1,9 @@
 ﻿using DBSync.SqlLiteDb;
-using DiffPlex;
-using DiffPlex.DiffBuilder;
-using DiffPlex.DiffBuilder.Model;
-using FastColoredTextBoxNS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading;
+using System.Resources;
 using System.Windows.Forms;
 using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.DB.Comparison;
@@ -32,6 +23,7 @@ namespace DBSync
         ListViewGroup NGroup;
         ListViewGroup RGroup;
         ListViewGroup EGroup;
+        ResourceManager resources = new ResourceManager("DBSync.Strings", typeof(ScriptForm).Assembly);
 
         class ComparerItem : IComparer
         {
@@ -48,9 +40,8 @@ namespace DBSync
         public MainForm()
         {   
             InitializeComponent();
-            InitList();
-            listView1.ItemChecked += ListView1_ItemChecked;
-            listView1.ListViewItemSorter = new ComparerItem();
+            FilSqlTypeNames();
+            InitList();          
 
             btnLangEn.Click += BtnLangClick;
             btnLangUk.Click += BtnLangClick;
@@ -68,11 +59,16 @@ namespace DBSync
             RuntimeLocalizer.ChangeCulture(this,lang);
             RuntimeLocalizer.ChangeCulture(window, lang);
             SettingsManager.Instance.Lang = lang;
+            FilSqlTypeNames();
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.SubItems[1].Text = _typeNames[(item.Tag as ComparePair).Type.GetHashCode()];
+            }
         }
 
         private void ListView1_ItemChecked(Object sender, ItemCheckedEventArgs e)
         {
-           if(e.Item.BackColor == Color.LightSlateGray)
+           if(e.Item.Group == EGroup)
            {
                 e.Item.Checked = false;
            }
@@ -84,23 +80,14 @@ namespace DBSync
             NGroup = listView1.Groups.Add("N", "New");
             RGroup = listView1.Groups.Add("R", "Removed");
             EGroup = listView1.Groups.Add("E", "Equals");
+
+            listView1.ItemChecked += ListView1_ItemChecked;
+            listView1.ListViewItemSorter = new ComparerItem();
         }
 
         private void MainForm_Load(Object sender, EventArgs e)
         {
-          /*  StartWindow window = new StartWindow();
-            window.ShowDialog();
-           
-            if(window.IsNeedCompare)
-            {
-                sourceDatabase = new DataBase(window.SourceConnectionString);
-                destDatabase = new DataBase(window.DestConnectionString);
-                StartCompare();   
-            }
-            else
-            {
-                Close();
-            }*/
+          
         }
 
         private void StartCompare()
@@ -111,10 +98,12 @@ namespace DBSync
 
             ProgressForm form = new ProgressForm(sourceDatabase, destDatabase);
             form.ShowDialog();
-            if(form.Result==null)
+            if (form.Result == null)
             {
-                Close();
-            }            
+                sourceDatabase = null;
+                destDatabase = null;
+                return;
+            }
 
             foreach (ComparePair pair in form.Result)
             {
@@ -128,7 +117,7 @@ namespace DBSync
                         break;
                     case Comparsion.CompareResult.Equals:
                         group = EGroup;
-                        item.BackColor = Color.LightSlateGray;
+                        item.BackColor = Color.LightGray;
                         break;
                     case Comparsion.CompareResult.New:
                         group = NGroup;
@@ -137,16 +126,15 @@ namespace DBSync
                         group = RGroup;
                         break;
                 }
-                item.Group = group;
-
-               
-                SqlObject existedObject = pair.SourceObject ?? pair.DestinationObject;
+                item.Group = group;                             
+              
                 item.Tag = pair;
-                item.SubItems.Add(existedObject.TypeName);
+                item.SubItems.Add(_typeNames[pair.Type.GetHashCode()]);
                 item.UseItemStyleForSubItems = true;
-                listView1.Items.Add(item);
                 
+                listView1.Items.Add(item);                
             }
+
             listView1.Sort();
         }
 
@@ -178,10 +166,9 @@ namespace DBSync
             }
             if (selectedItems.Count == 0)
                 return;
-
-            genrator.GenerateScript(selectedItems);
+                            
             ScriptForm form = new ScriptForm(genrator.GenerateScript(selectedItems),destDatabase.ConnectionString);
-            form.Show();
+            form.ShowDialog();
         }
 
         StartWindow window = new StartWindow();
@@ -208,6 +195,41 @@ namespace DBSync
         {
             if (sourceDatabase != null && destDatabase!=null)
             StartCompare();
+        }
+
+        private void inverseAllBtn_Click(Object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.Checked = false;
+            }
+        }
+
+        private void checkAllBtn_Click(Object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.Checked = item.Group != EGroup;
+            }
+        }
+
+        private void InverseBtn_Click(Object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.Checked = !item.Checked;
+            }
+        }
+
+        String[] _typeNames;
+
+        private void FilSqlTypeNames()
+        {
+            _typeNames = new String[6];
+            _typeNames[SqlObjectType.Table.GetHashCode()] = resources.GetString("TABLE");
+            _typeNames[SqlObjectType.StoredProcedure.GetHashCode()] = resources.GetString("SP");
+            _typeNames[SqlObjectType.Schema.GetHashCode()] = resources.GetString("SCHEMA");
+            _typeNames[SqlObjectType.XmlSchema.GetHashCode()] = resources.GetString("XML_SCHEMA");
         }
     }
 }

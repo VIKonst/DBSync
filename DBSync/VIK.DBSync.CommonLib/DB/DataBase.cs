@@ -45,7 +45,8 @@ namespace VIK.DBSync.CommonLib.DB
             LoadSchemas();
             LoadTables();
             LoadProcedures();
-            if(_connection.State == System.Data.ConnectionState.Open)
+            LoadXmlSchemas();
+            if (_connection.State == System.Data.ConnectionState.Open)
             {
                 _connection.Close();
             }
@@ -60,7 +61,7 @@ namespace VIK.DBSync.CommonLib.DB
 
             foreach (var table in Objects.Tables)
             {
-                OnPogressUpdate?.Invoke(Name+": "+table.QualifiedName + " is Loaded...");
+                OnPogressUpdate?.Invoke(table.QualifiedName);
                 loader.LoadSubObjects(table, _connection);
             }
 
@@ -70,7 +71,7 @@ namespace VIK.DBSync.CommonLib.DB
         {
             StoredProceduresLoader loader = new StoredProceduresLoader(this);
 
-            OnPogressUpdate?.Invoke(Name + ": Procedures are Loaded...");
+            OnPogressUpdate?.Invoke("Procedures are Loaded...");
             Objects.Procedures = loader.LoadObjects(_connection);
         }
 
@@ -78,8 +79,16 @@ namespace VIK.DBSync.CommonLib.DB
         {
             SchemaLoader loader = new SchemaLoader(this);
 
-            OnPogressUpdate?.Invoke(Name + ": Schemas are Loaded...");
+            OnPogressUpdate?.Invoke(" Schemas are Loaded...");
             Objects.Schemas = loader.LoadObjects(_connection);
+        }
+
+        private void LoadXmlSchemas()
+        {
+            XmlSchemasLoader loader = new XmlSchemasLoader(this);
+
+            OnPogressUpdate?.Invoke(" Xml Schemas are Loaded...");
+            Objects.XmlSchemas = loader.LoadObjects(_connection);
         }
     }
 }

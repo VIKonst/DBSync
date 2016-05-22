@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VIK.DBSync.CommonLib.DB.Sync
 {
-    class SyncScript : SortedSet<SyncAction>
+    public class SyncScript : SortedSet<SyncAction>
     { 
         private class SyncActionComparer : IComparer<SyncAction>
         {
@@ -22,7 +22,6 @@ namespace VIK.DBSync.CommonLib.DB.Sync
         public SyncScript()
             : base(new SyncActionComparer())
         {
-
         }
 
         public override String ToString()

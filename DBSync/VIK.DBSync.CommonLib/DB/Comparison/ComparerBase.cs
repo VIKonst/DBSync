@@ -26,6 +26,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
                     {
                         SourceObject = pair.Value,
                         DestinationObject = destObj,
+                        Type = destObj.Type,
                         Result = CompareObjects(pair.Value, destObj)
                     };
 
@@ -36,6 +37,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
                     comparePair = new ComparePair()
                     {
                         SourceObject = pair.Value,
+                        Type = pair.Value.Type,
                         DestinationObject = null,
                         Result = CompareResult.New
                     };
@@ -49,6 +51,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
                 result.Add(new ComparePair()
                 {
                     Name = table.QualifiedName,
+                    Type = table.Type,
                     SourceObject = null,
                     DestinationObject = table,
                     Result = CompareResult.Removed

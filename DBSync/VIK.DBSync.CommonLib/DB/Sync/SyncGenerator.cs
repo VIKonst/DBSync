@@ -11,198 +11,150 @@ namespace VIK.DBSync.CommonLib.DB.Sync
 {
     public class SyncGenerator
     {
-        IEnumerable<ComparePair> _forRemove;
-        IEnumerable<ComparePair> _forCreate;
-        IEnumerable<ComparePair> _forUpdate;
 
         SyncScript _syncScript;
+
         public String GenerateScript(List<ComparePair> items)
         {
             _syncScript = new SyncScript();
 
-            _forRemove = items.Where(i => i.Result == CompareResult.Removed);
-            _forCreate = items.Where(i => i.Result == CompareResult.New);
-            _forUpdate = items.Where(i => i.Result == CompareResult.Different);
-            CreateNewObjects();
-            DropObjects();
+            foreach (var item in items)
+            {
+                switch (item.Result)
+                {
+                    case CompareResult.Removed:
+                        DropObject(item.DestinationObject);
+                        break;
+                    case CompareResult.New:
+                        CreateObject(item.SourceObject);
+                        break;
+                    case CompareResult.Different:
+                        UpdateObject(item.SourceObject, item.DestinationObject);
+                        break;
+                }
+            }
+
             return _syncScript.ToString();
         }
 
-        private String DropObjects()
+        private void DropObject(SqlObject obj)
         {
-            StringBuilder script = new StringBuilder(String.Empty);
-
-            DropObjects(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.StoredProcedure)
-               .Select(p => p.DestinationObject), SyncActionType.DropSchema);
-            DropObjects(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.Schema)
-               .Select(p => p.DestinationObject), SyncActionType.DropStorProcedure);
-
-            script.Append(DropTables(_forRemove.Where(p => p.DestinationObject.Type == SqlObjectType.Table)
-                .Select(p => p.DestinationObject as SqlTable)));                          
-
-          
-            return script.ToString();
-        }
-
-        private void CreateNewObjects()
-        {
-            CreateObjects(_forCreate.Where(p => p.SourceObject.Type == SqlObjectType.Schema)
-                .Select(p => p.SourceObject),SyncActionType.CreateSchema);
-
-            CreateTables(_forCreate.Where(p=>p.SourceObject.Type==SqlObjectType.Table)
-                .Select(p=>p.SourceObject as SqlTable));
-                
-            CreateObjects(_forCreate.Where(p => p.SourceObject.Type == SqlObjectType.StoredProcedure)
-                .Select(p => p.SourceObject), SyncActionType.CreateStorProcedure);
-
-            
-        }
-
-        private String UpdateObjects()
-        {
-            StringBuilder script = new StringBuilder(String.Empty);
-            var tables = _forUpdate.Where(p => p.SourceObject.Type == SqlObjectType.Table);
-            foreach(var pair in tables)
+            switch (obj.Type)
             {
-                script.AppendLine(UpdateTables(pair.SourceObject as SqlTable,
-                    pair.DestinationObject as SqlTable));
-                
-            }
-            return script.ToString();
-        }
-
-        private void CreateObjects(IEnumerable<SqlObject> objects, SyncActionType type)
-        {            
-            foreach (var item in objects)
-            {
-                _syncScript.Add(new SyncAction
-                {
-                    Name = item.QualifiedName,
-                    Text = item.CreateScript(),
-                    Type = type
-                });
-            }       
-          
-        }
-
-        private void CreateTables(IEnumerable<SqlTable> tables)
-        {            
-            foreach (var item in tables)
-            {
-                _syncScript.Add(new SyncAction
-                {
-                    Name = item.QualifiedName,
-                    Text = item.HeaderCreateScript(),
-                    Type = SyncActionType.CreateTable
-                });
-
-                if (item.PrimarKey != null)
-                {
+                case SqlObjectType.Table:
+                    DropTable(obj as SqlTable);
+                    break;
+                default:
                     _syncScript.Add(new SyncAction
                     {
-                        Name = item.PrimarKey.Name,
-                        Text = item.PrimarKey.CreateScript(),
-                        Type = SyncActionType.CreatePK
+                        Name = obj.Name,
+                        Text = obj.DropScript(),
+                        Type = GetDropActionType(obj.Type)
                     });
-                }
-
-                foreach (var subItem in item.UniqueConstraints)
-                {
-                    _syncScript.Add(new SyncAction
-                    {
-                        Name = subItem.Name,
-                        Text = subItem.CreateScript(),
-                        Type = SyncActionType.CreateUC
-                    });
-                }
-
-                foreach (var subItem in item.DefaultConstraints)
-                {
-                    _syncScript.Add(new SyncAction
-                    {
-                        Name = subItem.Name,
-                        Text = subItem.CreateScript(),
-                        Type = SyncActionType.CreateDC
-                    });
-                }
-
-                foreach (var subItem in item.CheckConstraints)
-                {
-                    _syncScript.Add(new SyncAction
-                    {
-                        Name = subItem.Name,
-                        Text = subItem.CreateScript(),
-                        Type = SyncActionType.CreateCC
-                    });
-                }
-
-                foreach (var subItem in item.Indexes)
-                {
-                    _syncScript.Add(new SyncAction
-                    {
-                        Name = subItem.Name,
-                        Text = subItem.CreateScript(),
-                        Type = SyncActionType.CreateIndex
-                    });
-                }
-
-                foreach (var subItem in item.ForeignKeys)
-                {
-                    _syncScript.Add(new SyncAction
-                    {
-                        Name = subItem.Name,
-                        Text = subItem.CreateScript(true),
-                        Type = SyncActionType.CreateFK
-                    });
-                }
+                    break;
             }
         }
 
-
-        private void DropObjects(IEnumerable<SqlObject> objects, SyncActionType actType)
-        {            
-            foreach (var item in objects)
-            {
-                _syncScript.Add(new SyncAction
-                {
-                    Name = item.Name,
-                    Text = item.DropScript(),
-                    Type = actType
-                });
-            }          
-        }
-
-        private String DropTables(IEnumerable<SqlTable> tables)
+        private void CreateObject(SqlObject obj)
         {
-            StringBuilder script = new StringBuilder(String.Empty);
-            foreach (var item in tables)
+            switch (obj.Type)
             {
-                foreach (var subItem in item.Dependencies)
-                {
+                case SqlObjectType.Table:
+                    TablesSynchroniser.CreateTable(obj as SqlTable, _syncScript);
+                    break;
+                default:
                     _syncScript.Add(new SyncAction
                     {
-                        Name = subItem.Name,
-                        Text = subItem.DropScript(),
-                        Type = SyncActionType.DropFK
+                        Name = obj.Name,
+                        Text = obj.CreateScript(),
+                        Type = GetCreateActionType(obj.Type)
                     });
-                }
+                    break;
+            }
+        }
 
+        private void UpdateObject(SqlObject source, SqlObject destination)
+        {
+            switch (source.Type)
+            {
+                case SqlObjectType.Table:
+                    UpdateTables(source as SqlTable, destination as SqlTable);
+                    break;
+                default:
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = source.Name,
+                        Text = source.CreateScript(),
+                        Type = GetCreateActionType(source.Type)
+                    });
+                    _syncScript.Add(new SyncAction
+                    {
+                        Name = destination.Name,
+                        Text = destination.DropScript(),
+                        Type = GetDropActionType(destination.Type)
+                    });
+                    break;
+            }
+        }
+
+        private SyncActionType GetDropActionType(SqlObjectType type)
+        {
+            switch (type)
+            {
+                case SqlObjectType.Table:
+                    return SyncActionType.DropTable;
+                case SqlObjectType.Schema:
+                    return SyncActionType.DropSchema;
+                case SqlObjectType.StoredProcedure:
+                    return SyncActionType.DropStorProcedure;
+                case SqlObjectType.XmlSchema:
+                    return SyncActionType.DropXmlSchema;
+                default:
+                    throw new Exception("not suppurted type");
+            }
+        }
+
+        private SyncActionType GetCreateActionType(SqlObjectType type)
+        {
+            switch (type)
+            {
+                case SqlObjectType.Table:
+                    return SyncActionType.CreateTable;
+                case SqlObjectType.Schema:
+                    return SyncActionType.CreateSchema;
+                case SqlObjectType.StoredProcedure:
+                    return SyncActionType.CreateStorProcedure;
+                case SqlObjectType.XmlSchema:
+                    return SyncActionType.CreateXmlSchema;
+                default:
+                    throw new Exception("not suppurted type");
+            }
+        }  
+
+        private void DropTable(SqlTable table)
+        {
+            foreach (var subItem in table.Dependencies)
+            {
                 _syncScript.Add(new SyncAction
                 {
-                    Name = item.Name,
-                    Text = item.DropScript(),
-                    Type = SyncActionType.DropTable
+                    Name = subItem.Name,
+                    Text = subItem.DropScript(),
+                    Type = SyncActionType.DropFK
                 });
             }
 
-          
-            return script.ToString();
+            _syncScript.Add(new SyncAction
+            {
+                Name = table.Name,
+                Text = table.DropScript(),
+                Type = SyncActionType.DropTable
+            });
         }
 
-        private String UpdateTables(SqlTable source, SqlTable dest)
+        private void UpdateTables(SqlTable source, SqlTable dest)
         {
-            TablesSynchroniser sync = new TablesSynchroniser( source, dest);
-            return sync.GetScript();
+            TablesSynchroniser sync = new TablesSynchroniser(source, dest);
+            sync.FillScript(_syncScript);
         }
 
     }

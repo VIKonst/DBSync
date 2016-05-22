@@ -13,6 +13,8 @@ namespace VIK.DBSync.CommonLib.DB
         public List<SqlStoredProcedure> Procedures { get; set; }
         public List<SqlSchema> Schemas { get; set; }
 
+        public List<SqlXmlSchema> XmlSchemas  { get; set; }
+
         public List<SqlObject> AllObjects()
         {
             List<SqlObject> all = new List<SqlObject>();
@@ -25,6 +27,7 @@ namespace VIK.DBSync.CommonLib.DB
         {
             Tables = new List<SqlTable>();
             Procedures = new List<SqlStoredProcedure>();
+            Schemas = new List<SqlSchema>();
             Schemas = new List<SqlSchema>();
         }
     }

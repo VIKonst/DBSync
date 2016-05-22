@@ -111,7 +111,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             builder.AppendFormat($"ALLOW_PAGE_LOCKS = {SqlStatement.GetOnOffStatement(AllowPageLocks)} ");
             if (FillFactor != 0) builder.AppendFormat($", FILLFACTOR =  {FillFactor.ToString()}");
             builder.Append(" ) ");
-            if (!String.IsNullOrEmpty(FileGroup) && !isXml) builder.Append(" ON [" + FileGroup + "]");
+            //if (!String.IsNullOrEmpty(FileGroup) && !isXml) builder.Append(" ON [" + FileGroup + "]");
 
             builder.Append(SqlStatement.GO);
             return builder.ToString();

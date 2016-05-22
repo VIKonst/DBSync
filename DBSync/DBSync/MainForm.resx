@@ -165,7 +165,7 @@
     <value>0, 0</value>
   </data>
   <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 100</value>
+    <value>691, 105</value>
   </data>
   <data name="listView1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -201,7 +201,7 @@
     <value>0, 0</value>
   </data>
   <data name="diffControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 120</value>
+    <value>691, 128</value>
   </data>
   <data name="diffControl.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -231,10 +231,10 @@
     <value>1</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 226</value>
+    <value>691, 239</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>100</value>
+    <value>105</value>
   </data>
   <data name="splitContainer1.SplitterWidth" type="System.Int32, mscorlib">
     <value>6</value>
@@ -275,7 +275,7 @@
   <data name="ribon.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="ribbonButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="syncBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAgCAIAAACKIl8oAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EwAACxMBAJqcGAAAA+5JREFUSEudlkkvbEEcxX0BOyvzPE/P9AxPLERsxEosbUR8Amz4AGIOsRBszXMQ
@@ -298,7 +298,7 @@
         IIotL3QoawsAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ribbonButton2.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="syncBtn.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAgCAIAAACKIl8oAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EwAACxMBAJqcGAAAA+5JREFUSEudlkkvbEEcxX0BOyvzPE/P9AxPLERsxEosbUR8Amz4AGIOsRBszXMQ
@@ -321,10 +321,10 @@
         IIotL3QoawsAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ribbonButton2.Text" xml:space="preserve">
+  <data name="syncBtn.Text" xml:space="preserve">
     <value>Sync</value>
   </data>
-  <data name="ribbonButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="connectionsBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAEQ
         hAABEIQBP0VFYAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAeNSURBVEhLdZZZ
@@ -363,13 +363,13 @@
         bXT8B62mUQRfMyQFAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ribbonButton3.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="connectionsBtn.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ribbonButton3.Text" xml:space="preserve">
+  <data name="connectionsBtn.Text" xml:space="preserve">
     <value>Connections</value>
   </data>
   <data name="updateBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -435,13 +435,13 @@
   <data name="rPanel1.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="ribbonButton6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="inverseAllBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ribbonButton6.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="inverseAllBtn.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EwAACxMBAJqcGAAAASdJREFUKFMdkM2KglAYht8L6AJmrqCdiy5AijZtE1FiNCJmLiA9SlAi/YAOGHRb
@@ -452,16 +452,16 @@
         qaCzcR7HMf4BTuvYsYtfPfoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ribbonButton6.Text" xml:space="preserve">
+  <data name="inverseAllBtn.Text" xml:space="preserve">
     <value>Un-check all</value>
   </data>
-  <data name="ribbonButton7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="checkAllBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ribbonButton7.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="checkAllBtn.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
         IwAALiMBeKU/dgAAAWRJREFUKFMdkDtPwnAUxW8wdZIEFjHCgouDg5OTUScHY2IgbXkkhHQo4ZECbemD
@@ -473,22 +473,27 @@
         /IDAwzwbhhH5Bz2jrnJcklEAAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ribbonButton7.Text" xml:space="preserve">
+  <data name="checkAllBtn.Text" xml:space="preserve">
     <value> Check all</value>
   </data>
-  <data name="ribbonButton9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="InverseBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ribbonButton9.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="InverseBtn.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAAShJREFUKFMdTzHrgnAQ/X2rEoMGUSIICRV1CEKlcglUUEFo0SEqgoIcTCU1+kM0
+        BC59AAcJP0NLSDQ2tHf8Dw7uuPfevYfqug7DcLvdHg6H8/mcpunff8H8er3Qer2+3W5FUQRBMJvNfN9f
+        LBbz+Xy1WsVxjIbDYVVVZVkCw7ZtGC6Xi6ZpiqLouo663e5yubzf79frtdVqtdttnudd18VxvN/vo16v
+        xzAMx3EURTWbTZIkMQwDXqPREAQB0TQ9nU4tyyIIQhRFgILsYDBgWVaWZQRtmuZ+v4ddkqTJZPJ4PL7f
+        LzjodDrIcRxgJ0mS53kURePx+Pl8wvl0OoEtBIkhBkTyPA9eqqoKEbIsMwwDVNH7/T4ej7vdbrPZABQE
+        ADQajcD85/P5Aef4nEYB3VP8AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ribbonButton9.Text" xml:space="preserve">
+  <data name="InverseBtn.Text" xml:space="preserve">
     <value>Inverse</value>
   </data>
   <data name="ribbonPanel3.Text" xml:space="preserve">
@@ -690,7 +695,10 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>691, 348</value>
+    <value>691, 361</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>500, 400</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DBSync</value>
@@ -719,16 +727,16 @@
   <data name="&gt;&gt;rPanel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;ribbonButton2.Name" xml:space="preserve">
-    <value>ribbonButton2</value>
+  <data name="&gt;&gt;syncBtn.Name" xml:space="preserve">
+    <value>syncBtn</value>
   </data>
-  <data name="&gt;&gt;ribbonButton2.Type" xml:space="preserve">
+  <data name="&gt;&gt;syncBtn.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;ribbonButton3.Name" xml:space="preserve">
-    <value>ribbonButton3</value>
+  <data name="&gt;&gt;connectionsBtn.Name" xml:space="preserve">
+    <value>connectionsBtn</value>
   </data>
-  <data name="&gt;&gt;ribbonButton3.Type" xml:space="preserve">
+  <data name="&gt;&gt;connectionsBtn.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;updateBtn.Name" xml:space="preserve">
@@ -743,22 +751,22 @@
   <data name="&gt;&gt;ribbonPanel3.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;ribbonButton6.Name" xml:space="preserve">
-    <value>ribbonButton6</value>
+  <data name="&gt;&gt;inverseAllBtn.Name" xml:space="preserve">
+    <value>inverseAllBtn</value>
   </data>
-  <data name="&gt;&gt;ribbonButton6.Type" xml:space="preserve">
+  <data name="&gt;&gt;inverseAllBtn.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;ribbonButton7.Name" xml:space="preserve">
-    <value>ribbonButton7</value>
+  <data name="&gt;&gt;checkAllBtn.Name" xml:space="preserve">
+    <value>checkAllBtn</value>
   </data>
-  <data name="&gt;&gt;ribbonButton7.Type" xml:space="preserve">
+  <data name="&gt;&gt;checkAllBtn.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;ribbonButton9.Name" xml:space="preserve">
-    <value>ribbonButton9</value>
+  <data name="&gt;&gt;InverseBtn.Name" xml:space="preserve">
+    <value>InverseBtn</value>
   </data>
-  <data name="&gt;&gt;ribbonButton9.Type" xml:space="preserve">
+  <data name="&gt;&gt;InverseBtn.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;settingsTab.Name" xml:space="preserve">

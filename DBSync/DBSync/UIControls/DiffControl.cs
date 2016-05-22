@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
+﻿using DiffPlex;
 using DiffPlex.DiffBuilder;
-using DiffPlex;
 using DiffPlex.DiffBuilder.Model;
 using FastColoredTextBoxNS;
+using System;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
 
 namespace DBSync.UIControls
 {
     public partial class DiffControl : UserControl, ILocalizeControl
     {
+        private readonly Brush greenStyle = new SolidBrush(Color.FromArgb(70, Color.Green));
+        private readonly Brush redStyle = new SolidBrush(Color.FromArgb(50, Color.Red));
+        private readonly Brush grayStyle = new SolidBrush(Color.FromArgb(50, Color.Gray));
 
-        Style greenStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(50, Color.Green)));
-        Style redStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(50, Color.Pink)));
-        Style grayStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(50, Color.Gray)));
-        Style whiteStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(50, Color.White)));
-        Style coralStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(50, Color.Coral)));
-
-        Int32 updating = 0;
+        private Int32 updating = 0;
         public DiffControl()
         {
             InitializeComponent();
@@ -47,8 +39,7 @@ namespace DBSync.UIControls
                 UpdateScroll(textBox1, horizontalValue, verticalValue);
             }
 
-            textBox.Refresh();
-            
+            textBox.Refresh();            
         }
 
         private void UpdateScroll(FastColoredTextBox tb, Int32 horizontalValue, Int32 verticalValue)
@@ -59,16 +50,14 @@ namespace DBSync.UIControls
             if (tb.HorizontalScroll.Visible && tb.HorizontalScroll.Value != horizontalValue)
             {
                 horizontalValue = Math.Min(tb.HorizontalScroll.Maximum, horizontalValue);
-                tb.HorizontalScroll.Value = horizontalValue;
-                // tb.HorizontalScroll.Value = horizontalValue;
+                tb.HorizontalScroll.Value = horizontalValue;                
                 updated = true;
             }
 
             if (tb.VerticalScroll.Visible && tb.VerticalScroll.Value != verticalValue)
             {
                 verticalValue = Math.Min(tb.VerticalScroll.Maximum, verticalValue);
-                tb.VerticalScroll.Value = verticalValue;
-                // tb.VerticalScroll.Value = verticalValue;
+                tb.VerticalScroll.Value = verticalValue;                
                 updated = true;
             }
 
@@ -101,40 +90,33 @@ namespace DBSync.UIControls
                 sb.AppendLine(text.Lines[i].Text);
             }
             tb.Text = sb.ToString();
-            // tb.Clear();
-            // Style style = whiteStyle;
+
             for (int i = 0; i < text.Lines.Count; i++)
             {
                 switch (text.Lines[i].Type)
                 {
                     case ChangeType.Deleted:
-                        tb[i].BackgroundBrush = Brushes.LightPink;
-                        // style = redStyle;
+                        tb[i].BackgroundBrush = redStyle;
                         break;
                     case ChangeType.Imaginary:
-                        tb[i].BackgroundBrush = Brushes.Gray;
-                        //style = grayStyle;
+                        tb[i].BackgroundBrush = grayStyle;
                         break;
                     case ChangeType.Inserted:
-                        tb[i].BackgroundBrush = Brushes.LightGreen;
-                        // style = greenStyle;
+                        tb[i].BackgroundBrush = greenStyle;
                         break;
                     case ChangeType.Modified:
-                        //style = coralStyle;
-                       tb[i].BackgroundBrush = Brushes.LightCoral;
+                       tb[i].BackgroundBrush = redStyle;
                         break;
                     case ChangeType.Unchanged:
                         tb[i].BackgroundBrush = Brushes.White;
-                        // style = whiteStyle;
                         break;
                 }
-                //tb.AppendText(text.Lines[i].Text+ Environment.NewLine, style);
             }
         }
 
         public void UpdateLocalization()
         {
-           // throw new NotImplementedException();
+           
         }
     }
 }

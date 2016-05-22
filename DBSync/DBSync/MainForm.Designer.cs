@@ -39,13 +39,13 @@ namespace DBSync
             this.ribon = new System.Windows.Forms.Ribbon();
             this.mainTab = new System.Windows.Forms.RibbonTab();
             this.rPanel1 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
+            this.syncBtn = new System.Windows.Forms.RibbonButton();
+            this.connectionsBtn = new System.Windows.Forms.RibbonButton();
             this.updateBtn = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton7 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton9 = new System.Windows.Forms.RibbonButton();
+            this.inverseAllBtn = new System.Windows.Forms.RibbonButton();
+            this.checkAllBtn = new System.Windows.Forms.RibbonButton();
+            this.InverseBtn = new System.Windows.Forms.RibbonButton();
             this.settingsTab = new System.Windows.Forms.RibbonTab();
             this.langPanel = new System.Windows.Forms.RibbonPanel();
             this.ribbonItemGroup2 = new System.Windows.Forms.RibbonItemGroup();
@@ -89,7 +89,7 @@ namespace DBSync
             this.colName,
             this.colType});
             resources.ApplyResources(this.listView1, "listView1");
-            this.listView1.GridLines = true;
+            this.listView1.FullRowSelect = true;
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups"))),
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups1")))});
@@ -118,7 +118,7 @@ namespace DBSync
             // 
             // ribon
             // 
-            this.ribon.BorderMode = System.Windows.Forms.RibbonWindowMode.NonClientAreaCustomDrawn;
+            this.ribon.BorderMode = System.Windows.Forms.RibbonWindowMode.InsideWindow;
             this.ribon.CaptionBarVisible = false;
             this.ribon.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.ribon, "ribon");
@@ -145,7 +145,7 @@ namespace DBSync
             this.ribon.Tabs.Add(this.settingsTab);
             this.ribon.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
             this.ribon.TabSpacing = 9;
-            this.ribon.ThemeColor = System.Windows.Forms.RibbonTheme.Blue;
+            this.ribon.ThemeColor = System.Windows.Forms.RibbonTheme.Black;
             // 
             // mainTab
             // 
@@ -157,67 +157,76 @@ namespace DBSync
             // rPanel1
             // 
             this.rPanel1.ButtonMoreVisible = false;
-            this.rPanel1.Items.Add(this.ribbonButton2);
-            this.rPanel1.Items.Add(this.ribbonButton3);
+            this.rPanel1.Items.Add(this.syncBtn);
+            this.rPanel1.Items.Add(this.connectionsBtn);
             this.rPanel1.Items.Add(this.updateBtn);
             resources.ApplyResources(this.rPanel1, "rPanel1");
             // 
-            // ribbonButton2
+            // syncBtn
             // 
-            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
-            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            resources.ApplyResources(this.ribbonButton2, "ribbonButton2");
-            this.ribbonButton2.Click += new System.EventHandler(this.syncRibbonButton_Click);
+            this.syncBtn.Image = ((System.Drawing.Image)(resources.GetObject("syncBtn.Image")));
+            this.syncBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("syncBtn.SmallImage")));
+            resources.ApplyResources(this.syncBtn, "syncBtn");
+            this.syncBtn.Value = "syncBtn";
+            this.syncBtn.Click += new System.EventHandler(this.syncRibbonButton_Click);
             // 
-            // ribbonButton3
+            // connectionsBtn
             // 
-            this.ribbonButton3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.Image")));
-            this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
-            resources.ApplyResources(this.ribbonButton3, "ribbonButton3");
-            this.ribbonButton3.Click += new System.EventHandler(this.changeRibbonButton_Click);
+            this.connectionsBtn.Image = ((System.Drawing.Image)(resources.GetObject("connectionsBtn.Image")));
+            this.connectionsBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("connectionsBtn.SmallImage")));
+            resources.ApplyResources(this.connectionsBtn, "connectionsBtn");
+            this.connectionsBtn.Value = "connectionsBtn";
+            this.connectionsBtn.Click += new System.EventHandler(this.changeRibbonButton_Click);
             // 
             // updateBtn
             // 
             this.updateBtn.Image = ((System.Drawing.Image)(resources.GetObject("updateBtn.Image")));
             this.updateBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateBtn.SmallImage")));
             resources.ApplyResources(this.updateBtn, "updateBtn");
+            this.updateBtn.Value = "updateBtn";
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // ribbonPanel3
             // 
             this.ribbonPanel3.ButtonMoreVisible = false;
-            this.ribbonPanel3.Items.Add(this.ribbonButton6);
-            this.ribbonPanel3.Items.Add(this.ribbonButton7);
-            this.ribbonPanel3.Items.Add(this.ribbonButton9);
+            this.ribbonPanel3.Items.Add(this.inverseAllBtn);
+            this.ribbonPanel3.Items.Add(this.checkAllBtn);
+            this.ribbonPanel3.Items.Add(this.InverseBtn);
             resources.ApplyResources(this.ribbonPanel3, "ribbonPanel3");
             // 
-            // ribbonButton6
+            // inverseAllBtn
             // 
-            this.ribbonButton6.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.Image")));
-            this.ribbonButton6.MaximumSize = new System.Drawing.Size(0, 5);
-            this.ribbonButton6.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.ribbonButton6.MinimumSize = new System.Drawing.Size(200, 0);
-            this.ribbonButton6.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.SmallImage")));
-            resources.ApplyResources(this.ribbonButton6, "ribbonButton6");
-            this.ribbonButton6.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
+            this.inverseAllBtn.Image = ((System.Drawing.Image)(resources.GetObject("inverseAllBtn.Image")));
+            this.inverseAllBtn.MaximumSize = new System.Drawing.Size(0, 5);
+            this.inverseAllBtn.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
+            this.inverseAllBtn.MinimumSize = new System.Drawing.Size(200, 0);
+            this.inverseAllBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("inverseAllBtn.SmallImage")));
+            resources.ApplyResources(this.inverseAllBtn, "inverseAllBtn");
+            this.inverseAllBtn.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
+            this.inverseAllBtn.Value = "inverseAllBtn";
+            this.inverseAllBtn.Click += new System.EventHandler(this.inverseAllBtn_Click);
             // 
-            // ribbonButton7
+            // checkAllBtn
             // 
-            this.ribbonButton7.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.Image")));
-            this.ribbonButton7.MaximumSize = new System.Drawing.Size(0, 5);
-            this.ribbonButton7.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.ribbonButton7.MinSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.ribbonButton7.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.SmallImage")));
-            resources.ApplyResources(this.ribbonButton7, "ribbonButton7");
+            this.checkAllBtn.Image = ((System.Drawing.Image)(resources.GetObject("checkAllBtn.Image")));
+            this.checkAllBtn.MaximumSize = new System.Drawing.Size(0, 5);
+            this.checkAllBtn.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
+            this.checkAllBtn.MinSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
+            this.checkAllBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("checkAllBtn.SmallImage")));
+            resources.ApplyResources(this.checkAllBtn, "checkAllBtn");
+            this.checkAllBtn.Value = "checkAllBtn";
+            this.checkAllBtn.Click += new System.EventHandler(this.checkAllBtn_Click);
             // 
-            // ribbonButton9
+            // InverseBtn
             // 
-            this.ribbonButton9.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton9.Image")));
-            this.ribbonButton9.MaximumSize = new System.Drawing.Size(0, 5);
-            this.ribbonButton9.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.ribbonButton9.MinimumSize = new System.Drawing.Size(200, 0);
-            this.ribbonButton9.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton9.SmallImage")));
-            resources.ApplyResources(this.ribbonButton9, "ribbonButton9");
+            this.InverseBtn.Image = ((System.Drawing.Image)(resources.GetObject("InverseBtn.Image")));
+            this.InverseBtn.MaximumSize = new System.Drawing.Size(0, 5);
+            this.InverseBtn.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
+            this.InverseBtn.MinimumSize = new System.Drawing.Size(200, 0);
+            this.InverseBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("InverseBtn.SmallImage")));
+            resources.ApplyResources(this.InverseBtn, "InverseBtn");
+            this.InverseBtn.Value = "InverseBtn";
+            this.InverseBtn.Click += new System.EventHandler(this.InverseBtn_Click);
             // 
             // settingsTab
             // 
@@ -231,6 +240,7 @@ namespace DBSync
             this.langPanel.ButtonMoreVisible = false;
             this.langPanel.FlowsTo = System.Windows.Forms.RibbonPanelFlowDirection.Right;
             this.langPanel.Items.Add(this.ribbonItemGroup2);
+            this.langPanel.Tag = "langPanel";
             resources.ApplyResources(this.langPanel, "langPanel");
             // 
             // ribbonItemGroup2
@@ -331,6 +341,7 @@ namespace DBSync
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.ribon);
             this.Name = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -362,12 +373,12 @@ namespace DBSync
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.RibbonPanel langPanel;
         private System.Windows.Forms.RibbonPanel rPanel1;
-        private System.Windows.Forms.RibbonButton ribbonButton2;
-        private System.Windows.Forms.RibbonButton ribbonButton3;
+        private System.Windows.Forms.RibbonButton syncBtn;
+        private System.Windows.Forms.RibbonButton connectionsBtn;
         private System.Windows.Forms.RibbonPanel ribbonPanel3;
-        private System.Windows.Forms.RibbonButton ribbonButton6;
-        private System.Windows.Forms.RibbonButton ribbonButton7;
-        private System.Windows.Forms.RibbonButton ribbonButton9;
+        private System.Windows.Forms.RibbonButton inverseAllBtn;
+        private System.Windows.Forms.RibbonButton checkAllBtn;
+        private System.Windows.Forms.RibbonButton InverseBtn;
         private System.Windows.Forms.RibbonButton ribbonButton4;
         private System.Windows.Forms.RibbonButton ribbonButton5;
         private System.Windows.Forms.RibbonButton ribbonButton8;

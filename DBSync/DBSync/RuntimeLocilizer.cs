@@ -24,7 +24,7 @@ namespace DBSync
             //resources.ApplyResources(frm, "$this", culture);
             frm.Text = resources.GetString("$this.Text", culture);
             ApplyResourceToControl(resources, frm, culture);
-           
+
         }
 
         private static void ApplyResourceToControl(ComponentResourceManager res, Control control, CultureInfo lang)
@@ -33,7 +33,7 @@ namespace DBSync
             {
                 ListView list = (ListView)control;
                 ApplyResourceToListView(list, res, lang);
-                return;      
+                return;
             }
 
             if (control.GetType() == typeof(Ribbon))  // See if this is a menuStrip
@@ -49,16 +49,16 @@ namespace DBSync
             }
             if (control is ILocalizeControl)
             {
-                ((ILocalizeControl)control).UpdateLocalization();
-               
+                ( (ILocalizeControl)control ).UpdateLocalization();
+
                 return;
             }
 
-                       
+
 
             foreach (Control c in control.Controls) // Apply to all sub-controls
-            { 
-                ApplyResourceToControl(res, c, lang);               
+            {
+                ApplyResourceToControl(res, c, lang);
             }
         }
 
@@ -80,7 +80,7 @@ namespace DBSync
 
         private static void ApplyResourceToListView(ListView list, ComponentResourceManager res, CultureInfo lang)
         {
-            foreach(ColumnHeader col in list.Columns)
+            foreach (ColumnHeader col in list.Columns)
             {
                 col.Text = res.GetString(col.Name + ".Text", lang);
             }
@@ -88,9 +88,20 @@ namespace DBSync
 
         private static void ApplyResourceToRibbon(Ribbon ribbon, ComponentResourceManager res, CultureInfo lang)
         {
-            foreach (RibbonTab tab in ribbon.Tabs)
+            foreach (RibbonTab tab in ribbon.Tabs) //TABS
             {
                 tab.Text = res.GetString(tab.Value + ".Text", lang);
+
+                foreach (var panel in tab.Panels) //PANELS
+                {
+                    if (panel.Tag != null)
+                        panel.Text = res.GetString(panel.Tag.ToString() + ".Text", lang);
+                    var components = panel.Items;
+                    foreach (var item in components) //ITEMS
+                    {
+                        item.Text = res.GetString(item.Value + ".Text", lang);
+                    }
+                }
             }
         }
     }
