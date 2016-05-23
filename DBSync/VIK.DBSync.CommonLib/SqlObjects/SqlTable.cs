@@ -11,11 +11,13 @@ namespace VIK.DBSync.CommonLib.SqlObjects
     {
         public SqlTable()
         {
+            Columns = new SubObjectsCollection<SqlColumn>();
             UniqueConstraints = new SubObjectsCollection<SqlIndex>();
             Indexes = new SubObjectsCollection<SqlIndex>();
             Dependencies = new HashSet<SqlForeignKey>();
             CheckConstraints = new SubObjectsCollection<SqlCheckConstraint>();
             DefaultConstraints = new SubObjectsCollection<SqlDefaultConstraint>();
+            ForeignKeys = new SubObjectsCollection<SqlForeignKey>();
         }
 
         public override SqlObjectType Type

@@ -16,11 +16,6 @@ namespace VIK.DBSync.CommonLib.Metadata
         {            
         }
 
-        public override void LoadSubObjects(SqlStoredProcedure sqlObject, IDbConnection reader)
-        {
-            return;
-        }
-
         protected override SqlStoredProcedure GetObject(IDataRecord reader)
         {
             SqlStoredProcedure procedure = new SqlStoredProcedure();

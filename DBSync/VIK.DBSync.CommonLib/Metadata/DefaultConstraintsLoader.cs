@@ -10,7 +10,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public class DefaultConstraintsLoader : SqlSubObjectMetadataLoaderBase<SqlDefaultConstraint>
     {
-        public DefaultConstraintsLoader(SqlObject parentObject) 
+        public DefaultConstraintsLoader(SqlObject parentObject = null) 
             : base("VIK.DBSync.CommonLib.Scripts.DefaultConstraints.sql", parentObject)
         {
         }
@@ -21,7 +21,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             constraint.Name = (String)reader["default_constraint_name"];
             constraint.ColumnName = (String)reader["column_name"];
             constraint.Definition = (String)reader["definition"];
-
+            constraint.ParentObjectId = (Int32)reader["parent_table_id"];
             return constraint;
         }
     }

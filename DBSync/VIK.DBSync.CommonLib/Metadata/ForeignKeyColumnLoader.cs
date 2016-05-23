@@ -10,7 +10,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public class ForeignKeyColumnLoader : SqlSubObjectMetadataLoaderBase<ForeignKeyColumn>
     {
-        public ForeignKeyColumnLoader(SqlTable table)
+        public ForeignKeyColumnLoader(SqlTable table=null)
             : base("VIK.DBSync.CommonLib.Scripts.ForeignKeyColumns.sql", table)
         {            
         }
@@ -24,6 +24,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             column.ParentColumnName = (String)reader["parent_column_name"];
             column.ReferencedColumnName = (String)reader["referenced_column_name"];
             column.ReferencedObjectId = (Int32)reader["referenced_object_id"];
+            column.ParentObjectId = (Int32)reader["parent_object_id"];
             return column;
         }        
     }

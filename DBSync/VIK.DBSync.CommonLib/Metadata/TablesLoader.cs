@@ -18,8 +18,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 
         protected override SqlTable GetObject(IDataRecord reader)
         {
-            SqlTable table = new SqlTable();
-          
+            SqlTable table = new SqlTable();          
             table.Name = reader.GetString(0);
             table.SchemaId = reader.GetInt32(1);
             table.SchemaName = reader.GetString(2);
@@ -32,8 +31,10 @@ namespace VIK.DBSync.CommonLib.Metadata
             return table;
         }
         
-        public override void LoadSubObjects(SqlTable table, IDbConnection connection)
-        {            
+        public void LoadSubObjects(SqlTable table, IDbConnection connection)
+        {
+            throw new Exception("NOT USE THIS");
+
             table.Columns = (new TableColumnsLoader(table)).LoadObjects(connection);
             table.CheckConstraints = (new CheckConstraintsLoader(table)).LoadObjects(connection);
             table.DefaultConstraints = (new DefaultConstraintsLoader(table)).LoadObjects(connection);
@@ -64,9 +65,6 @@ namespace VIK.DBSync.CommonLib.Metadata
                 }
               
             }
-            //  table.PrimarKey = allIndexes.FirstOrDefault(i => i.IsPrimaryKey);
-            //  table.UniqueConstraints = allIndexes.Where(i => i.IsUniqueConstraint).ToList();
-            // table.Indexes = allIndexes.Where(i => !i.IsUniqueConstraint && !i.IsPrimaryKey).ToList();
 
             table.ForeignKeys = (new ForeignKeysLoader(table) ).LoadObjects(connection);
             List<ForeignKeyColumn> foreignKeyColumns = ( new ForeignKeyColumnLoader(table) ).LoadObjects(connection);

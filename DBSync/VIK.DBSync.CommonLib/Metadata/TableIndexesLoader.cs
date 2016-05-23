@@ -10,7 +10,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public class TableIndexesLoader : SqlSubObjectMetadataLoaderBase<SqlIndex>
     {
-        public TableIndexesLoader(SqlTable table)
+        public TableIndexesLoader(SqlTable table = null)
             : base("VIK.DBSync.CommonLib.Scripts.Indexes.sql",table)
         {
 
@@ -19,6 +19,7 @@ namespace VIK.DBSync.CommonLib.Metadata
         protected override SqlIndex GetObject(IDataRecord reader)
         {
             SqlIndex index = new SqlIndex();
+            index.ParentObjectId = (Int32)reader["parent_table_id"];
             index.Name = (String)reader["index_name"];
             index.IndexId = (Int32)reader["index_id"];
             index.IsPrimaryKey = (Boolean)reader["is_primary_key"];
@@ -33,7 +34,6 @@ namespace VIK.DBSync.CommonLib.Metadata
             index.FileGroup = (String)reader["data_space_name"];
             index.UsingXMLIndexId = (Int32)reader["using_xml_index_id"];
             index.XMLSecondaryType = (String)reader["xml_secondary_type"];
-        //    index.XMLType = (Byte)reader["xml_type"];
             return index;
         }
     }

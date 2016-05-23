@@ -43,7 +43,21 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             }
         }
 
+        private class DependenciesNameComparer : IEqualityComparer<SqlForeignKey>
+        {
+            public Boolean Equals(SqlForeignKey x, SqlForeignKey y)
+            {
+                return x.ParentObject.Name.Equals(y.ParentObject.Name) && x.Name.Equals(y.Name);
+            }
+
+            public Int32 GetHashCode(SqlForeignKey obj)
+            {
+                return obj.Name.GetHashCode();
+            }
+        }
+
         private ColumnNameComparer _columnNameComparer = new ColumnNameComparer();
+        private DependenciesNameComparer _depNameComparer = new DependenciesNameComparer();
 
         private void ReCreateScript(SyncScript syncScript)
         {
@@ -65,7 +79,7 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             StringBuilder script = new StringBuilder();
             script.AppendLine($"EXEC sp_rename N'{_dest.QualifiedName}', N'{newName}' ");
             script.AppendLine(SqlStatement.GO);
-            script.Append(_source.CreateScript(false));
+            script.Append(_source.HeaderCreateScript());
 
             var columns = _source.Columns.Intersect(_dest.Columns, _columnNameComparer)
                                 .Where(c=>!c.IsComputed).Select(c => c.Name);
@@ -85,7 +99,9 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                 Type = SyncActionType.CreateTable
             });
 
-            foreach (var key in _source.Dependencies)
+            CreateTableSubObjects(_source, syncScript);
+
+            foreach (var key in _dest.Dependencies.Intersect(_source.Dependencies,_depNameComparer))
             {
                 syncScript.Add(new SyncAction
                 {
@@ -93,17 +109,7 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                     Text = key.CreateScript(true),
                     Type = SyncActionType.CreateFK
                 });
-            }
-
-            foreach (var subItem in _source.ForeignKeys)
-            {
-                syncScript.Add(new SyncAction
-                {
-                    Name = subItem.Name,
-                    Text = subItem.CreateScript(true),
-                    Type = SyncActionType.CreateFK
-                });
-            }
+            }          
         }
         
 
@@ -116,7 +122,10 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                 Text = table.HeaderCreateScript(),
                 Type = SyncActionType.CreateTable
             });
-
+            CreateTableSubObjects(table, syncScript);
+        }
+        public static void CreateTableSubObjects(SqlTable table, SyncScript syncScript)
+        {
             if (table.PrimarKey != null)
             {
                 syncScript.Add(new SyncAction
@@ -177,7 +186,6 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                 });
             }
         }
-
         public static void DropTableSubObjects(SqlTable table, SyncScript syncScript)
         {
             if (table.PrimarKey != null)

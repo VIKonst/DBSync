@@ -11,7 +11,7 @@ namespace VIK.DBSync.CommonLib.Metadata
     public class IndexColumnLoader : SqlSubObjectMetadataLoaderBase<IndexColumn>
     {
 
-        public IndexColumnLoader(SqlTable table)
+        public IndexColumnLoader(SqlTable table=null)
             :base("VIK.DBSync.CommonLib.Scripts.IndexColumns.sql", table)
         {            
         }
@@ -25,6 +25,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             column.IndexColumnId = (Int32)reader["index_column_id"];
             column.IsDesc = (Boolean)reader["is_descending_key"];
             column.IsIncluded = (Boolean)reader["is_included"];
+            column.ParentObjectId = (Int32)reader["object_id"];
             return column;
         }
     }

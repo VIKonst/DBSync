@@ -6,4 +6,4 @@
 	ic.is_descending_key	as is_descending_key,
 	ic.is_included_column	as is_included
 from sys.index_columns ic
-where object_id= {0}
+--where object_id= {0}

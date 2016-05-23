@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,39 +16,27 @@ namespace VIK.DBSync.ConsoleTest
     {
         static void Main(string[] args)
         {
-            String dbName = "sample2"; // database name
-
-            // Connect to the local, default instance of SQL Server. 
-            Server srv = new Server();
-
-            // Reference the database.  
-            Database db = srv.Databases[dbName];
-
-            // Define a Scripter object and set the required scripting options. 
-            Scripter scrp = new Scripter(srv);
-            
-            scrp.Options.ScriptDrops = false;
-            scrp.Options.WithDependencies = true;
-            scrp.Options.Indexes = true;   // To include indexes
-            scrp.Options.DriAllConstraints = true;   // to include referential constraints in the script
-
-            // Iterate through the tables in database and script each one. Display the script.   
-            foreach (Table tb in db.Tables)
+            SqlConnectionStringBuilder connection = new SqlConnectionStringBuilder();
+            connection.IntegratedSecurity = true;
+            connection.InitialCatalog = "";
+            connection.DataSource = "VALERA-LAPTOP\\SQL2012";
+            connection.InitialCatalog = "msdb";
+            Int64 time;
+            Int64 sum = 0;
+            Int32 count = 20;
+            for(int i=0; i< count; i++)
             {
-                // check if the table is not a system table
-                if (tb.IsSystemObject == false)
-                {
-                    Console.WriteLine("-- Scripting for table " + tb.Name);
-
-                    // Generating script for table tb
-                    System.Collections.Specialized.StringCollection sc = scrp.Script(new Urn[] { tb.Urn });
-                    foreach (string st in sc)
-                    {
-                        Console.WriteLine(st);
-                    }
-                    Console.WriteLine("--");
-                }
+                DataBase db = new DataBase(connection.ToString());
+                time = 0;
+                Stopwatch t = new Stopwatch();
+                t.Start();
+                db.LoadObjects();
+                time = t.ElapsedMilliseconds;
+                Console.WriteLine($"time:{time}");
+                t.Stop();
+                sum += time;
             }
+            Console.WriteLine($"AVG:{sum/count}");
             Console.ReadKey();
         }
     }

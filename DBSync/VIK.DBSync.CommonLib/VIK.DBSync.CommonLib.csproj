@@ -64,6 +64,7 @@
     <Compile Include="Metadata\ForeignKeysLoader.cs" />
     <Compile Include="Metadata\ReferentialAction.cs" />
     <Compile Include="Metadata\SchemaLoader.cs" />
+    <Compile Include="Metadata\SubObjectsFiller.cs" />
     <Compile Include="Metadata\XmlSchemasLoader.cs" />
     <Compile Include="SqlObjects\ForeignKeyColumn.cs" />
     <Compile Include="SqlObjects\IndexColumn.cs" />

@@ -10,7 +10,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public class CheckConstraintsLoader : SqlSubObjectMetadataLoaderBase<SqlCheckConstraint>
     {
-        public CheckConstraintsLoader(SqlObject parentObject)
+        public CheckConstraintsLoader(SqlObject parentObject = null)
            : base("VIK.DBSync.CommonLib.Scripts.CheckConstraints.sql", parentObject)
         {
         }
@@ -21,6 +21,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             constraint.Defenition = (String)reader["definition"];
             constraint.IsNotForReplication = (Boolean)reader["is_not_for_replication"];
             constraint.Name = (String)reader["check_constraint_name"];
+            constraint.ParentObjectId = (Int32)reader["parent_table_id"];
             return constraint;
         }
     }

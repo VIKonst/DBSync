@@ -13,7 +13,6 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public override String Name { get; set; }
 
         public Int32 ForeignKeyId { get; set; }
-        public Int32 ParentTableId { get; set; }
 
         public Int32 ReferencedTableId { get; set; }
 

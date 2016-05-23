@@ -8,6 +8,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 {
     public interface ISqlSubObject
     {
+        Int32 ParentObjectId { get; set; }
+
         ISqlObject ParentObject { get; set; }
 
         String Name { get; set; }

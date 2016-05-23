@@ -2,6 +2,8 @@
 using DBSync.SqlLiteDb;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,27 +20,27 @@ namespace DBSync
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            String appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Directory.CreateDirectory($"{appDataPath}\\DbSync");
+            AppDomain.CurrentDomain.SetData("DataDirectory", appDataPath);
+
+            AesHelper.InitAes();      
+            SettingsManager.Instance.LoadSettings();
+            String lang = SettingsManager.Instance.Lang;
+
+            if (!String.IsNullOrEmpty(lang))
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(lang);
+            }
+
             try
             {
-
-                AesHelper.InitAes();
-
-                String ss=AesHelper.EncryptString("valera_test");
-                 ss = AesHelper.DecryptString(ss);
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                SettingsManager.Instance.LoadSettings();
-                String lang = SettingsManager.Instance.Lang;
-
-                if(!String.IsNullOrEmpty(lang))
-                {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(lang);
-                }
-                
                 Application.Run(new MainForm());
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 LogException(e);
             }
@@ -46,7 +48,7 @@ namespace DBSync
 
         public static void LogException(Exception e)
         {
-            File.AppendAllText("log.txt", e.Message+Environment.NewLine);
+            File.AppendAllText("log.txt", e.Message + Environment.NewLine);
             File.AppendAllText("log.txt", e.StackTrace + Environment.NewLine);
             if (e.InnerException != null)
                 LogException(e.InnerException);

@@ -11,12 +11,16 @@ namespace DBSync.SqlLiteDb
 {
     public class SettingsContext : DbContext
     {
-        public SettingsContext()           
+        
+        public SettingsContext()         
+            : base()
         {
             Configuration.ProxyCreationEnabled = true;
             Configuration.LazyLoadingEnabled = true;
+      //      Database.Connection.ConnectionString = $"Data Source ={Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\DbSync\\dbSettings.sqlite";
         }
 
+   
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Connection>();

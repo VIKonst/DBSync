@@ -13,6 +13,11 @@ namespace VIK.DBSync.CommonLib.SqlObjects
             get; set;
         }
 
+        public virtual Int32 ParentObjectId
+        {
+            get; set;
+        }
+
         public virtual ISqlObject ParentObject
         {
             get; set;

@@ -17,7 +17,7 @@ namespace VIK.DBSync.CommonLib.Metadata
         public SqlSubObjectMetadataLoaderBase(String scriptName, SqlObject parentObject)
         {
             _scriptName = scriptName;
-            _parentObject = parentObject;
+           // _parentObject = parentObject;
         }
 
         abstract protected T GetObject(IDataRecord reader);
@@ -29,7 +29,8 @@ namespace VIK.DBSync.CommonLib.Metadata
             {
                 SubObjectsCollection<T> list = new SubObjectsCollection<T>();
                 IDbCommand command = connection.CreateCommand();
-                command.CommandText = String.Format(ResourcesHelper.GetScriptFromResources(this._scriptName),_parentObject.ObjectId);
+              
+                command.CommandText = ResourcesHelper.GetScriptFromResources(this._scriptName);
                 if (connection.State != ConnectionState.Open)
                 {
                     connection.Open();
@@ -38,17 +39,16 @@ namespace VIK.DBSync.CommonLib.Metadata
                 while (reader.Read())
                 {
                     T sqlSubObject = GetObject(reader);
-                    sqlSubObject.ParentObject = _parentObject;
                     list.Add(sqlSubObject);
                 }
 
                 reader.Close();
                 return list;
             }
-          /*  catch (Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Loading is failed. Type: " + typeof(T).Name, ex);
-            }*/
+            }
             finally
             {
                 if (reader != null && !reader.IsClosed)

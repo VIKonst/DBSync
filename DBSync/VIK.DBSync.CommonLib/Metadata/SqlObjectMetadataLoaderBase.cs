@@ -23,7 +23,7 @@ namespace VIK.DBSync.CommonLib.Metadata
         }
 
         abstract protected T GetObject(IDataRecord reader);
-        abstract public void LoadSubObjects(T sqlObject, IDbConnection reader);
+     //   abstract public void LoadSubObjects(T sqlObject, IDbConnection reader);
 
         public List<T> LoadObjects(IDbConnection connection)
         {

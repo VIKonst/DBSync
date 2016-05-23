@@ -10,7 +10,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public class TableColumnsLoader : SqlSubObjectMetadataLoaderBase<SqlColumn>
     {
-        public TableColumnsLoader(SqlTable table)
+        public TableColumnsLoader(SqlTable table=null)
             :base("VIK.DBSync.CommonLib.Scripts.TableColumns.sql", table)
         {
 
@@ -19,15 +19,13 @@ namespace VIK.DBSync.CommonLib.Metadata
         protected override SqlColumn GetObject(IDataRecord reader)
         {
             SqlColumn column = new SqlColumn();
-            
+            column.ParentObjectId = reader.GetInt32(0);
             column.ColumnId = reader.GetInt32(1);
             column.Name = reader.GetString(2);
             column.IsUserDefinedType = (Boolean)reader["is_user_defined_type"];
             column.UserTypeId = reader.GetInt32(3);
             column.UserTypeSchemaName = (String)reader["user_type_schema_name"];
             column.UserType = reader.GetString(4);
-           
-
             column.SytemTypeId = reader.GetByte(5);
             column.SytemType = $"[{reader.GetString(6)}]";
             column.ColationName = reader.GetString(7);
@@ -46,8 +44,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             column.IsFileStream = (Boolean)reader["is_filestream"];
             column.XmlCollectionSchemaName = (String)reader["xml_collection_schema_name"];
             column.XmlCollectionName = (String)reader["xml_collection_name"];
-            column.IsXmlDocument = (Boolean)reader["is_xml_document"];
-           
+            column.IsXmlDocument = (Boolean)reader["is_xml_document"];           
             column.IsColumnSet = (Boolean)reader["is_column_set"];
             return column;
         }

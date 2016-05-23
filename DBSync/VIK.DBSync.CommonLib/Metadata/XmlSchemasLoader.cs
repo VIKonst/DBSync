@@ -16,11 +16,6 @@ namespace VIK.DBSync.CommonLib.Metadata
         {
         }
 
-        public override void LoadSubObjects(SqlXmlSchema sqlObject, IDbConnection reader)
-        {
-            
-        }
-
         protected override SqlXmlSchema GetObject(IDataRecord reader)
         {
             SqlXmlSchema schema = new SqlXmlSchema();

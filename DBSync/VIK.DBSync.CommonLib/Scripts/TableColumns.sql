@@ -64,8 +64,8 @@ from	sys.columns as t1
 		LEFT JOIN sys.types t3 ON t3.user_type_id = t1.user_type_id
 		left join sys.xml_schema_collections xsc on xsc.xml_collection_id = t1.xml_collection_id
 where	
-	t1.[object_id]={0}
-	and
+	--t1.[object_id]={0}
+	--and
 	t1.is_computed = 0
 union all
 select
@@ -133,5 +133,5 @@ from	sys.computed_columns as t1
 			t1.object_id = t2.object_id
 		LEFT JOIN sys.types t3 ON t3.user_type_id = t1.user_type_id
 		left join sys.xml_schema_collections xsc on xsc.xml_collection_id = t1.xml_collection_id
-where
-	t1.[object_id]={0}
+--where
+	---t1.[object_id]={0}
