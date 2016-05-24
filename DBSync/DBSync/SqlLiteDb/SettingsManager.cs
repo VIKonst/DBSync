@@ -103,7 +103,7 @@ namespace DBSync.SqlLiteDb
         public Boolean SafeTransaction
         {
             get { return Boolean.Parse(GetSettingValue("safeTran",Boolean.TrueString)); }
-            set { SetSettingValue("Lang", value.ToString()); }
+            set { SetSettingValue("safeTran", value.ToString()); }
         }
 
         #endregion

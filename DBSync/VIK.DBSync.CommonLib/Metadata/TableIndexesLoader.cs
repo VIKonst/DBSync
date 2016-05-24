@@ -34,6 +34,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             index.FileGroup = (String)reader["data_space_name"];
             index.UsingXMLIndexId = (Int32)reader["using_xml_index_id"];
             index.XMLSecondaryType = (String)reader["xml_secondary_type"];
+            index.FillFactor = (Byte)reader["fill_factor"];
             return index;
         }
     }

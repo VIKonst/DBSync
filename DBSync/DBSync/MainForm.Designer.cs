@@ -52,6 +52,8 @@ namespace DBSync
             this.btnLangRu = new System.Windows.Forms.RibbonButton();
             this.btnLangEn = new System.Windows.Forms.RibbonButton();
             this.btnLangUk = new System.Windows.Forms.RibbonButton();
+            this.syncOptions = new System.Windows.Forms.RibbonPanel();
+            this.safeTransactionChb = new System.Windows.Forms.RibbonCheckBox();
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
@@ -231,6 +233,7 @@ namespace DBSync
             // settingsTab
             // 
             this.settingsTab.Panels.Add(this.langPanel);
+            this.settingsTab.Panels.Add(this.syncOptions);
             resources.ApplyResources(this.settingsTab, "settingsTab");
             this.settingsTab.Value = "settingsTab";
             // 
@@ -275,6 +278,18 @@ namespace DBSync
             this.btnLangUk.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnLangUk.SmallImage")));
             resources.ApplyResources(this.btnLangUk, "btnLangUk");
             this.btnLangUk.Value = "uk";
+            // 
+            // syncOptions
+            // 
+            this.syncOptions.Items.Add(this.safeTransactionChb);
+            this.syncOptions.Tag = "syncOptions";
+            resources.ApplyResources(this.syncOptions, "syncOptions");
+            // 
+            // safeTransactionChb
+            // 
+            resources.ApplyResources(this.safeTransactionChb, "safeTransactionChb");
+            this.safeTransactionChb.Value = "safeTransactionChb";
+            this.safeTransactionChb.CheckBoxCheckChanged += new System.EventHandler(this.safeTransactionChb_CheckBoxCheckChanged);
             // 
             // ribbonPanel2
             // 
@@ -383,6 +398,8 @@ namespace DBSync
         private System.Windows.Forms.RibbonButton ribbonButton5;
         private System.Windows.Forms.RibbonButton ribbonButton8;
         private System.Windows.Forms.RibbonButton updateBtn;
+        private System.Windows.Forms.RibbonPanel syncOptions;
+        private System.Windows.Forms.RibbonCheckBox safeTransactionChb;
     }
 }
 

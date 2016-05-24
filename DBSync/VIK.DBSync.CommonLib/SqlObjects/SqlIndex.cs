@@ -31,7 +31,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public Boolean AllowPageLocks { get; set; }
 
-        public Int16 FillFactor { get; set; }
+        public Byte FillFactor { get; set; }
 
         public String FileGroup { get; set; }
 

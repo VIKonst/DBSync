@@ -595,6 +595,12 @@
   <data name="langPanel.Text" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="safeTransactionChb.Text" xml:space="preserve">
+    <value>In safe transaction</value>
+  </data>
+  <data name="syncOptions.Text" xml:space="preserve">
+    <value>Generation</value>
+  </data>
   <data name="settingsTab.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -804,6 +810,18 @@
   </data>
   <data name="&gt;&gt;btnLangUk.Type" xml:space="preserve">
     <value>System.Windows.Forms.RibbonButton, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;syncOptions.Name" xml:space="preserve">
+    <value>syncOptions</value>
+  </data>
+  <data name="&gt;&gt;syncOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonPanel, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;safeTransactionChb.Name" xml:space="preserve">
+    <value>safeTransactionChb</value>
+  </data>
+  <data name="&gt;&gt;safeTransactionChb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RibbonCheckBox, System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ribbonPanel2.Name" xml:space="preserve">
     <value>ribbonPanel2</value>

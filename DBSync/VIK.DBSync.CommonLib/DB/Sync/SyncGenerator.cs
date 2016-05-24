@@ -13,10 +13,21 @@ namespace VIK.DBSync.CommonLib.DB.Sync
     {
 
         SyncScript _syncScript;
+        SyncOptions _options;
+        public SyncGenerator()
+            :this(new SyncOptions())
+        {
+
+        }
+
+        public SyncGenerator(SyncOptions options)
+        {
+            _options = options;
+        }
 
         public String GenerateScript(List<ComparePair> items)
         {
-            _syncScript = new SyncScript();
+            _syncScript = new SyncScript(_options);
 
             foreach (var item in items)
             {

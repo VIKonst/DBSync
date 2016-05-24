@@ -46,6 +46,8 @@ namespace DBSync
             btnLangEn.Click += BtnLangClick;
             btnLangUk.Click += BtnLangClick;
             btnLangRu.Click += BtnLangClick;
+
+            safeTransactionChb.Checked = SettingsManager.Instance.SafeTransaction;
         }
 
         private void BtnLangClick(Object sender, EventArgs e)
@@ -157,7 +159,7 @@ namespace DBSync
 
         private void syncRibbonButton_Click(Object sender, EventArgs e)
         {
-            SyncGenerator genrator = new SyncGenerator();
+            SyncGenerator genrator = new SyncGenerator(GetOptions());
             
             List<ComparePair> selectedItems = new List<ComparePair>();
             foreach(ListViewItem item in listView1.CheckedItems)
@@ -193,8 +195,10 @@ namespace DBSync
 
         private void updateBtn_Click(Object sender, EventArgs e)
         {
-            if (sourceDatabase != null && destDatabase!=null)
-            StartCompare();
+            if (sourceDatabase != null && destDatabase != null)
+            {
+                StartCompare();
+            }
         }
 
         private void inverseAllBtn_Click(Object sender, EventArgs e)
@@ -230,6 +234,20 @@ namespace DBSync
             _typeNames[SqlObjectType.StoredProcedure.GetHashCode()] = resources.GetString("SP");
             _typeNames[SqlObjectType.Schema.GetHashCode()] = resources.GetString("SCHEMA");
             _typeNames[SqlObjectType.XmlSchema.GetHashCode()] = resources.GetString("XML_SCHEMA");
+        }
+
+        private SyncOptions GetOptions()
+        {
+            SyncOptions options = new SyncOptions
+            {
+                SafeTransaction = SettingsManager.Instance.SafeTransaction
+            };
+            return options;
+        }
+
+        private void safeTransactionChb_CheckBoxCheckChanged(Object sender, EventArgs e)
+        {
+            SettingsManager.Instance.SafeTransaction = safeTransactionChb.Checked;
         }
     }
 }

@@ -117,19 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="colName.Text" xml:space="preserve">
-    <value>Ім'я</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="colName.Width" type="System.Int32, mscorlib">
-    <value>202</value>
-  </data>
-  <data name="colType.Text" xml:space="preserve">
-    <value>Тип</value>
-  </data>
-  <data name="colType.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
   <data name="listView1.Groups" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
@@ -149,6 +136,25 @@
         AwAAAA1MaXN0Vmlld0dyb3VwBfz///8oU3lzdGVtLldpbmRvd3MuRm9ybXMuSG9yaXpvbnRhbEFsaWdu
         bWVudAEAAAAHdmFsdWVfXwAIAgAAAAAAAAAKBgUAAAAObGlzdFZpZXdHcm91cDIL
 </value>
+  </data>
+  <data name="colName.Text" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="colName.Width" type="System.Int32, mscorlib">
+    <value>202</value>
+  </data>
+  <data name="colType.Text" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="colType.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="mainTab.Text" xml:space="preserve">
+    <value>Головна</value>
+  </data>
+  <data name="settingsTab.Text" xml:space="preserve">
+    <value>Налаштування</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="syncBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -369,8 +375,8 @@
   <data name="InverseBtn.Text" xml:space="preserve">
     <value>Івертувати</value>
   </data>
-  <data name="mainTab.Text" xml:space="preserve">
-    <value>Головна</value>
+  <data name="langPanel.Text" xml:space="preserve">
+    <value>Мова</value>
   </data>
   <data name="btnLangRu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -450,11 +456,11 @@
         gg==
 </value>
   </data>
-  <data name="langPanel.Text" xml:space="preserve">
-    <value>Мова</value>
+  <data name="syncOptions.Text" xml:space="preserve">
+    <value>Генерація</value>
   </data>
-  <data name="settingsTab.Text" xml:space="preserve">
-    <value>Налаштування</value>
+  <data name="safeTransactionChb.Text" xml:space="preserve">
+    <value>Виконання в транзакції</value>
   </data>
   <data name="ribbonButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
