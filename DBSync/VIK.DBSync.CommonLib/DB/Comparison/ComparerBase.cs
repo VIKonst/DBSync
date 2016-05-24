@@ -11,8 +11,8 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
     {
         public List<ComparePair> CompareList(List<T> sourceProcedures, List<T> destProcedures)
         {
-            Dictionary<String, T> sourceDic = sourceProcedures.ToDictionary(t => t.QualifiedName);
-            Dictionary<String, T> destDic = destProcedures.ToDictionary(t => t.QualifiedName);
+            Dictionary<String, T> sourceDic = sourceProcedures.ToDictionary(t => t.QualifiedName, StringComparer.InvariantCultureIgnoreCase);
+            Dictionary<String, T> destDic = destProcedures.ToDictionary(t => t.QualifiedName, StringComparer.InvariantCultureIgnoreCase);
 
             List<ComparePair> result = new List<ComparePair>();
             ComparePair comparePair;

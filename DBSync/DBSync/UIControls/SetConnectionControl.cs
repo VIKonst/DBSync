@@ -69,7 +69,7 @@ namespace DBSync
         {
             get
             {
-                return AesHelper.EncryptString(tbUser.Text);
+                return AesHelper.EncryptString(tbPass.Text);
             }
         }
 

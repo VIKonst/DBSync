@@ -11,6 +11,7 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public class StoredProceduresLoader : SqlObjectMetadataLoaderBase<SqlStoredProcedure>
     {
+        private String SPACES_FOR_TAB = new String(' ', 4);
         public StoredProceduresLoader(DataBase db)
             : base("VIK.DBSync.CommonLib.Scripts.StoredProcedures.sql", db)
         {            
@@ -23,7 +24,7 @@ namespace VIK.DBSync.CommonLib.Metadata
             procedure.SchemaId = reader.GetInt32(1);
             procedure.SchemaName = reader.GetString(2);
             procedure.ObjectId = reader.GetInt32(3);
-            procedure.Text = reader.GetString(4);
+            procedure.Text = reader.GetString(4).Replace("\t", SPACES_FOR_TAB);
             procedure.IsAnsiNullsOn = reader.GetBoolean(5);
             procedure.IsQuotedIdentifier = reader.GetBoolean(6);
             return procedure;

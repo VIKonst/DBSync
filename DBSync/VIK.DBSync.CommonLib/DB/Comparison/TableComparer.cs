@@ -11,8 +11,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
     {
         
         protected  override CompareResult CompareObjects(SqlTable table1, SqlTable table2)
-        {
-            if (!table1.QualifiedName.Equals(table2.QualifiedName)) throw new Exception("Should be same names");
+        {           
             if (table1.IsAnsiNullsOn != table2.IsAnsiNullsOn) return CompareResult.Different;
             
             if (!CompareSubObjectsList(table1.Columns,table2.Columns)) return CompareResult.Different;

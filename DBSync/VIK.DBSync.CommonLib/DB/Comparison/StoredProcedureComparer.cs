@@ -12,8 +12,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
 
         protected override CompareResult CompareObjects(SqlStoredProcedure sourceProcedure, SqlStoredProcedure destProcedure)
         {
-            if (sourceProcedure.Text.Replace("\t","    ")
-                .CompareTo(destProcedure.Text.Replace("\t", "    ")) != 0) return CompareResult.Different;
+            if (sourceProcedure.Text.CompareTo(destProcedure.Text) != 0) return CompareResult.Different;
 
             return CompareResult.Equals;
         }

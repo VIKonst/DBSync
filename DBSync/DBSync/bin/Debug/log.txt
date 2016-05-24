@@ -109,3 +109,28 @@ The provider did not return a ProviderManifestToken string.
    в System.Data.Entity.SqlServer.SqlProviderServices.UsingMasterConnection(DbConnection sqlConnection, Action`1 act)
    в System.Data.Entity.SqlServer.SqlProviderServices.GetDbProviderManifestToken(DbConnection connection)
    в System.Data.Entity.Core.Common.DbProviderServices.GetProviderManifestToken(DbConnection connection)
+Произошла одна или несколько ошибок.
+   в System.Threading.Tasks.Task.FastWaitAll(Task[] tasks)
+   в System.Threading.Tasks.Parallel.Invoke(ParallelOptions parallelOptions, Action[] actions)
+   в DBSync.ProgressForm.<ProgressForm_Load>b__9_0() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\ProgressForm.cs:строка 49
+Loading is failed. Type: SqlColumn
+   в VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase`1.LoadObjects(IDbConnection connection) в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\Metadata\SqlSubObjectMetadataLoaderBase.cs:строка 50
+   в VIK.DBSync.CommonLib.DB.DataBase.LoadSubObjects[T](SqlSubObjectMetadataLoaderBase`1 loader) в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\DB\DataBase.cs:строка 135
+   в VIK.DBSync.CommonLib.DB.DataBase.LoadObjects() в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\DB\DataBase.cs:строка 46
+   в System.Threading.Tasks.Task.Execute()
+Истекло время ожидания соединения. Время ожидания истекло при попытке обработки подтверждения предварительного согласования. Возможно, произошел сбой во время предварительного согласования, или сервер не смог ответить вовремя.  Время, затраченное на попытки подключиться к этому серверу, составило: [Pre-Login] initialization=11508; handshake=6799; 
+   в System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   в System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   в System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   в System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   в System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   в System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   в System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   в System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   в System.Data.SqlClient.SqlConnection.Open()
+   в VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase`1.LoadObjects(IDbConnection connection) в D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\VIK.DBSync.CommonLib\Metadata\SqlSubObjectMetadataLoaderBase.cs:строка 36
+Время ожидания операции истекло
+

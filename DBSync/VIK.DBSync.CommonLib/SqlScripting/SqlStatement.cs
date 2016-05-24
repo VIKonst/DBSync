@@ -22,6 +22,8 @@ namespace VIK.DBSync.CommonLib.SqlScripting
         private const String ANSI_NULL_FORMAT = "SET ANSI_NULLS {0}";
         private const String QUOTED_IDENTIFIER_FORMAT = "SET QUOTED_IDENTIFIER {0}";
 
+        public const String CHECK_ERROR = "IF @@ERROR<> 0 OR @@TRANCOUNT = 0 BEGIN IF @@TRANCOUNT > 0 ROLLBACK SET NOEXEC ON END";
+        public const String COMMIT = "IF @@TRANCOUNT>0 COMMIT";
         public static String GetOnOffStatement(Boolean isOn)
         {
             return isOn ? ON : OFF;

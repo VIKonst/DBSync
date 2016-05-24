@@ -76,6 +76,7 @@ namespace VIK.DBSync.CommonLib.DB.Sync
 
             DropTableSubObjects(_dest, syncScript);
 
+
             StringBuilder script = new StringBuilder();
             script.AppendLine($"EXEC sp_rename N'{_dest.QualifiedName}', N'{newName}' ");
             script.AppendLine(SqlStatement.GO);
@@ -91,6 +92,7 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             if (_source.HasIdentity) script.AppendLine($"SET IDENTITY_INSERT {_source.QualifiedName} OFF");
             script.AppendLine(SqlStatement.GO);
             script.AppendLine($"DROP TABLE {fullNewName}");
+            script.AppendLine(SqlStatement.GO);
 
             syncScript.Add(new SyncAction
             {
@@ -124,6 +126,7 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             });
             CreateTableSubObjects(table, syncScript);
         }
+
         public static void CreateTableSubObjects(SqlTable table, SyncScript syncScript)
         {
             if (table.PrimarKey != null)

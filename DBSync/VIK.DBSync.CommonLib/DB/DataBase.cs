@@ -114,20 +114,17 @@ namespace VIK.DBSync.CommonLib.DB
             OnPogressUpdate?.Invoke("Procedures are Loaded...");
             Objects.Procedures = new StoredProceduresLoader(this).LoadObjects(_connection);            
 
-            OnPogressUpdate?.Invoke(" Schemas are Loaded...");
+            OnPogressUpdate?.Invoke("Schemas are Loaded...");
             Objects.Schemas = new SchemaLoader(this).LoadObjects(_connection);
 
-            OnPogressUpdate?.Invoke(" Xml Schemas are Loaded...");
+            OnPogressUpdate?.Invoke("Xml Schemas are Loaded...");
             Objects.XmlSchemas = new XmlSchemasLoader(this).LoadObjects(_connection);
-            /*
-                LoadSchemas();
-                LoadTables();
-                LoadProcedures();
-                LoadXmlSchemas();
-                if (_connection.State == System.Data.ConnectionState.Open)
-                {
-                    _connection.Close();
-                }*/
+
+            if (_connection.State == System.Data.ConnectionState.Open)
+            {
+                _connection.Close();
+            }
+           
         }
 
         private SubObjectsCollection<T> LoadSubObjects<T>(SqlSubObjectMetadataLoaderBase<T> loader) where T:SqlSubObject

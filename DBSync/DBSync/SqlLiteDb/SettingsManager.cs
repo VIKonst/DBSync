@@ -100,6 +100,12 @@ namespace DBSync.SqlLiteDb
             set { SetSettingValue("Lang",value); }
         }
 
+        public Boolean SafeTransaction
+        {
+            get { return Boolean.Parse(GetSettingValue("safeTran",Boolean.TrueString)); }
+            set { SetSettingValue("Lang", value.ToString()); }
+        }
+
         #endregion
 
     }

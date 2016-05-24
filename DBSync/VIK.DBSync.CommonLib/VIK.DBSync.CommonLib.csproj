@@ -56,6 +56,7 @@
     <Compile Include="DB\Sync\SyncAction.cs" />
     <Compile Include="DB\Sync\SyncActionType.cs" />
     <Compile Include="DB\Sync\SyncGenerator.cs" />
+    <Compile Include="DB\Sync\SyncOptions.cs" />
     <Compile Include="DB\Sync\SyncScript.cs" />
     <Compile Include="DB\Sync\TablesSynchroniser.cs" />
     <Compile Include="Metadata\CheckConstraintsLoader.cs" />
