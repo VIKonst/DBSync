@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EQUAL" xml:space="preserve">
+    <value>Одинаковые</value>
+  </data>
+  <data name="NEW" xml:space="preserve">
+    <value>Новые</value>
+  </data>
+  <data name="NOT_EQ" xml:space="preserve">
+    <value>Разные</value>
+  </data>
+  <data name="REMOVED" xml:space="preserve">
+    <value>Удаленные</value>
+  </data>
   <data name="SCHEMA" xml:space="preserve">
     <value>Схема</value>
   </data>
@@ -128,6 +140,9 @@
   </data>
   <data name="TABLE" xml:space="preserve">
     <value>Таблица</value>
+  </data>
+  <data name="TYPE" xml:space="preserve">
+    <value>Тип</value>
   </data>
   <data name="XML_SCHEMA" xml:space="preserve">
     <value>XML Схема</value>

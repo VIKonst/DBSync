@@ -20,7 +20,7 @@ namespace DBSync.Encryption
             key = key.CreateSubKey("DBSync");
             object aesKey = key.GetValue("ak");
             object vi = key.GetValue("avi");
-            if (key == null || vi == null)
+            if (aesKey == null || vi == null)
             {
                 using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
                 {

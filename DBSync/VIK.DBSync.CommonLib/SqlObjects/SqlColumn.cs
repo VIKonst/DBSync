@@ -17,9 +17,9 @@ namespace VIK.DBSync.CommonLib.SqlObjects
         public Int32 UserTypeId { get; set; }
         public String ColationName { get; set; }
 
-        public Int32 Precision { get; set; }
+        public Byte Precision { get; set; }
 
-        public Int32 Scale { get; set; }
+        public Byte Scale { get; set; }
 
         public Int32 MaxLength { get; set; }
 
@@ -57,6 +57,8 @@ namespace VIK.DBSync.CommonLib.SqlObjects
 
         public Boolean IsUserDefinedType { get; set; }
 
+
+        public SqlType ColumnType { get; set; }
 
         public String TypeStatement
         {

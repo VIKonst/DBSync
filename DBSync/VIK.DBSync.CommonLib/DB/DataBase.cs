@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using VIK.DBSync.CommonLib.Metadata;
 using VIK.DBSync.CommonLib.SqlObjects;
-using VIK.DBSync.CommonLib.SqlScripting;
 
 namespace VIK.DBSync.CommonLib.DB
 {
@@ -30,15 +24,13 @@ namespace VIK.DBSync.CommonLib.DB
             _connectionString = connection.ConnectionString;
             Name = connection.Database;
             Objects = new DataBaseObjects();
-
         }
 
         public DataBase(String connectionString)
             : this(new SqlConnection(connectionString))
         {
            
-        }
-               
+        }               
 
         public void LoadObjects()
         {
@@ -108,6 +100,16 @@ namespace VIK.DBSync.CommonLib.DB
                 key.Columns = foreignKeyColumns.Where(c => c.ForeignKeyId == key.ForeignKeyId).ToList();
                 parent.ForeignKeys.Add(key);
             }
+            
+            OnPogressUpdate?.Invoke("Types are Loaded...");
+            Objects.Types = new TypesLoader(this).LoadObjects(_connection);
+
+            foreach (SqlColumn column in columns.Where(c=>c.IsUserDefinedType))
+            {               
+                SqlType type = Objects.Types.FirstOrDefault(t=>t.ObjectId==column.UserTypeId);
+                column.ColumnType = type;
+                type.Columns.Add(column);
+            }
 
             Objects.Tables = tables;            
 
@@ -120,55 +122,17 @@ namespace VIK.DBSync.CommonLib.DB
             OnPogressUpdate?.Invoke("Xml Schemas are Loaded...");
             Objects.XmlSchemas = new XmlSchemasLoader(this).LoadObjects(_connection);
 
+          
             if (_connection.State == System.Data.ConnectionState.Open)
             {
                 _connection.Close();
-            }
-           
+            }           
         }
 
         private SubObjectsCollection<T> LoadSubObjects<T>(SqlSubObjectMetadataLoaderBase<T> loader) where T:SqlSubObject
         {
             return loader.LoadObjects(_connection);
         }
-
-
-        private void LoadTables()
-        {
-            TablesLoader loader = new TablesLoader(this);
-
-            Objects.Tables = loader.LoadObjects(_connection);
-            /*
-            foreach (var table in Objects.Tables)
-            {
-                OnPogressUpdate?.Invoke(table.QualifiedName);
-                loader.LoadSubObjects(table, _connection);
-            }
-            */
-        }
-
-        private void LoadProcedures()
-        {
-            StoredProceduresLoader loader = new StoredProceduresLoader(this);
-
-            OnPogressUpdate?.Invoke("Procedures are Loaded...");
-            Objects.Procedures = loader.LoadObjects(_connection);
-        }
-
-        private void LoadSchemas()
-        {
-            SchemaLoader loader = new SchemaLoader(this);
-
-            OnPogressUpdate?.Invoke(" Schemas are Loaded...");
-            Objects.Schemas = loader.LoadObjects(_connection);
-        }
-
-        private void LoadXmlSchemas()
-        {
-            XmlSchemasLoader loader = new XmlSchemasLoader(this);
-
-            OnPogressUpdate?.Invoke(" Xml Schemas are Loaded...");
-            Objects.XmlSchemas = loader.LoadObjects(_connection);
-        }
+     
     }
 }

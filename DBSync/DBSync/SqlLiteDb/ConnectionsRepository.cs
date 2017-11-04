@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DBSync.SqlLiteDb
 {
-    public class ConnectionsRepository
+    public class ConnectionsRepository : IDisposable
     {
-        private static string syncObj = "syncObj";
+        private static Object syncObj = new Object();
         SettingsContext _context;
         private ConnectionsRepository()
         {
@@ -64,6 +64,16 @@ namespace DBSync.SqlLiteDb
         public List<String> GetServerNames()
         {
             return _context.Set<Connection>().Select(s=>s.Server).ToList();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
+
+        ~ConnectionsRepository()
+        {
+            Dispose();
         }
     }
 }

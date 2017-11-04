@@ -49,6 +49,7 @@
     <Compile Include="DB\Comparison\SchemasComparer.cs" />
     <Compile Include="DB\Comparison\StoredProcedureComparer.cs" />
     <Compile Include="DB\Comparison\TableComparer.cs" />
+    <Compile Include="DB\Comparison\TypeComparer.cs" />
     <Compile Include="DB\Comparison\XmlSchemaComparer.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="DB\DataBaseObjects.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Metadata\ReferentialAction.cs" />
     <Compile Include="Metadata\SchemaLoader.cs" />
     <Compile Include="Metadata\SubObjectsFiller.cs" />
+    <Compile Include="Metadata\TypesLoader.cs" />
     <Compile Include="Metadata\XmlSchemasLoader.cs" />
     <Compile Include="SqlObjects\ForeignKeyColumn.cs" />
     <Compile Include="SqlObjects\IndexColumn.cs" />
@@ -136,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\XmlSchemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Types.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

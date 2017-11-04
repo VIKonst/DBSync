@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VIK.DBSync.CommonLib.DB;
 using VIK.DBSync.CommonLib.SqlObjects;
 using VIK.DBSync.CommonLib.SqlScripting;
@@ -23,7 +19,6 @@ namespace VIK.DBSync.CommonLib.Metadata
         }
 
         abstract protected T GetObject(IDataRecord reader);
-     //   abstract public void LoadSubObjects(T sqlObject, IDbConnection reader);
 
         public List<T> LoadObjects(IDbConnection connection)
         {
@@ -61,8 +56,6 @@ namespace VIK.DBSync.CommonLib.Metadata
                 }
             }            
         }
-
-
 
     }
 }

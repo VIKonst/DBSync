@@ -16,5 +16,3 @@ inner join sys.indexes as t2 on
 LEFT JOIN sys.data_spaces ds1 ON ds1.data_space_id = t2.data_space_id
 left join sys.identity_columns icm on icm.[object_id] = t1.[object_id]
 where t1 .is_filetable = 0
-
-select * from sys.identity_columns

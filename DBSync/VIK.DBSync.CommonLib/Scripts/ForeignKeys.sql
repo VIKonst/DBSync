@@ -11,5 +11,4 @@
 	t1.is_disabled						as is_disabled,
 	t1.is_system_named					as is_system_named
 from	sys.foreign_keys as t1
---where t1.parent_object_id = {0}
 order by t1.[name]

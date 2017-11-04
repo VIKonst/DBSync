@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VIK.DBSync.ConsoleTest", "VIK.DBSync.ConsoleTest\VIK.DBSync.ConsoleTest.csproj", "{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}"
 EndProject
@@ -13,26 +13,53 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSync", "DBSync\DBSync.csp
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
 		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0BFB4E-DEAF-4517-907A-1B487958FC6A}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D294F91B-C235-450E-921D-1B50BD3E96FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{D294F91B-C235-450E-921D-1B50BD3E96FD}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAC3A64-66BD-4C04-AC51-9D075DD437A7}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED5E323-22B0-4B59-813E-B8A1CDC367B0}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

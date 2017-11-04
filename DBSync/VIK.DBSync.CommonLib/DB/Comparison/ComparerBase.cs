@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VIK.DBSync.CommonLib.SqlObjects;
 
 namespace VIK.DBSync.CommonLib.DB.Comparison
 {
     public abstract class ComparerBase<T>  where T : SqlObject
     {
-        public List<ComparePair> CompareList(List<T> sourceProcedures, List<T> destProcedures)
+        public List<ComparePair> CompareList(List<T> sourceObjects, List<T> destObjects)
         {
-            Dictionary<String, T> sourceDic = sourceProcedures.ToDictionary(t => t.QualifiedName, StringComparer.InvariantCultureIgnoreCase);
-            Dictionary<String, T> destDic = destProcedures.ToDictionary(t => t.QualifiedName, StringComparer.InvariantCultureIgnoreCase);
+            Dictionary<String, T> sourceDic = sourceObjects.ToDictionary(t => t.QualifiedName, StringComparer.InvariantCultureIgnoreCase);
+            Dictionary<String, T> destDic = destObjects.ToDictionary(t => t.QualifiedName, StringComparer.InvariantCultureIgnoreCase);
 
             List<ComparePair> result = new List<ComparePair>();
             ComparePair comparePair;

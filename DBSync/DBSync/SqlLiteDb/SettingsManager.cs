@@ -1,16 +1,13 @@
-﻿using DBSync.Properties;
-using DBSync.SqlLiteDb.Entities;
+﻿using DBSync.SqlLiteDb.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBSync.SqlLiteDb
 {
     public class SettingsManager
     {
-        private static string syncObj = "syncObjSettingsManager";
+        private static Object syncObj = new Object();
 
         private Dictionary<String, String> _settings;
 
@@ -18,21 +15,23 @@ namespace DBSync.SqlLiteDb
 
         private SettingsManager()
         {
-            SettingsContext _context;
-            _context = new SettingsContext();
-            _context.Database.Initialize(true);
+            using (SettingsContext context = new SettingsContext())
+            {
+                context.Database.Initialize(true);
+            }                
         }
 
         private void AddSetting(String name, String value)
         {
-            SettingsContext context = new SettingsContext();
-            context.Set<Setting>().Add(new Setting()
+            using (SettingsContext context = new SettingsContext())
             {
-                SettingName = name,
-                SettingValue = value
-            });
-            context.SaveChangesAsync();
-            _settings.Add(name, value);
+                context.Set<Setting>().Add(new Setting()
+                {
+                    SettingName = name,
+                    SettingValue = value
+                });
+                context.SaveChangesAsync();
+            }          
         }
 
         private void SetSettingValue(String name, String value)
@@ -40,14 +39,17 @@ namespace DBSync.SqlLiteDb
             if(_settings.ContainsKey(name))
             {
                 _settings[name] = value;
-                SettingsContext context = new SettingsContext();
-                Setting setting = context.Set<Setting>().FirstOrDefault(s => s.SettingName == name);
-                if (setting!=null)
+             
+                using (SettingsContext context = new SettingsContext())
                 {
-                    setting.SettingValue = value;
-                    context.Entry(setting).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChangesAsync();
-                    return;
+                    Setting setting = context.Set<Setting>().FirstOrDefault(s => s.SettingName == name);
+                    if (setting != null)
+                    {
+                        setting.SettingValue = value;
+                        context.Entry(setting).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChangesAsync();
+                        return;
+                    }
                 }
             }
 
@@ -69,8 +71,11 @@ namespace DBSync.SqlLiteDb
 
         public void LoadSettings()
         {
-            SettingsContext context = new SettingsContext(); 
-            _settings = context.Set<Setting>().ToDictionary(s=>s.SettingName,s=>s.SettingValue); 
+            using (SettingsContext context = new SettingsContext())
+            {               
+                _settings = context.Set<Setting>().ToDictionary(s => s.SettingName, s => s.SettingValue);
+            }
+            
         }
               
         public static SettingsManager Instance

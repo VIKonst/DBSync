@@ -114,6 +114,13 @@ namespace DBSync.UIControls
             }
         }
 
+       
+
+        ~DiffControl()
+        {
+            Dispose(false);
+        }
+
         public void UpdateLocalization()
         {
            

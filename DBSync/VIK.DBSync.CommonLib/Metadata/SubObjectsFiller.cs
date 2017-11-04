@@ -20,10 +20,12 @@ namespace VIK.DBSync.CommonLib.Metadata
                 if (item.ParentObjectId != parentId)
                 {
                     parentId = item.ParentObjectId;
-                    parent = parentObjects.FirstOrDefault(o => o.ObjectId == parentId);                   
-                  
-                    if(parent!=null)
-                    collection = getCollection(parent);
+                    parent = parentObjects.FirstOrDefault(o => o.ObjectId == parentId);
+
+                    if (parent != null)
+                    {
+                        collection = getCollection(parent);
+                    }
                 }
                 if (parent != null)
                 {

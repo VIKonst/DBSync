@@ -1,120 +1,404 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="VIK.DBSync.CommonLib.SqlObjects.ForeignKeyColumn">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.ForeignKeyColumn" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAEAAARACAAAAQAIAAAAAAIAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>ACBAAAEAAARACAAAAQAIAAAAAAIAAQAAAAAAAAAAAAI=</HashCode>
       <FileName>SqlObjects\ForeignKeyColumn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.IndexColumn" Collapsed="true">
-    <Position X="4.5" Y="3" Width="1.5" />
+    <Position X="2.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QBAAAAAAAAAQAkAAAABAAAQAAEAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>QDAAAAAAAAAQAkAAAABAAQQAAEAAAQAAAAAAEAAAAAA=</HashCode>
       <FileName>SqlObjects\IndexColumn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlCheckConstraint" Collapsed="true">
-    <Position X="10.25" Y="3" Width="1.5" />
+    <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAIBACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAAAAAAAIAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>SqlObjects\SqlCheckConstraint.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlColumn" Collapsed="true">
-    <Position X="2.5" Y="3" Width="1.5" />
-    <InheritanceLine Type="VIK.DBSync.CommonLib.SqlObjects.SqlSubObject" FixedToPoint="true">
-      <Path>
-        <Point X="6.5" Y="1.988" />
-        <Point X="6.5" Y="2.625" />
-        <Point X="3.312" Y="2.625" />
-        <Point X="3.312" Y="3" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAABCCICJBggQgAAJAQAAAAEMQGQAAAAAQAAIAGIA=</HashCode>
+      <HashCode>gCAIABACICJBggQgAAMAQAAAAEsQGQAEAAAQAAIAGIA=</HashCode>
       <FileName>SqlObjects\SqlColumn.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlDefaultConstraint" Collapsed="true">
-    <Position X="6.5" Y="3" Width="1.5" />
+    <Position X="3.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAAAAAAAAAACAAAAABAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>SqlObjects\SqlDefaultConstraint.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlForeignKey" Collapsed="true">
-    <Position X="8.25" Y="3" Width="1.5" />
+    <Position X="5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACBQBAAAAAAAQAAAAAAAAAQAAAAAAAAAAAAAABgAAEI=</HashCode>
+      <HashCode>ACBQBAAAAAAAAAAAAAAAAAQAAAAAAQEAAAAAABgAAEI=</HashCode>
       <FileName>SqlObjects\SqlForeignKey.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlIndex" Collapsed="true">
-    <Position X="12.25" Y="3" Width="1.5" />
+    <Position X="7" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ADAAAEAAAAAABAQCgAAAQAQAABACAAgAAAQAAAgQAAA=</HashCode>
+      <HashCode>ADAAAEAAAAAABAQCgAAgQgQAABACAQgAAAQAQAgQAAA=</HashCode>
       <FileName>SqlObjects\SqlIndex.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlObject" Collapsed="true">
-    <Position X="1.75" Y="6" Width="1.5" />
+    <Position X="3.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>YCAAAAAAAAAAAAAAAAAAQAQIAAAAAxAAAQAAEAAAQAA=</HashCode>
       <FileName>SqlObjects\SqlObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlStoredProcedure" Collapsed="true">
-    <Position X="2.75" Y="7.25" Width="1.5" />
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlStoredProcedure">
+    <Position X="0.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAgAAAAAAQAAAAAAAARAACQAACAAAAAA=</HashCode>
       <FileName>SqlObjects\SqlStoredProcedure.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlSubObject">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="3.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAEAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAQAAAAAAAQAAAAAEQAAAIAAAAAAAAA=</HashCode>
       <FileName>SqlObjects\SqlSubObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlTable" Collapsed="true">
-    <Position X="0.5" Y="7.25" Width="1.5" />
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlTable">
+    <Position X="7.5" Y="7.5" Width="1.75" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.SqlObjects.SqlObject" ManuallyRouted="true">
+      <Path>
+        <Point X="4.5" Y="6.812" />
+        <Point X="4.5" Y="7.111" />
+        <Point X="8.375" Y="7.111" />
+        <Point X="8.375" Y="7.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ACEAAgAAAAEAAACAAkAAQAAAAAAAAZAACQAAAAgAAAA=</HashCode>
+      <HashCode>ACEAAgEAAAEAAAjAAmAAwAAEAAADAZAACRQIAAgAAAA=</HashCode>
       <FileName>SqlObjects\SqlTable.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="VIK.DBSync.CommonLib.SqlObjects.ISqlObject" Collapsed="true">
-    <Position X="5" Y="6.5" Width="1.5" />
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlType">
+    <Position X="2.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YCAAAAAAAAAAAAAAAAAAQAQIAAAAAxAAAQAAEAAAQAA=</HashCode>
-      <FileName>SqlObjects\ISqlObject.cs</FileName>
+      <HashCode>gCAAAABAAABAAiAAAAIAQAAAAAgAARAAAQAQAAgAEAA=</HashCode>
+      <FileName>SqlObjects\SqlType.cs</FileName>
     </TypeIdentifier>
-  </Interface>
-  <Interface Name="VIK.DBSync.CommonLib.SqlObjects.ISqlSubObject" Collapsed="true">
-    <Position X="6.75" Y="6.5" Width="1.5" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlXmlSchema">
+    <Position X="4" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAEAAAAIAAAAAAAAA=</HashCode>
-      <FileName>SqlObjects\ISqlSubObject.cs</FileName>
+      <HashCode>ACAAAAAAAAAACAAAAAAAQAAAAAAAARAAAQAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlXmlSchema.cs</FileName>
     </TypeIdentifier>
-  </Interface>
-  <Enum Name="VIK.DBSync.CommonLib.SqlObjects.SqlObjectType" Collapsed="true">
-    <Position X="5" Y="7.5" Width="1.5" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.SqlObjects.SqlSchema">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.SqlObjects.SqlObject" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="6.812" />
+        <Point X="4.5" Y="7.125" />
+        <Point X="6.688" Y="7.125" />
+        <Point X="6.688" Y="7.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SqlObjects\SqlObjectType.cs</FileName>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAQAAAAgAAARAAAQAAAAAAAAA=</HashCode>
+      <FileName>SqlObjects\SqlSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.CheckConstraintsLoader" Collapsed="true">
+    <Position X="15.75" Y="3.75" Width="2" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="20.25" Y="2.44" />
+        <Point X="20.25" Y="3.375" />
+        <Point X="17.417" Y="3.375" />
+        <Point X="17.417" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\CheckConstraintsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.DefaultConstraintsLoader" Collapsed="true">
+    <Position X="18.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\DefaultConstraintsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.ForeignKeyColumnLoader" Collapsed="true">
+    <Position X="19.5" Y="4.75" Width="2.25" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="20.25" Y="2.44" />
+        <Point X="20.25" Y="2.68" />
+        <Point X="20.688" Y="2.68" />
+        <Point X="20.688" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\ForeignKeyColumnLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.ForeignKeysLoader" Collapsed="true">
+    <Position X="22.25" Y="4.75" Width="2" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="20.25" Y="2.44" />
+        <Point X="20.25" Y="3.356" />
+        <Point X="20.605" Y="3.356" Type="JumpStart" />
+        <Point X="20.771" Y="3.356" Type="JumpEnd" />
+        <Point X="23.25" Y="3.356" />
+        <Point X="23.25" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\ForeignKeysLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.IndexColumnLoader" Collapsed="true">
+    <Position X="17" Y="5" Width="2" />
+    <InheritanceLine Type="VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="20.25" Y="2.44" />
+        <Point X="20.25" Y="3.394" />
+        <Point X="18" Y="3.394" />
+        <Point X="18" Y="5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\IndexColumnLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.SchemaLoader" Collapsed="true">
+    <Position X="22" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\SchemaLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.SqlObjectMetadataLoaderBase&lt;T&gt;">
+    <Position X="20" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAIAAAAAAAAAAIAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Metadata\SqlObjectMetadataLoaderBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.SqlSubObjectMetadataLoaderBase&lt;T&gt;">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Metadata\SqlSubObjectMetadataLoaderBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.StoredProceduresLoader" Collapsed="true">
+    <Position X="15.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\StoredProceduresLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.TableColumnsLoader" Collapsed="true">
+    <Position X="21" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\TableColumnsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.TableIndexesLoader" Collapsed="true">
+    <Position X="23.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\TableIndexesLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.TablesLoader" Collapsed="true">
+    <Position X="24" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\TablesLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.TypesLoader" Collapsed="true">
+    <Position X="17.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\TypesLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.Metadata.XmlSchemasLoader" Collapsed="true">
+    <Position X="19.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\XmlSchemasLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.ComparePair">
+    <Position X="39.75" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAQAACAAAAAA=</HashCode>
+      <FileName>DB\Comparison\ComparePair.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Result" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.ComparerBase&lt;T&gt;">
+    <Position X="34" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Comparison\ComparerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.DBComparer">
+    <Position X="36.75" Y="2.25" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>DB\Comparison\DBComparer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.SchemasComparer" Collapsed="true">
+    <Position X="34.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Comparison\SchemasComparer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.StoredProcedureComparer" Collapsed="true">
+    <Position X="36.75" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Comparison\StoredProcedureComparer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.TableComparer" Collapsed="true">
+    <Position X="33" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DB\Comparison\TableComparer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.TypeComparer" Collapsed="true">
+    <Position X="35.5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Comparison\TypeComparer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Comparison.XmlSchemaComparer" Collapsed="true">
+    <Position X="38.25" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Comparison\XmlSchemaComparer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Sync.SyncAction">
+    <Position X="31.75" Y="10.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAQAACAAAAAA=</HashCode>
+      <FileName>DB\Sync\SyncAction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Sync.SyncGenerator">
+    <Position X="28.75" Y="14.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAgAQEAAQAAAAAAIAAABAQAAAAAIgAAAACAAAAAAAA=</HashCode>
+      <FileName>DB\Sync\SyncGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Sync.SyncOptions" Collapsed="true">
+    <Position X="26.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Sync\SyncOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Sync.SyncScript">
+    <Position X="29" Y="12" Width="2.5" />
+    <NestedTypes>
+      <Class Name="VIK.DBSync.CommonLib.DB.Sync.SyncScript.SyncActionComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DB\Sync\SyncScript.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="_options" Type="VIK.DBSync.CommonLib.DB.Sync.SyncOptions">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.666" Y="0.424" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Sync\SyncScript.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_options" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VIK.DBSync.CommonLib.DB.Sync.TablesSynchroniser">
+    <Position X="32.25" Y="13" Width="4" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="VIK.DBSync.CommonLib.DB.Sync.TablesSynchroniser.ColumnNameComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DB\Sync\TablesSynchroniser.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="VIK.DBSync.CommonLib.DB.Sync.TablesSynchroniser.DependenciesNameComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DB\Sync\TablesSynchroniser.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAEAAAAAEABAAAABAAAAAAAgAAAAAAAAEAAMAAIAAA=</HashCode>
+      <FileName>DB\Sync\TablesSynchroniser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Collections.Generic.SortedSet&lt;T&gt;" Collapsed="true">
+    <Position X="29.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="VIK.DBSync.CommonLib.DB.Comparison.CompareResult">
+    <Position X="41" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAGAAgAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Comparison\CompareResult.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="VIK.DBSync.CommonLib.SqlObjects.SqlSubObjectType" Collapsed="true">
-    <Position X="6.75" Y="7.5" Width="1.5" />
+  <Enum Name="VIK.DBSync.CommonLib.DB.Sync.SyncActionType" Collapsed="true">
+    <Position X="34.5" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAIAABAAAEAAAIAAAAAAAUAAAAAAAA=</HashCode>
-      <FileName>SqlObjects\SqlSubObjectType.cs</FileName>
+      <HashCode>AAAAAAKAAAAAgQgAJBAAAEQAECAQAKEAGAAEIAACAIA=</HashCode>
+      <FileName>DB\Sync\SyncActionType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

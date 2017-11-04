@@ -17,6 +17,9 @@
             {
                 components.Dispose();
             }
+            greenStyle.Dispose();
+            redStyle.Dispose();
+            grayStyle.Dispose();
             base.Dispose(disposing);
         }
 

@@ -31,7 +31,7 @@ namespace VIK.DBSync.CommonLib.SqlObjects
                 if(!String.IsNullOrEmpty(this.SchemaName))
                     return String.Format("[{0}].[{1}]",this.SchemaName, this.Name);
                 else
-                    return String.Format("[{1}]", this.SchemaName, this.Name);
+                    return String.Format("[{0}]", this.Name);
             }         
         }
 

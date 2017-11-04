@@ -92,9 +92,6 @@ namespace DBSync
             this.colType});
             resources.ApplyResources(this.listView1, "listView1");
             this.listView1.FullRowSelect = true;
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups"))),
-            ((System.Windows.Forms.ListViewGroup)(resources.GetObject("listView1.Groups1")))});
             this.listView1.HideSelection = false;
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";

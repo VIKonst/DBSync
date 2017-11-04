@@ -9,7 +9,5 @@
 	t1.is_not_trusted			as is_not_trusted,
 	t1.uses_database_collation	as uses_database_collation,
 	t1.is_system_named			as is_system_named
---	isnull(COL_NAME(t1.parent_object_id, t1.parent_column_id),'') as column_name
 from	sys.check_constraints as t1
---where	t1.parent_object_id = {0}
 order by t1.[name]

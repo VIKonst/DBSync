@@ -61,6 +61,42 @@ namespace DBSync {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Equal.
+        /// </summary>
+        internal static string EQUAL {
+            get {
+                return ResourceManager.GetString("EQUAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на New.
+        /// </summary>
+        internal static string NEW {
+            get {
+                return ResourceManager.GetString("NEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Not equal.
+        /// </summary>
+        internal static string NOT_EQ {
+            get {
+                return ResourceManager.GetString("NOT_EQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Removed.
+        /// </summary>
+        internal static string REMOVED {
+            get {
+                return ResourceManager.GetString("REMOVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на SCHEMA.
         /// </summary>
         internal static string SCHEMA {
@@ -93,6 +129,15 @@ namespace DBSync {
         internal static string TABLE {
             get {
                 return ResourceManager.GetString("TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Type.
+        /// </summary>
+        internal static string TYPE {
+            get {
+                return ResourceManager.GetString("TYPE", resourceCulture);
             }
         }
         

@@ -48,3 +48,4 @@ from	sys.types as t1
 			t3.assembly_id = t4.assembly_id
 		left outer join sys.table_types as t5 on
 			t1.user_type_id = t5.user_type_id
+where  t1.is_user_defined=1

@@ -42,6 +42,8 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                     case CompareResult.Different:
                         UpdateObject(item.SourceObject, item.DestinationObject);
                         break;
+                    case CompareResult.Equals:
+                        break;
                 }
             }
 
@@ -91,6 +93,9 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                 case SqlObjectType.Table:
                     UpdateTables(source as SqlTable, destination as SqlTable);
                     break;
+                case SqlObjectType.Type:
+                    UpdateTypes(source as SqlType, destination as SqlType);
+                    break;
                 default:
                     _syncScript.Add(new SyncAction
                     {
@@ -108,6 +113,28 @@ namespace VIK.DBSync.CommonLib.DB.Sync
             }
         }
 
+        private void UpdateTypes(SqlType source, SqlType destination)
+        {
+            StringBuilder text = new StringBuilder();
+            foreach(SqlColumn column in destination.Columns)
+            {
+                text.AppendLine($"ALTER TABLE {column.ParentObject.QualifiedName} ALTER COLUMN [{column.Name}] {destination.GetTypeStatement()}");
+            }
+            text.AppendLine(destination.DropScript());
+            text.AppendLine(source.CreateScript());
+            foreach (SqlColumn column in destination.Columns)
+            {
+                text.AppendLine($"ALTER TABLE {column.ParentObject.QualifiedName} ALTER COLUMN [{column.Name}] {source.QualifiedName}");
+            }
+
+            _syncScript.Add(new SyncAction {
+                Name = source.Name,
+                Text = text.ToString(),
+                Type = SyncActionType.AlterType
+            }
+            );
+        }
+
         private SyncActionType GetDropActionType(SqlObjectType type)
         {
             switch (type)
@@ -120,6 +147,8 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                     return SyncActionType.DropStorProcedure;
                 case SqlObjectType.XmlSchema:
                     return SyncActionType.DropXmlSchema;
+                case SqlObjectType.Type:
+                    return SyncActionType.DropType;
                 default:
                     throw new Exception("not suppurted type");
             }
@@ -137,6 +166,8 @@ namespace VIK.DBSync.CommonLib.DB.Sync
                     return SyncActionType.CreateStorProcedure;
                 case SqlObjectType.XmlSchema:
                     return SyncActionType.CreateXmlSchema;
+                case SqlObjectType.Type:
+                    return SyncActionType.CreateType;
                 default:
                     throw new Exception("not suppurted type");
             }

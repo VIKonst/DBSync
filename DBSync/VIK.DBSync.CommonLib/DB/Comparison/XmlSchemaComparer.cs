@@ -11,7 +11,7 @@ namespace VIK.DBSync.CommonLib.DB.Comparison
     {
         protected override CompareResult CompareObjects(SqlXmlSchema obj1, SqlXmlSchema obj)
         {
-           if(obj.Definition.CompareTo(obj.Definition)!=0) return CompareResult.Different;
+           if(obj.Definition.CompareTo(obj1.Definition)!=0) return CompareResult.Different;
            return CompareResult.Equals;
         }
     }

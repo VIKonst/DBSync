@@ -27,7 +27,7 @@ namespace VIK.DBSync.ConsoleTest
             for(int i=0; i< count; i++)
             {
                 DataBase db = new DataBase(connection.ToString());
-                time = 0;
+            
                 Stopwatch t = new Stopwatch();
                 t.Start();
                 db.LoadObjects();

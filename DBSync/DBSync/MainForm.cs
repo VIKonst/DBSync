@@ -61,6 +61,7 @@ namespace DBSync
             RuntimeLocalizer.ChangeCulture(this,lang);
             RuntimeLocalizer.ChangeCulture(window, lang);
             SettingsManager.Instance.Lang = lang;
+            FilGroupNames();
             FilSqlTypeNames();
             foreach (ListViewItem item in listView1.Items)
             {
@@ -83,6 +84,7 @@ namespace DBSync
             RGroup = listView1.Groups.Add("R", "Removed");
             EGroup = listView1.Groups.Add("E", "Equals");
 
+            FilGroupNames();
             listView1.ItemChecked += ListView1_ItemChecked;
             listView1.ListViewItemSorter = new ComparerItem();
         }
@@ -233,8 +235,18 @@ namespace DBSync
             _typeNames[SqlObjectType.Table.GetHashCode()] = resources.GetString("TABLE");
             _typeNames[SqlObjectType.StoredProcedure.GetHashCode()] = resources.GetString("SP");
             _typeNames[SqlObjectType.Schema.GetHashCode()] = resources.GetString("SCHEMA");
+            _typeNames[SqlObjectType.Type.GetHashCode()] = resources.GetString("TYPE");
             _typeNames[SqlObjectType.XmlSchema.GetHashCode()] = resources.GetString("XML_SCHEMA");
         }
+
+        private void FilGroupNames()
+        {
+            NEGroup.Header = resources.GetString("NOT_EQ");
+            NGroup.Header = resources.GetString("NEW");
+            RGroup.Header = resources.GetString("REMOVED");
+            EGroup.Header = resources.GetString("EQUAL");
+        }
+
 
         private SyncOptions GetOptions()
         {

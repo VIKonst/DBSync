@@ -11,13 +11,11 @@ namespace VIK.DBSync.CommonLib.Metadata
 {
     public abstract class SqlSubObjectMetadataLoaderBase<T> : IMetaDataLoader<T, SubObjectsCollection<T>> where T : SqlSubObject
     {
-        protected String _scriptName;
-        protected SqlObject _parentObject;
+        protected String _scriptName;    
 
         public SqlSubObjectMetadataLoaderBase(String scriptName, SqlObject parentObject)
         {
-            _scriptName = scriptName;
-           // _parentObject = parentObject;
+            _scriptName = scriptName;          
         }
 
         abstract protected T GetObject(IDataRecord reader);
