@@ -1,1 +1,0 @@
-D:\_Valera\_Программирование\C#\_SyncDB_Development\Project\DBSync\DBSync\bin\Release\DBSync.exe.config
