@@ -10,3 +10,11 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+# Visual studio files
+.vs/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
